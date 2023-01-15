@@ -1,0 +1,685 @@
+const form = document.querySelector('.submit_form')
+const textArea = document.querySelector('#my_input')
+const leftContainer = document.querySelector('.inner_left_container')
+const rightContainer = document.querySelector('.inner_right_container')
+
+const loder = document.querySelector('.loading')
+
+const sendButton = document.querySelector('#submit_button')
+let loadInterval
+
+let test_question = ` A simple primaryAccusantium molestias sit nobis? Facilis quae impedit repellat veritatis mollitia consequuntur
+odit nostrum cumque tempore nesciunt nisi magnam, voluptatum corporis natus, quo culpa hic,
+rerum sit reprehenderit architecto repudianda `
+
+let answer_text = ` A simple primary this is a response `
+
+function loader (element, isFinished) {
+  if (!isFinished) {
+    loder.classList.remove('hide')
+    element.setAttribute('disabled', true)
+    element.classList.add('hide_partial')
+    return
+  }
+  loder.classList.add('hide')
+  element.removeAttribute('disabled')
+  element.classList.remove('hide_partial')
+}
+// loader(sendButton, false)
+//=============================
+//=============================
+function QUESTION_HTML (question) {
+  return `
+    <p style="min-width:100%"  class="init-quetion">
+    ${question}
+    <img src="./images/face_1.png"
+        style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem;"
+        alt="">
+    </p>`
+}
+function RESPONSE_HTML (response) {
+  return `
+    <p style="min-width:100%"  class="init-response">
+    ${response}
+    <img src="./images/bot.webp"
+        style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem;"
+        alt="">
+    </p>`
+}
+
+const handleSubmit = async e => {
+  e.preventDefault()
+  let question_text = textArea.value
+  postFetch(JSON.stringify(question_text))
+  form.reset()
+
+  //   leftContainer.scrollTo = leftContainer.scrollHeight
+}
+
+async function postFetch (question) {
+  if (!question) return
+  localStorage.setItem('question', `${question}`)
+  const rawResponse = await fetch(
+    'http://localhost:4200/poweredbychatgpt/ask-me-yourquestion',
+    {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorisation:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzM2OTMzMDksImV4cCI6MTY3Mzc1MzMwOX0.RjUOHpKund5OP1vbBM6MQ8pKSsK6qMwl1bxS317g6Vc'
+      },
+      body: JSON.stringify({ data: question })
+    }
+  )
+  const content = await rawResponse.json()
+  const data = await content
+  localStorage.setItem(
+    'response',
+    `${{ data: data.status, response: data.response }}`
+  )
+
+  return await content
+}
+
+;(async () => {
+  let question = localStorage.getItem('question')
+
+  let response = localStorage.getItem('response')
+  console.log(question)
+  console.log(response)
+
+  //   loader(sendButton, false)
+  //   leftContainer.insertAdjacentHTML('afterbegin', RESPONSE_HTML(answer_text))
+  //   leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(question_text))
+})()
+
+// ==========================================
+// ==========================================
+// ==========================================
+form.addEventListener('submit', handleSubmit, true)
+form.addEventListener(
+  'keyup',
+  e => {
+    if (e.keyCode === 13) {
+      handleSubmit(e)
+    }
+  },
+  true
+)
+sendButton.addEventListener('click', e => handleSubmit(e), true)
+ from there
+
+You can save data on localStorage using the setItem() method. The syntax is as follows:
+localStorage.setItem(keyName, value);
+
+You can retrieve the data from local storage using getItem() method. The syntax is as follows:
+let value = localStorage.getItem(keyName);
+ ======================
+Hi there, how can I help you?
+ ======================
+I'm sorry to hear that you are having issues with your computer and some of its settings. Depending on what is causing the issue, it may help to restart your computer and/or reset any settings that have been changed since the issue started. If the issue persists, it may be worth consulting a specialist who can take a closer look at the issue.
+ ======================  async function alwaysTrue() {
+    return true;
+  }
+ ======================
+async function alwaysTrue() {
+  return Promise.resolve(true);
+}
+ ======================
+  async function alwaysTrue() {
+    return true;
+  }
+ ======================
+Firstly, welcome to the GEM community!
+
+GEM (or Gender Expansion Movement) is a movement that seeks to expand the understanding of gender, promote gender equity, and build a more inclusive world. We work to raise awareness and create understanding through dialogue and education, in order to create a more inclusive society that respects and celebrates diversity.
+
+The mission of GEM is to provide resources, education, and support for anyone who identifies as non-binary, genderfluid, or gender-expansive, as well as their friends, family, and allies. We also focus on creating visibility for genderqueer and gender expansive individuals in the media and broader society. This can include advocating for legal protections from discrimination, helping empower individuals to live authentically, and offering support to those questioning their gender identity.
+
+We invite you to join us in fostering a more inclusive and equitable world for everyone, no matter their gender identity and expression. Thank you for your interest in GEM and we hope to see you in the community soon!
+
+Best, 
+GEM Team
+ ======================
+I am new to Python and would like to know how to write a for loop. A for loop is a type of looping statement in programming languages such as Python which allows you to iterate through a sequence and execute a block of code for each element within the sequence.
+
+For loops generally take the form of:
+
+for item in sequence:
+    # code to be executed
+
+where "item" represents each element of the sequence, and the code inside the loop will be executed once for each item in the sequence.
+
+Let's say we have a list of numbers:
+
+numbers = [1, 2, 3, 4, 5]
+
+We can use a for loop to iterate through this list and print out each number:
+
+for number in numbers:
+    print(number)
+
+This would print out the following:
+
+1
+2
+3
+4
+5
+ ======================
+async function returnTrue() {
+    return true;
+}
+ ======================
+async function alwaysTrue(){
+  return true;
+}
+ ======================
+const asyncTrue = async () => {
+  return true;
+};
+ ======================
+1. Walmart
+2. Apple
+3. Amazon
+4. ExxonMobil 
+5. Berkshire Hathaway
+6. Alphabet (Google)
+7. Royal Dutch Shell 
+8. McKesson
+9. UnitedHealth Group
+10. CVS Health
+ ======================
+
+1. Apple
+2. Microsoft
+3. Amazon
+4. Alphabet (Google)
+5. Berkshire Hathaway
+6. Samsung
+7. Wal-Mart Stores
+8. JP Morgan Chase
+9. ExxonMobil
+10. Industrial & Commercial Bank of China
+ ======================
+
+1. Walmart
+2. Apple
+3. Amazon
+4. Microsoft
+5. Exxon Mobil
+6. Berkshire Hathaway
+7. Alphabet (Google)
+8. Royal Dutch Shell
+9. Johnson & Johnson
+10. China National Petroleum Corporation
+ ======================
+async function returnTrue() {
+  return true;
+}
+ ======================
+const asyncTrue = async () => {
+  return true;
+}
+ ======================
+My name is Imani and I am a nurse. I work in a hospital setting, where I help to care for patients and their families. My work involves providing physical and emotional support to those in need. I also help to provide education about healthy lifestyles and preventive health measures. I believe it is important to take a holistic approach to healthcare, which involves looking at the whole person and taking all aspects of their life into consideration when providing the best possible care.  
+
+I love my job because I get to be part of something bigger than myself. Taking care of people and helping to improve their quality of life is such an amazing feeling. I also enjoy being around people of different backgrounds and learning from them. 
+
+Thanks for taking the time to get to know me!
+ ======================
+I don't know what you need help with so it is difficult to give you an answer. Please provide more information about your question so that someone can help you.
+ ======================
+Nice to meet you! How can I help you?
+ ======================
+I'm sorry to hear that you have been feeling down recently. It sounds like this is having an impact on your life and has been quite hard for you to cope with. It is normal to feel down sometimes but it's important to take action if it persists for more than a few days or weeks.
+
+The first step might be to reach out to someone that you trust and can talk to about how you are feeling. This could be a family member, a friend, your doctor or another health professional. Talking about what you are feeling can help to find solutions to your concerns and provide support.
+
+Another thing that could help is to try to focus on activities that make you feel better or improve your mood. This could include going for a walk or doing some exercise, catching up with friends, getting out in nature, trying out some relaxation techniques or meditating, or engaging in a hobby or activity that you enjoy.
+
+If you are still finding it hard to cope, it's important to seek help from a mental health professional. They can provide you with strategies to manage your symptoms and guide you in the right direction.
+
+Take care and I hope that you feel better soon.
+ ======================
+My name is John. I work as a software engineer. I am passionate about coding and have been writing software for the past five years. I enjoy using cutting edge technologies to create innovative software applications.
+
+I am interested in understanding the latest trends in software development and finding ways to implement them in my projects. I believe that staying up to date with the technology can make me a better software engineer. 
+
+In my free time, I like to explore new technologies and learn subjects related to software engineering. I also like to spend time with my family and friends.
+
+Thanks for taking time to read this.
+ ======================
+1. Apple
+2. Microsoft
+3. Amazon
+4. Alphabet (Google) 
+5. Berkshire Hathaway 
+6. ExxonMobil
+7. Walmart
+8. JPMorgan Chase
+9. Johnson & Johnson
+10. Royal Dutch Shell
+11. Coca-Cola
+12. Facebook
+13. China National Petroleum
+14. Chevron
+15. Samsung Electronics
+16. Total
+17. CVS Health
+18. Honda Motor
+19. McKesson
+20. AT&T
+21. BP
+22. Dell Technologies
+23. UnitedHealth Group
+24. Walgreens Boots Alliance
+25. Intel
+26. Procter & Gamble
+27. Lockheed Martin
+28. Bank of America
+29. Volkswagen
+30. Oracle
+31. Verizon
+32. Mars
+33. Wells Fargo
+34. American Express
+35. Nestlé
+36. Anheuser-Busch InBev
+37. Abbott Laboratories
+38. Toyota Motor Corporation
+39. PetroChina
+40. General Motors
+41. Kroger
+42. Amazon Web Services
+43. Goldman Sachs
+44. Philips
+45. DowDuPont
+46. Merck
+47. Sinopec
+48. State Farm Insurance
+49. ICICI Bank
+50. United Technologies
+51. Honda
+52. CitiGroup
+53. GlaxoSmithKline
+54. Nissan Motor
+55. Rio Tinto
+56. Novartis
+57. Tyson Foods
+58. Mitsubishi UFJ Financial Group
+59. Siemens
+60. MetLife
+61. FedEx
+62. Adidas
+63. Commerzbank
+64. Aetna
+65. Rabobank
+66. BASF
+67. Hitachi
+68. Allianz
+69. SoftBank Group
+70. Barclays
+71. Deutsche Bank
+72. Pfizer
+73. AXA
+74. Hyundai Motor
+75. Sumitomo Mitsui Financial Group
+76. Fuji Heavy Industries
+77. Mitsubishi Motors
+78. 3M
+79. Unilever
+80. Aviva
+81. Sanofi
+82. American International Group
+83. Mitsubishi Corporation
+84. Dai-ichi Life Insurance Company
+85. Canon
+86. KDDI
+87. BMW Group
+88. Aviva
+89. Panasonic
+90. Caterpillar
+
+ ======================
+function calculateNetherlandsTaxes(taxableIncome) { 
+  var taxRate = 0; 
+  if (taxableIncome <= 19822) { 
+    taxRate = 0.36; 
+  } else if (taxableIncome > 19822 && taxableIncome <= 33194) { 
+    taxRate = 0.40; 
+  } else if (taxableIncome > 33194 && taxableIncome <= 55593) { 
+    taxRate = 0.40; 
+  } else if (taxableIncome > 55593 && taxableIncome <= 71366) { 
+    taxRate = 0.45; 
+  } else { 
+    taxRate = 0.52; 
+  } 
+
+  // Calculating taxes 
+  var taxes = taxableIncome * taxRate; 
+
+  return taxes; 
+}
+ ======================
+As a DevOps Engineer, I bring a unique combination of expertise in deploying and managing enterprise solutions, automated testing, and cloud technology. I have a track record of creating robust automation solutions that streamline operations and enhance efficiency. My experience includes building large-scale infrastructures, developing solutions to address scalability challenges, and implementing high-quality solutions that meet or exceed customer expectations.
+ ======================
+I'm Caleb and I work in marketing.
+ ======================
+1. Snow White and the Seven Dwarfs (1937)
+2. Pinocchio (1940)
+3. Fantasia (1940)
+4. Dumbo (1941)
+5. Bambi (1942)
+6. Saludos Amigos (1942)
+7. The Three Caballeros (1944)
+8. Make Mine Music (1946)
+9. Fun and Fancy Free (1947)
+10. Melody Time (1948)
+11. Cinderella (1950)
+12. Alice in Wonderland (1951)
+13. Peter Pan (1953)
+14. Lady and the Tramp (1955)
+15. Sleeping Beauty (1959)
+16. 101 Dalmatians (1961)
+17. The Sword in the Stone (1963)
+18. The Jungle Book (1967)
+19. The Aristocats (1970)
+20. Robin Hood (1973)
+21. The Many Adventures of Winnie the Pooh (1977)
+22. The Rescuers (1977)
+23. The Fox and the Hound (1981)
+24. The Black Cauldron (1985)
+25. The Great Mouse Detective (1986)
+26. Oliver & Company (1988)
+27. The Little Mermaid (1989)
+28. The Rescuers Down Under (1990)
+29. Beauty and the Beast (1991)
+30. Aladdin (1992)
+31. The Lion King (1994)
+32. Pocahontas (1995)
+33. The Hunchback of Notre Dame (1996)
+34. Hercules (1997)
+35. Mulan (1998)
+36. Tarzan (1999)
+37. Fantasia 2000 (2000)
+38. The Emperor’s New Groove (2000)
+39. Atlantis: The Lost Empire (2001)
+40. Lilo & Stitch (2002)
+41. Treasure Planet (2002)
+42. Brother Bear (2003)
+43. Home on the Range (2004)
+44. Chicken Little (2005)
+45. Meet the Robinsons (2007)
+46. Bolt (2008)
+47. The Princess and the Frog (2009)
+48. Tangled (2010)
+49. Winnie the Pooh (2011)
+50. Wreck-It Ralph (2012)
+51
+ ======================
+My purpose in life is to live with purpose and intention, to make a positive impact on the world around me, and to cultivate joy and growth within myself and those I come into contact with.
+ ======================
+I don't think I'm smarter than anyone else, and I'm sure there are questions I can't answer. But I do spend a lot of time researching and studying, so that may be why I'm often able to answer questions quickly.
+ ======================
+I am new to the forums and I just wanted to introduce myself. My name is Jay and I’m from the UK. I have a strong interest in arts and crafts, particularly photography and pottery. I’m excited to meet other like-minded people here and start sharing experiences, tips, and ideas. 
+
+Looking forward to meeting you all!
+ ======================
+
+I love you too!
+ ======================
+What can I do for you?
+ ======================
+It is not uncommon for people to have different ideas about what is considered beautiful. Everyone has their own individual preferences and opinions about what constitutes beauty. For example, one person might find long hair beautiful, while another might prefer short hair. Beauty is subjective and there is no single standard of what is considered beautiful.
+ ======================
+There are a few different ways that you can increase the amount of traffic to your website. Some of these include creating engaging content that is valuable to the user and building relationships with other websites and companies who may be able to link back to your site. You can also use search engine optimization and digital advertising methods such as Google Adwords and Facebook Ads to bring more visitors to your website. Additionally, utilizing social media platforms and participating in online forums related to your business/product can help direct more traffic to your website.
+ ======================.
+
+
+Nice to meet you. How is your day going?
+ ======================
+I'm here to help. What type of problem are you having?
+ ======================
+
+FROM node:10.19.0
+
+WORKDIR /raybags/Desktop/personal/projects/raybags
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+ ======================
+
+FROM node:alpine
+
+WORKDIR /raybags/Desktop/personal/projects/raybags
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["npm", "start"]
+ ======================
+
+FROM node:8.9
+
+RUN mkdir -p /raybags/Desktop/personal/projects/raybags
+WORKDIR /raybags/Desktop/personal/projects/raybags
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["npm", "start"]
+ ======================
+
+FROM node:lts-alpine 
+
+WORKDIR /raybags/Desktop/personal/projects/raybags
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+ ======================
+
+FROM python:3.7
+ 
+WORKDIR /raybags/Desktop/personal/projects/raybags
+ 
+COPY . .
+ 
+RUN pip install -r requirements.txt
+ 
+EXPOSE 5000
+ 
+ENTRYPOINT ["python"]
+ 
+CMD ["app.py"]
+ ======================
+
+FROM node:alpine
+
+COPY . /raybags/Desktop/personal/projects/raybags
+
+WORKDIR /raybags/Desktop/personal/projects/raybags
+
+RUN npm install
+
+EXPOSE 8080
+
+CMD ["npm", "run", "dev"]
+ ======================
+
+You can set up CORS by adding the following headers to your server's response: 
+
+Access-Control-Allow-Origin: http://localhost
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+Access-Control-Allow-Headers: Content-Type, Authorization
+ ======================
+
+To save data to localStorage, you can use the <code>setItem()</code> method of the <code>Window.localStorage</code> object like this:
+
+<code>localStorage.setItem('username', 'John');</code>
+
+To get the saved data, you can use the <code>getItem()</code> method of the <code>Window.localStorage</code> object like this:
+
+<code>let username = localStorage.getItem('username');</code>
+
+
+ ======================?
+
+Yes, you can save data on local storage in the browser by using the localStorage object. To save data in local storage, use the setItem() method. To retrieve data from localStorage, use the getItem() method.
+
+In JavaScript:
+
+//saving data in local storage
+localStorage.setItem("name","John");
+
+//getting data from local storage
+const name = localStorage.getItem("name"); //returns "John"
+ ======================
+I want to be a force for positive change, helping to make the world a better and fairer place. I plan to do this by working with organizations that promote social justice, advancing access to education, protecting the environment, and generally striving to make the world a more equitable, equitable and peaceful place. Additionally, I want to inspire others to take action and join me in this mission.
+ ======================
+The plotline for Ant-Man and the Wasp follows Scott Lang (Paul Rudd) as he struggles to balance his home life as a father with his responsibilities as Ant-Man, when a new mission from Dr. Hank Pym and Hope van Dyne (Michael Douglas and Evangeline Lilly) presents itself. In order to pull off their plan, the pair must team up to fight a powerful new enemy. Along the way, they explore the idea of family, both blood relatives and others who have chosen to become a family through their bond. The plot also delves into the mysteries of the quantum realm and how it relates to the larger Marvel Cinematic Universe.
+ ======================
+The answer depends on the context. If you are referring to a particular fairytale or story, then the big bad is the main antagonist. In some cases, this could be a villain or monster.
+ ======================
+1. Get familiar with automation tools: To be a successful DevOps engineer, one needs to be comfortable with using automation tools. Automation tools like Puppet, Chef, Ansible and Jenkins can help streamline the process of managing, deploying and testing applications. 
+
+2. Learn about version control: The ability to track changes over time is an important part of any software development process. Version control tools such as Git, Mercurial, and Subversion are essential for DevOps engineers to effectively manage codebases.
+
+3. Understand the infrastructure: A deep understanding of the underlying infrastructure is essential for any DevOps engineer. Learning various cloud-based platforms such as AWS, Azure and Google Cloud Platform will help you understand the architecture and how to deploy applications efficiently.
+
+4. Understand the application code: Being familiar with the codebase of the application is essential for any DevOps engineer. If you don't understand the codebase, you won't be able to configure the servers correctly and troubleshoot issues.
+
+5. Be proactive: DevOps engineers should be proactive in identifying and addressing issues, as well as suggesting solutions. Proactive thinking is key to ensuring efficient performance.
+
+6. Stay up-to-date: Technologies and tools change very quickly. As a DevOps engineer, it's important to keep up-to-date with the latest trends and technologies. This includes not just learning new tools, but also staying current with best practices and emerging standards.
+ ======================
+The amount of time it takes to learn all the technologies needed to be an effective DevOps engineer can vary greatly depending on the individual's experience and knowledge in the field. It could take anywhere from a few months to several years to master the necessary skills, depending on how quickly the individual is able to pick up the new concepts.
+ ======================
+You want to employ a more varied approach that includes several tools and techniques. This should include both quantitative and qualitative methods. For example, you might use surveys to measure customer satisfaction with different products as well technology-driven data analysis techniques to capture trends in customer behavior. Additionally, you may employ focus groups or interviews to gain insight into customer preferences and needs in order to understand the dynamics of the market better.
+ ======================
+My name is John and I am looking for some help to learn more about computer programming. I am new to the field and need some guidance in choosing the right language and tools for my project. I am also interested in learning how to use the different programs and applications that are related to programming. Any advice is greatly appreciated. Thank you!
+ ======================
+I was born in July 1998.
+ ======================
+According to Forbes, the richest man alive is Jeff Bezos, founder of Amazon, with an estimated net worth of $184 billion.
+ ======================
+That is subjective and impossible to answer definitively.
+ ======================
+This is a subjective question because it depends on each individual's opinion or beliefs and there is no one definitive answer.
+ ======================
+1. Avengers: Endgame (2019)
+2. Avatar (2009)
+3. Titanic (1997)
+4. Star Wars: The Force Awakens (2015)
+5. Avengers: Infinity War (2018)
+6. Jurassic World (2015)
+7. The Lion King (2019)
+8. Star Wars: The Last Jedi (2017)
+9. Black Panther (2018)
+10. The Avengers (2012)
+ ======================
+const AWS = require('aws-sdk');
+
+function createS3Bucket(bucketName) {
+    const s3 = new AWS.S3({apiVersion: '2006-03-01'});
+    const params = {
+        Bucket: bucketName
+    };
+    s3.createBucket(params, (err, data) => {
+        if (err) {
+            console.log('Error : ', err);
+        } else {
+            console.log('Success : ', data.Location);
+        }
+    });
+}
+ ======================
+Node.js is a powerful platform for building web applications and other server-side applications. It can be used to quickly create lightweight, robust, and efficient applications. To use this in a Node.js application, you need to install the Node.js package on your computer. 
+
+1. Download the Node.js installer from the official website. 
+2. Once it has completed, run the installer and follow the instructions to complete installation. 
+3. If you are using MacOS or Linux, you may need to use sudo to run the installer. 
+4. After installation is complete, open your terminal and type “node -v” to check the version. This will ensure that Node.js is properly installed.
+
+5. Create a project folder to store your Node.js application. 
+6. Create a file named “app.js” inside the folder. This will be the starting point of your Node.js application.
+7. Inside this file, add the following code to print a welcome message: console.log("Welcome to Node.js!");
+8. To run this code, open the command line and go to the project directory. Then, type “node app.js” to execute the code.
+
+9. Now that you have a basic application running, you can start adding more features. The Node.js core modules and NPM packages provide an extensive library of functions that you can use. 
+10. You can also create custom libraries and modules that can be used by your application. 
+11. Finally, deploy your application to a server so it can be accessed by others.
+ ======================
+1. ReactJS
+2. Express
+3. Node.js
+4. Webpack
+5. Babel
+6. Redux
+7. MongoDB 
+8. MQTT protocol
+9. Socket.io
+10. Passport authentication
+11. Jest testing framework
+12. Gulp task runner
+13. Styled Components
+ ======================
+If you wanted to use vanilla javascript, you would need to create an HTML file, and then use the script tag to include the code. Then, you would use standard javascript syntax to write your code. For example, in order to add an event listener to an element, you could use something like this:
+
+<script>
+  document.querySelector('#myElement').addEventListener('click', () => { 
+    // do something here
+  });
+</script>
+ ======================
+You can use a package like cors to implement cors middleware in your application.
+
+Here's an example of how to set up CORS in a Node.js application using the cors package:
+
+const cors = require('cors');
+
+//Set up cors with some options
+const corsOptions = {
+  origin: '*', //This will allow access from anywhere
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+//Register cors middleware
+app.use(cors(corsOptions));
+ ======================
+Example: 
+
+int x = 5;
+int y = 6;
+
+int sum = x + y;
+
+System.out.println("The sum of " + x + " and " + y + " is " + sum + ".");
+// Outputs: The sum of 5 and 6 is 11.
+ ======================
+A common use of a middleware function is to verify a user's authentication credentials. This can be done by validating a user's username and password, or by checking for authentication tokens. Once the middleware function has verified that the user is authenticated, it can be used to allow access to certain resources, or to forward requests to the necessary handlers.
+ ======================
+The simplest frontend JavaScript framework to learn is Vue.js. It has a very simple API which makes it easy to pick up, and its official documentation is detailed and helpful. Plus, the Vue community is extremely active and vibrant.
+ ======================
