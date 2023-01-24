@@ -9,29 +9,25 @@ It use custom functions that define routes for an Express.js server. The Authent
 
 Generates a JSON web token (JWT) using the `authorization` header of the request.
 
-### POST `/raybags/ask-me`
+### POST `/raybags/v1/wizard/ask-me`
 
 Validates a JWT using the `authorization` header, then calls the `GPT_5` function with the question from the request body, and finally save the result to the GPT_RESPONSE model and return the response.
 
-### GET `/historical-data`
+### GET `/raybags/v1/wizard/data`
 
 Retrieves paginated results from the GPT_RESPONSE model.
 
-### GET `/historical-data-all`
+### GET `/raybags/v1/wizard/data-all`
 
 Retrieves all the results from the GPT_RESPONSE model.
 
-### GET `/historical-data/:id`
+### GET `/raybags/v1/wizard/item/:id`
 
 Retrieves one Item from the GPT_RESPONSE model.
 
-### DELETE `/historical-data/:id`
+### DELETE `/raybags/v1/wizard/delete-item/:id`
 
 Deletes one Item from the GPT_RESPONSE model.
-
-### PUT `/historical-data/:id`
-
-Updates one Item from the GPT_RESPONSE model.
 
 ### GET `*`
 
