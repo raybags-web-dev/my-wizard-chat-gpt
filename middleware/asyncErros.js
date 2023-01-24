@@ -1,10 +1,13 @@
-module.exports = function asyncMiddleware(handler) {
-    return async(req, res, next) => {
-        try {
-            await handler(req, res);
-        } catch (ex) {
-            res.status(500).json('something went wrong. Try again later')
-            next(ex.message);
-        }
-    };
+module.exports = function asyncMiddleware (handler) {
+  return async (req, res, next) => {
+    try {
+      await handler(req, res)
+    } catch (ex) {
+      const statusCode = ex.statusCode || 500
+      res.status(statusCode).json({ status: 'failed', message: ex.message })
+      if (typeof next === 'function') {
+        next({ error: ex, message: ex.message })
+      }
+    }
+  }
 }

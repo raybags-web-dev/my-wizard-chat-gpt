@@ -9,6 +9,8 @@ const BTN_CONTAINER = Array.from(document.querySelectorAll('#BTN1 button'))
 exports = { CONTAINER }
 const loder = document.querySelector('.loading')
 const sendButton = document.querySelector('#submit_button')
+const my_key =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzQwMzgxODYsImV4cCI6MTY3NDA5ODE4Nn0.EjIVgkgOHVpIc3mD-ny6gDaLhYUu-44KhaXp7nUq7SM'
 
 function loader (element, isFinished) {
   if (!isFinished) {
@@ -102,8 +104,7 @@ function FetchData (query) {
     method: 'get',
     url: `http://localhost:4200/historical-data${query}`,
     headers: {
-      Authorisation:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzM3OTAwNzQsImV4cCI6MTY3Mzg1MDA3NH0.6BTEKoFgmFI3y-o9XzzaJBxbEAMKQ-LLqFVOyKeJ1UQ'
+      Authorisation: my_key
     }
   }
   axios(OPTIONS).then(response => {
@@ -143,8 +144,7 @@ async function postFetch (question) {
     url: 'http://localhost:4200/raybags/ask-me',
     data: { data: question },
     headers: {
-      Authorisation:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzM3OTAwNzQsImV4cCI6MTY3Mzg1MDA3NH0.6BTEKoFgmFI3y-o9XzzaJBxbEAMKQ-LLqFVOyKeJ1UQ'
+      Authorisation: my_key
     }
   }
 

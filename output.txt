@@ -682,4 +682,300 @@ System.out.println("The sum of " + x + " and " + y + " is " + sum + ".");
 A common use of a middleware function is to verify a user's authentication credentials. This can be done by validating a user's username and password, or by checking for authentication tokens. Once the middleware function has verified that the user is authenticated, it can be used to allow access to certain resources, or to forward requests to the necessary handlers.
  ======================
 The simplest frontend JavaScript framework to learn is Vue.js. It has a very simple API which makes it easy to pick up, and its official documentation is detailed and helpful. Plus, the Vue community is extremely active and vibrant.
+ ====================== from local storage in browser using
+javascript
+
+You can use the localStorage object to set and get data stored in the browser's local storage.
+
+Set:
+localStorage.setItem("key", "value");
+
+Get:
+let value = localStorage.getItem("key");
+ ======================
+ii)
+
+Kudey
+
+Hey Kudey!  How are you today?
+ ======================?
+
+You can save data on the local storage of the browser by using the setItem method of the Storage interface, which will save the data with a specified key. You can then get the data from the local storage using the getItem method with the key specified when you set the item.
+
+Example:
+
+// Set an item in local storage
+localStorage.setItem('name', 'John');
+
+// Get an item from local storage
+const name = localStorage.getItem('name');
+ ======================/assets
+
+
+
+const path = require("path");
+const webpack = require('webpack');
+
+module.exports = {
+    entry: [
+        // Here you can define the app's entry point; using a path relative to this config file
+        './ray-bags/index.js',
+        ...
+    ],
+
+    output: {
+        filename: 'build.js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    module: {
+        rules: [
+            { 
+                test: /\.js$/, 
+                loader: 'babel-loader'
+            },
+            {
+                 test: /\.(png|svg|jpg|gif)$/,
+                 use: [
+                     'file-loader'
+                 ]
+            },
+            {
+                 test: /\.(woff|woff2|eot|ttf|otf)$/,
+                 use: [
+                      'file-loader'
+                  ]
+            },
+            {
+                test: /\.css$/i,
+                use: [
+                      'style-loader',
+                      'css-loader'
+                  ]
+            },
+            {
+                test: /\.html$/,
+                use: [
+                      'html-loader'
+                  ]
+            }
+        ]
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
+    ]
+};
+ ======================
+
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+
+module.exports = {
+    entry: ['babel-polyfill', './raybags/Desktop/personal/projects/ray-bags/index.js'],
+    output: {
+        filename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'dist')
+    },
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true
+        }),
+        new OptimizeCSSAssetsPlugin({})
+      ]
+    },
+    module: {
+        rules: [
+            {
+              test: /\.js$/,
+              exclude: /node_modules/,
+              use: {
+                loader: "babel-loader"
+              }
+            },
+            {
+              test: /\.html$/,
+              use: [
+                {
+                  loader: "html-loader",
+                  options: { minimize: true }
+                }
+              ]
+            },
+            {
+              test: /\.css$/,
+              use: [MiniCssExtractPlugin.loader, 'css-loader']
+            },
+            {
+              test: /\.(png|svg|jpg|gif)$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    name: '[name].[ext]',
+                    outputPath: 'assets/images'
+                  }
+                }
+              ]
+            },
+            {
+              test: /.(woff|woff2|eot|ttf|otf)$/,
+              use: [
+                {
+                  loader: 'file-loader',
+                  options:
+ ======================
+
+The optimize-css-assets-webpack-plugin is not installed in your project. You need to install the package with npm or yarn: 
+
+npm install --save-dev optimize-css-assets-webpack-plugin
+
+yarn add --dev optimize-css-assets-webpack-plugin
+ ======================
+
+I can help you with troubleshooting your internet connection. First, I would recommend that you restart your modem and router. This will reset both the devices and might solve any connectivity issues. Additionally, make sure that all the cables are connected properly and there is no damage to them.
+
+If restarting the modem and router doesn't help, then you should check if the router's settings are configured correctly. If they aren't, then you will need to reset the router to its default settings and re-configure the settings.
+
+Also, ensure that there are no other devices or programs running on your computer that can be slowing down your connection. Another option is to switch to a different wireless channel or to reduce the frequency of transmission to avoid interference from other wireless networks.
+
+Finally, if you are still having trouble, you may want to contact your internet service provider for assistance.
+
+Thanks
+ ======================,
+
+I'm sorry to hear that you are having trouble with your skin. There are a few things that you can do to help you get rid of the redness and make your skin feel better. I recommend using a gentle cleanser and moisturizer, as well as exfoliating with an exfoliant that is suitable for your skin type. You can also use a topical treatment such as a retinoid or benzoyl peroxide to help with the redness and inflammation. Additionally, make sure that you are staying hydrated with plenty of water and avoiding too much sun exposure.
+
+I hope this helps! Good luck.
+ ======================
+
+This is the year 2020.
+ ======================
+
+This is not a valid question. Please rephrase your question to specify which year you are referring to.
+ ======================?
+
+We are currently in 2021.
+ ======================
+
+This is the year 2020.
+ ======================
+
+It depends on what year you're asking about.
+ ======================
+
+It is 2021.
+ ======================
+
+It is 2020.
+ ======================
+
+It is 2020.
+ ======================, am Rishab and I am 18
+
+Hi Rishab, nice to meet you!
+ ====================== and Rashi.Jethalal also has a son Tipendra Gada, known as Tapu and a daughter Sonu.
+
+The main characters of this show are Jethalal Champaklal Gada, his wife Daya Jethalal Gada, his father Champaklal Jayantilal Gada, sister-in-law Renu, friend Aiyar and neighbor Bawri. Other characters include popatlal, Bagha, socheth, shayam sundar, Dr.Haathi and others. The show also features many guest celebrities from all over India.
+ ======================!
+
+Your question is really interesting and there are many different ways to answer. It really depends on what you're trying to achieve and what your specific goals are. Generally speaking, developing a relationship with a customer is about understanding their needs and building trust. This can include things like addressing customer complaints in a timely manner, following up with customers after a purchase, ensuring that product/service delivery meets customer expectations, and providing personalized customer service. It may also involve engaging with your customer base through social media or email campaigns. Whatever approach you take, it’s important to focus on creating an experience that is tailored to the customer’s individual needs. Thanks for asking this question!
+ ======================. 
+
+const writeImagesToS3Bucket = async (awsCredentials, images) => {
+  const s3 = new AWS.S3({
+    accessKeyId: awsCredentials.iam_access_id,
+    secretAccessKey: awsCredentials.iam_secret_key 
+  });
+
+  const uploadPromises = images.map(async image => {
+    const params = {
+      Bucket: 'name-of-bucket', // name of your S3 bucket
+      Key: `images/${image.name}`, // name of the object key
+      Body: image.data // image data
+    };
+
+    let uploadResponse;
+    try {
+       uploadResponse = await s3.upload(params).promise();
+    } catch (error) {
+      console.error(`Error writing to S3: ${error}`);
+    }
+
+    return uploadResponse;
+  });
+
+  return Promise.all(uploadPromises);
+};
+ ======================'},
++    {name: 'Plan 1', price: '$99.99', active: true},
++    {name: 'Plan 2', price: '$199.99'},
++    {name: 'Plan 3', price: '$399.99'}
++  ];
++
++  toggleActive(data, 'Plan 1') // should return data, where plan 1 is the only one active.
++
++  const expected = [
++    {name: 'Plan 1', price: '$99.99', active: true},
++    {name: 'Plan 2', price: '$199.99', active: false},
++    {name: 'Plan 3', price: '$399.99', active: false}
++  ];
++
++  function toggleActive(arr, str) {
++    return arr.map(plan => {
++      if (plan.name === str) plan.active = true;
++      else plan.active = false;
++      return plan;
++    });
++  }
++
++  console.log(toggleActive(data, 'Plan 1'));
+
+ ======================
+
+It is a good morning indeed. I hope you have a great day!
+ ====================== to all
+
+Good morning, how are you?
+ ======================
+
+Good morning! How can I help you?
+ ======================
+
+Good morning! It's nice to meet you. How can I help you?
+ ======================
+
+Good morning! How are you doing today?
+ ======================
+
+Good morning! How are you doing?
+ ======================
+
+Good morning to you! How are you?
+ ======================
+
+Good morning! How can I help you?
+ ======================
+
+Good morning to you! How are you today?
+ ======================
+
+Good morning! How can I help you?
+ ======================.
+
+Good morning. How are you today?
+ ======================
+
+Good morning! How can I help you?
+ ======================
+
+Good morning! How can I help you?
  ======================
