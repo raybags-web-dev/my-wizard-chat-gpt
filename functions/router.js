@@ -16,7 +16,6 @@ function Authenticate (app) {
     }
   })
 }
-
 function AskGPT (app) {
   app.post(
     '/raybags/v1/wizard/ask-me',
@@ -59,7 +58,6 @@ function AskGPT (app) {
     })
   )
 }
-// get paginatged results:
 function GetPaginatedResults (app) {
   app.get(
     '/raybags/v1/wizard/data',
@@ -73,7 +71,12 @@ function GetPaginatedResults (app) {
           .sort({ createdAt: -1 })
           .skip(skip)
           .limit(limit)
-        res.status(200).json(response)
+        const totalPages = Math.ceil(
+          (await GPT_RESPONSE.countDocuments()) / limit
+        )
+        res
+          .status(200)
+          .json({ data: response, totalPages: totalPages, currentPage: page })
         return response
       } catch (error) {
         if (error.message === `Page can't be 0`) {
@@ -105,12 +108,25 @@ function GetAll (app) {
       let response = await GPT_RESPONSE.find({}).sort({ createdAt: 1 })
       if (response.length === 0)
         return res.status(404).json('Sorry I have nothing for you!')
-      res.status(200).json(response)
+
+      let page = parseInt(req.query.page) || 1
+      let perPage = parseInt(req.query.perPage) || 10
+      let totalPages = Math.ceil(response.length / perPage)
+
+      let paginatedResponse = response.slice(
+        (page - 1) * perPage,
+        page * perPage
+      )
+
+      res.status(200).json({
+        totalPages: totalPages,
+        currentPage: page,
+        data: paginatedResponse
+      })
       return response
     })
   )
 }
-
 function FindOneItem (app) {
   app.get(
     '/raybags/v1/wizard/item/:id',
@@ -122,7 +138,6 @@ function FindOneItem (app) {
     })
   )
 }
-
 function DeleteOne (app) {
   app.delete(
     '/raybags/v1/wizard/delete-item/:id',
@@ -135,7 +150,6 @@ function DeleteOne (app) {
     })
   )
 }
-
 function DeleteAll (app) {
   app.delete(
     '/raybags/v1/wizard/delete-all',
@@ -147,11 +161,9 @@ function DeleteAll (app) {
     })
   )
 }
-
 function NotSupported (req, res, next) {
   res.status(404).json("Sorry, that route doesn't exist.")
 }
-
 module.exports = {
   Authenticate,
   AskGPT,
