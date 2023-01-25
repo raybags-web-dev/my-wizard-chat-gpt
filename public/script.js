@@ -3,14 +3,14 @@ const form = document.querySelector('.submit_form')
 const textArea = document.querySelector('#my_input')
 const leftContainer = document.querySelector('.inner_left_container')
 const rightCont = document.querySelector('.inner_right_container')
-const DBlader = document.querySelector('#RC')
+const DBloader = document.querySelector('#RC')
 const BTN_CONTAINER = Array.from(document.querySelectorAll('#BTN1 button'))
 
 exports = { CONTAINER }
 const loder = document.querySelector('.loading')
 const sendButton = document.querySelector('#submit_button')
 const my_key =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzQwMzgxODYsImV4cCI6MTY3NDA5ODE4Nn0.EjIVgkgOHVpIc3mD-ny6gDaLhYUu-44KhaXp7nUq7SM'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzQ2MDUwMTMsImV4cCI6MTY3NDY2NTAxM30.Qy_5vbUXjq-xF8XZnvdaoCB2Sg3TqXpTPeurdDea6JM'
 
 function loader (element, isFinished) {
   if (!isFinished) {
@@ -59,56 +59,56 @@ function DB_RES_HTML (response) {
   <hr>
 </p>`
 }
+
 ;(async () => {
-  DBlader.classList.remove('hide')
+  DBloader.classList.remove('hide')
   BTN_CONTAINER.forEach(element => {
     element.addEventListener('click', e => {
-      DBlader.classList.remove('hide')
       if (e.target.classList.contains('b1')) {
-        DBlader.classList.add('hide')
+        DBloader.classList.add('hide')
         return FetchData('?page=1')
       }
       if (e.target.classList.contains('b2')) {
-        DBlader.classList.add('hide')
+        DBloader.classList.add('hide')
         return FetchData('?page=2')
       }
       if (e.target.classList.contains('b3')) {
-        DBlader.classList.add('hide')
+        DBloader.classList.add('hide')
         return FetchData('?page=3')
       }
       if (e.target.classList.contains('b4')) {
-        DBlader.classList.add('hide')
+        DBloader.classList.add('hide')
         return FetchData('?page=4')
       }
       if (e.target.classList.contains('b5')) {
-        DBlader.classList.add('hide')
+        DBloader.classList.add('hide')
         return FetchData('?page=5')
       }
       if (e.target.classList.contains('b6')) {
-        DBlader.classList.add('hide')
+        DBloader.classList.add('hide')
         return FetchData('?page=6')
       }
       if (e.target.classList.contains('b7')) {
-        DBlader.classList.add('hide')
+        DBloader.classList.add('hide')
         return FetchData('-all')
       }
     })
   })
-
-  FetchData('?page=1')
-  DBlader.classList.add('hide')
+  FetchData('-all')
+  DBloader.classList.add('hide')
 })()
 
 function FetchData (query) {
+  if (query == undefined) query == '?page=1'
   const OPTIONS = {
     method: 'get',
-    url: `http://localhost:4200/historical-data${query}`,
+    url: `/raybags/v1/wizard/data${query}`,
     headers: {
       Authorisation: my_key
     }
   }
   axios(OPTIONS).then(response => {
-    response.data.forEach(item => {
+    response.data.data.forEach(item => {
       const { createdAt, question, response } = item
 
       rightCont.insertAdjacentHTML(
@@ -116,7 +116,7 @@ function FetchData (query) {
         DB_RES_HTML(response, createdAt)
       )
       rightCont.insertAdjacentHTML('afterbegin', DB_QN_HTML(question))
-      //   DBlader.classList.add('hide')
+      DBloader.classList.add('hide')
     })
   })
 }
@@ -127,7 +127,8 @@ const handleSubmit = async e => {
   if (!question_text || question_text == '') return
   try {
     loader(sendButton, false)
-    postFetch(question_text)
+    await postFetch(question_text)
+    // DBloader.classList.add('hide')
     form.reset()
   } catch (e) {
     console.log(e.message)
@@ -141,16 +142,31 @@ async function postFetch (question) {
   localStorage.setItem('question', JSON.stringify(question))
   let options = {
     method: 'post',
-    url: 'http://localhost:4200/raybags/ask-me',
+    url: '/raybags/v1/wizard/ask-me',
     data: { data: question },
     headers: {
+      'Content-Type': 'application/json',
       Authorisation: my_key
     }
   }
-
+  // ======================remove loader===========
+  // ======================remove loader===========
+  // ======================remove loader===========
   axios(options)
     .then(response => {
       localStorage.setItem('response', JSON.stringify(response))
+      console.log(response)
+      DBloader.classList.add('hide')
+      loader(sendButton, true)
+
+      const QN = JSON.parse(localStorage.getItem('question'))
+      const { data } = JSON.parse(localStorage.getItem('response'))
+
+      leftContainer.insertAdjacentHTML(
+        'afterbegin',
+        RESPONSE_HTML(data.response)
+      )
+      leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
     })
     .catch(e => console.log(e.message))
 }
@@ -165,7 +181,7 @@ async function postFetch (question) {
     leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
     loader(sendButton, true)
   } catch (e) {
-    console.log(e.message)
+    console.log(e)
   }
 })()
 // ==========================================

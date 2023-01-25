@@ -1227,3 +1227,263 @@ Disadvantages: AI systems rely heavily on data to function properly, and they ca
 
 Social Benefits: AI can be used to improve healthcare, education, transportation, and other essential services. By automating mundane tasks, it can free up more time for people to spend on meaningful activities. Additionally, AI can be used to reduce energy consumption and emissions, leading to environmental benefits.
  ======================
+
+DevOps
+Advantages:
+1. The most efficient way to manage the IT infrastructure and applications.
+2. Ability to create scripts that automate and streamline processes, enabling teams to work at peak efficiency.
+3. Streamlines product deployment and helps to improve software quality.
+4. Reduces time to market, allowing teams to deliver products faster.
+5. Automates tasks, eliminating manual labor and delivering cost savings.
+Disadvantages:
+1. May require expensive tools and software to get started.
+2. Requires a high level of technical knowledge and expertise, so it’s not a suitable job for everyone.
+3. High pressure working environment as DevOps is constantly managing and evaluating the IT infrastructure and processes.
+Social Benefits:
+1. Helps organizations improve their operational efficiency, reducing downtime and increasing customer satisfaction.
+2. Enables teams to deliver more products more quickly, driving sales and helping organizations stay competitive.
+3. Empowers employees to be more creative by automating tedious tasks and freeing them up to work on meaningful projects.
+
+Data Engineer 
+Advantages:
+1. Accurate and reliable data is essential for any business in today’s digital world.
+2. Data engineers are responsible for ensuring this accuracy by creating and managing data pipelines, databases and other infrastructure.
+3. Data engineering enables companies to make smart decisions based on the insights gleaned from vast amounts of data.
+4. Data engineers are highly employable in today’s tech-driven industries.
+Disadvantages:
+1. Data engineering can be difficult to learn, as it involves complex programming languages, algorithms and other coding skills.
+2. There are many different types of data engineering roles, so it can be difficult to find the perfect fit.
+3. Data engineering is rapidly changing, which means staying up-to-date on the latest trends and technologies can be daunting.
+
+Social Benefits:
+1. Data helps organizations become more efficient and effective, saving them time and money.
+2. Data engineering helps companies make more informed decisions, improving the likelihood of success.
+3. Data engineering helps protect customers’ privacy, as it ensures that confidential information is kept secure.
+
+AI:
+The use of Artificial Intelligence (AI) in both DevOps and Data Engineering is becoming more and more prevalent. AI is used to help automate certain tasks and streamline
+ ======================
+
+DevOps
+
+Advantages:
+
+• DevOps allows for faster and more frequent deployment of applications. This will enable businesses to create, test, and deploy applications at a much faster rate.
+
+• DevOps also helps ensure that IT resources are used in an efficient manner. It helps to reduce errors, improve collaboration between teams, automate processes, and improve visibility across the entire organization.
+
+• DevOps provides businesses with an opportunity to reduce costs associated with IT by optimizing processes, improving collaboration, and automating tasks.
+
+• DevOps also provides businesses with the ability to respond quickly to customer needs and changes in the market. Businesses can use DevOps to create and deploy applications faster, increase scalability, and adapt quickly to changing business demands.
+
+Disadvantages:
+
+• DevOps requires significant investment in technology infrastructure, tools, and personnel.
+
+• DevOps can be complex and require a high level of skill to maintain and monitor.
+
+• DevOps is not suitable for all types of projects and environments.
+
+• The adoption of DevOps can be costly and time-consuming.
+
+Social Benefits:
+
+• DevOps helps to reduce operational costs, improve application performance, and increase customer satisfaction.
+
+• It also enables businesses to stay competitive in the digital age by providing faster and more reliable software solutions.
+
+• DevOps creates a culture of collaboration and learning, which can help to cultivate a healthier workplace for employees.
+
+• DevOps can also help businesses to become more agile and responsive to changes in the market.
+
+Data Engineer
+
+Advantages:
+
+• Data engineers are able to develop robust data architectures and data pipelines that process large amounts of data quickly and accurately.
+
+• Data engineers are also able to use a variety of software and tools to create powerful analytics and insights that help businesses make better decisions.
+
+• Data engineers can help to optimize and monitor data infrastructure, ensuring that it is running efficiently and effectively.
+
+• Data engineers are also able to use their skills to automate processes, streamline workflows, and improve the speed and accuracy of data analysis.
+
+Disadvantages:
+
+• Data engineering requires a significant amount of technical knowledge and experience.
+
+• Data engineers must be comfortable working with large amounts of data and writing complex code.
+
+• Working with data can also be a complex and time-consuming
+ ======================
+
+This middleware is used to parse incoming request bodies that are sent in with a URL-encoded format. This middleware will only parse the url-encoded data and will not support any other kind of encoded data. The extended option, when set to false, will use the native querystring Node module to parse the data.
+ ====================== if possible
+
+This middleware is used to parse incoming request bodies that have been encoded with the URL-encoding method. Express.js uses this "extended" syntax module to handle complex data structures such as arrays and nested objects.
+
+For example, consider a request sent from a web form containing an array of values:
+
+POST /form HTTP/1.1
+name=John&hobbies[]=reading&hobbies[]=hiking
+
+The Express.js middleware would parse the data into an object like this:
+
+{
+  name: 'John',
+  hobbies: ['reading', 'hiking']
+}
+ ======================
+I tried this but it doesn't work: 
+<code>this.http.post('/raybags/v1/wizard/ask-me', body).subscribe(response =&gt; {
+      console.log(response);
+    })
+</code>
+Is this possible? 
+
+
+A:
+
+No, because you have enable to provide full url in the http request.
+You can use <code>environment</code> file to store the base URL and use it while making a request.
+
+ ======================
+
+You can set up a proxy in Express.js to rewrite the URL to include the full localhost URL. 
+
+For example, you can add this code to your Express.js file:
+
+// Proxy for localhost URL
+app.use('/raybags/v1/wizard/ask-me', (req, res, next) => {
+    req.url = `http://localhost:4200/raybags/v1/wizard/ask-me`;
+    next();
+});
+
+This will rewrite any requests made to '/raybags/v1/wizard/ask-me' to request the full localhost URL.
+ ======================
+
+Movie | Release Date | Movie Stars 
+--- | --- | --- 
+Iron Man | May 2, 2008 | Robert Downey Jr., Jeff Bridges 
+The Incredible Hulk | June 13, 2008 | Edward Norton, Liv Tyler 
+Iron Man 2 | May 7, 2010 | Robert Downey Jr., Don Cheadle
+Thor | May 6, 2011 | Chris Hemsworth, Natalie Portman 
+Captain America: The First Avenger | July 22, 2011 | Chris Evans, Hayley Atwell 
+The Avengers | May 4, 2012 | Robert Downey Jr., Scarlett Johansson 
+Iron Man 3 | May 3, 2013 | Robert Downey Jr., Gwyneth Paltrow
+Thor: The Dark World | November 8, 2013 | Chris Hemsworth, Natalie Portman 
+Captain America: The Winter Soldier | April 4, 2014 | Chris Evans, Scarlett Johansson 
+Guardians of the Galaxy | August 1, 2014 | Chris Pratt, Zoe Saldana 
+Avengers: Age of Ultron | May 1, 2015 | Robert Downey Jr., Chris Evans 
+Ant-Man | July 17, 2015 | Paul Rudd, Evangeline Lilly 
+Captain America: Civil War | May 6, 2016 | Chris Evans, Robert Downey Jr. 
+Doctor Strange | November 4, 2016 | Benedict Cumberbatch, Chiwetel Ejiofor 
+Guardians of the Galaxy Vol. 2 | May 5, 2017 | Chris Pratt, Zoe Saldana 
+Spider-Man: Homecoming | July 7, 2017 | Tom Holland, Michael Keaton 
+Thor: Ragnarok | November 3, 2017 | Chris Hemsworth, Mark Ruffalo 
+Black Panther | February 16, 2018 | Chadwick Boseman, Lupita Nyong'o 
+Avengers: Infinity War | April 27, 2018| Robert Downey Jr., Chris Hemsworth 
+Ant-Man and the Wasp | July 6, 2018 | Paul Rudd, Evangeline Lilly 
+Captain Marvel | March 8, 2019 | Brie Larson, Samuel L. Jackson
+ ======================
+There are several ways to accomplish ear terraform. The first step is to gain an understanding of the basic concepts and principles of the technology. This can be accomplished by reading tutorials, attending workshops, and conversing with experienced users. Once you have a basic understanding, use an online learning platform to get hands-on experience. Use Terraform's documentation and generate sample configurations to learn how Terraform works. Lastly, deploy real-world projects in a production environment and practice troubleshooting when issues arise.
+ ======================
+The fastest option would be the Hyperloop, a proposed high-speed transportation system that would move passengers and cargo swiftly in capsules inside low-pressure tubes at speeds of up to 760 miles per hour.
+ ======================
+10, sqrt(10)^1000
+20, sqrt(20)^1000
+30, sqrt(30)^1000
+40, sqrt(40)^1000
+50, sqrt(50)^1000
+60, sqrt(60)^1000
+70, sqrt(70)^1000
+80, sqrt(80)^1000
+90, sqrt(90)^1000
+100, sqrt(100)^1000
+ ======================
+My objective is to develop my professional and interpersonal skills through a challenging role in an organization with room for growth and opportunities.
+ ======================
+1. Gather Data: The first step in creating an AI model is to collect and organize data that you want to use for training the model. It is important to collect both structured and unstructured data from different sources.
+
+2. Organize Data: Once the data is collected, it needs to be organized in a way that the AI model can access and understand the data. This means that the data needs to be structured and formatted according to the type of problem the model is trying to solve.
+
+3. Choose an AI Network: Next, select the appropriate AI network architecture for your problem. This will depend on the size and complexity of the data and the type of problem you want to solve.
+
+4. Train the Model: Once the AI network has been selected, the data needs to be fed into the model. The model will then use the data to learn patterns and identify relationships.
+
+5. Validate the Model: After the model has been trained, it needs to be tested against real data to see how accurately it can predict or classify new data points. If errors are too high the model may need further tweaking or a different network architecture needs to be selected.
+
+6. Deploy the Model: Once the model has been validated and tested, it can be deployed in production. This means that the model can now be used to make predictions or classify new data points to solve the problem it was intended for.
+ ======================
+To collect data from a distributed system on a weekly basis, you can create an automated process with scripting or programming that connects to the system and captures all available data. Alternatively, you can set up a scheduled task that runs the program or script on a recurring basis. Depending on the data being collected and the system in question, you may also be able to use software tools like Amazon Data Pipeline or Apache Airflow to help manage the data collection and provide scheduling options.
+ ======================
+Unfortunately, I can't say for sure why this wouldn't work for you without knowing more about your specific situation. Without knowing what the issue is or what your setup looks like, it's hard to give specific advice. If you can provide more information about the problem, we may be able to help you figure out why it isn't working.
+ ======================
+This question is too broad to answer. Without more information it is impossible to determine what is going on.
+ ======================
+Testing is an important part of software development and can help ensure that the code is working as expected. Tests can be written in a variety of different programming languages depending on the language that the software is written in. Tests should be written for all areas of the code, including error handling, data validation, performance, security, and other areas. The tests should also be written to cover any changes that are made to the code, such as bug fixes and new features. Testing should also include running the application on multiple platforms and browsers to ensure compatibility across multiple devices and operating systems.
+ ======================m.csv")
+    # test_univariate(X, y)
+    # print("-----------------")
+    test_multivariate(X, y)
+ ======================
+Fusion reactions are the process of combining two lighter nuclei to create a heavier nucleus. Fusion reactions can be implemented in several ways, including magnetic confinement, inertial confinement and laser-induced fusion. 
+
+Magnetic confinement fusion (MCF) is a technique that uses strong magnetic fields to contain and heat plasma—an electrically charged gas—until its temperature is high enough for the nuclei to fuse. One example of MCF is the tokamak, a toroidal (doughnut shaped) device that uses powerful magnets to keep the hot plasma away from the walls of the container and prevent it from cooling. 
+
+Inertial confinement fusion (ICF) is a technique that uses intense pulses of laser or ion beams to compress and heat a target containing fuel, usually deuterium and tritium (two isotopes of hydrogen), so that the fuel is heated to temperatures and pressures at which nuclear fusion occurs.
+
+Laser-induced fusion (LIF) is a method in which two lasers are aimed at a small pellet of fuel, usually composed of deuterium and tritium, creating a shock wave that heats and compresses the fuel until the nuclei fuse.
+ ======================
+1. Develop a strong understanding of the political climate: Understand the current state of local, state, and federal government and how they interact. Research the issues that people in your area care about and strive to make them part of your platform.
+
+2. Build relationships with local politicians and leaders: Reach out to your local mayors, aldermen, representatives and other political leaders and establish relationships. Try attending meetings or events and volunteer for their campaigns to get involved.
+
+3. Educate yourself about the issues: Learn about the issues you are passionate about and the ones that will be important to your constituents. Learn what solutions have been proposed and consider possible alternatives.
+
+4. Develop your campaign: Create a platform that outlines the issues you feel strongly about and find ways to present it to potential voters. Connect with potential donors and create a strategy to raise funds.
+
+5. Promote yourself: Use social media and traditional methods of communication to spread your message and reach a wider audience. Once you’ve got your message out, attend events, door-knock, and talk to people directly about your platform.
+
+6. Stay flexible: As you prepare for the election and after your win, stay aware of changing priorities and trends in politics. Be open to new ideas and listen to the concerns of your constituents to ensure that you remain relevant and are able to meet the needs of your community.
+ ======================
+The Earth rotates on its own axis from west to east, meaning the Sun rises in the east and sets in the west. This is also known as a prograde or direct rotation.
+ ====================== about the new car
+
+The new car is called the Tesla Model Y and it is an all-electric crossover SUV. It will be available in four different versions, which are Standard Range, Long Range, Dual Motor All-Wheel Drive, and Performance. It features a panoramic glass roof, heated and ventilated front seats, lane assist, blind spot protection, and autopilot with full self-driving capabilities. The Standard Range version can go up to 230 miles on a single charge, while the Long Range version can go up to 300 miles. The Dual Motor All-Wheel Drive version is capable of 0-60mph in 3.5 seconds, and the Performance version can do 0-60 mph in just 3.2 seconds. The car will also come with a built-in infotainment system that supports Tesla's smart home integration, which includes voice commands.
+ ======================
+
+The Earth has a rotational period of approximately 24 hours, or one solar day. The rotation is the result of the gravitational pull exerted by the Sun and Moon on the Earth. For this reason, the orbital motion of the Moon around the Earth has an effect on the length of a day over long periods of time. In addition, the alignment of the Earth's axis of rotation is not fixed, but undergoes a slow, continual change known as precession. This movement affects the speed of Earth's rotation in two ways: by stretching and shortening the day and by changing the direction of the Earth’s axis of rotation.
+ ======================
+According to the most recent measurements, the age of the universe is estimated to be around 13.8 billion years old.
+ ======================
+The age of the Earth is estimated to be 4.54 billion years old.
+ ======================
+Details can refer to any type of information or description that make something easier to understand or visualize. Details can involve descriptions of appearance, function, operation, usage, etc. Depending on the context, details can include features of a product, a process, a person, an event, or in other scenarios. In creative writing, details may serve to paint a vivid picture of the action taking place; by including specific descriptions, readers can more easily visualize what's happening and make more meaningful connections to the story.
+ ======================
+Measuring the Earth’s rotation can be done in various ways, such as using Very Long Baseline Interferometry (VLBI), using an Earth Rotation Seismometer (ERS), or using satellites. VLBI is a technique used to measure distances between two points on the Earth's surface with extreme accuracy by correlating the signals from multiple radio telescopes scattered around the world. An ERS measures the time of arrival of seismic waves from earthquakes and is used to measure small changes in the Earth's rotation. Finally, satellites are used to measure the Earth's rotation relative to distant, fixed stars.
+ ======================
+No, you cannot measure the Earth's distance from the edge of the universe. The universe is ever-expanding and its edge is unknown, so there is no way to measure the distance.
+ ======================
+You're very welcome!
+ ======================
+If you can't see well, it's important to consult a doctor or vision specialist to find out what might be causing your vision issues. It could be something as simple as needing glasses, or something more serious that needs treatment.
+ ======================
+There are several things you can do to keep your eyes clean:
+
+1. Use artificial tears or lubricating eye drops to keep your eyes moist and reduce irritation.
+
+2. Wear protective eyewear like goggles while swimming, playing contact sports, or working with chemicals or machinery.
+
+3. Avoid rubbing your eyes when they are itchy or irritated.
+
+4. Clean your contact lenses regularly and replace them when necessary.
+
+5. Keep your hands and face clean. Wash your hands often and avoid touching your eyes with unclean hands.
+
+6. Avoid smoking as it can irritate your eyes.
+
+7. Get regular eye exams and follow your doctor’s advice.
+ ======================
+That is a great question! Each teacher is different and it is important to determine what kind of teaching style might work best for you. Generally speaking, good teachers are patient and supportive, have good communication skills, are organized and knowledgeable, and are flexible in their approach to teaching. You can ask your school or other students for recommendations on teachers who have a good reputation. If possible, try to observe their lessons so that you can get a better sense of their teaching style. It is also important to look into the qualifications and experience of a potential teacher.
+ ======================

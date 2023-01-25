@@ -6,6 +6,15 @@ const { MONGO_URI } = process.env
 module.exports = async app => {
   const PORT = process.env.PORT || 4200 //getRandomPort()
 
+  app.use('/raybags/v1/wizard/*', (req, res, next) => {
+    let newUrl = req.url.replace(
+      '/raybags/v1/wizard/',
+      `http://localhost:${PORT}/raybags/v1/wizard/`
+    )
+    req.url = newUrl
+    next()
+  })
+
   app.listen(PORT, async () => {
     try {
       console.log(`server up on port: ${PORT}`)

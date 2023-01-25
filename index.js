@@ -5,6 +5,7 @@ const morgan = require('morgan')
 const startUp = require('./src/startup')
 const routesHandler = require('./src//routes_handler')
 
+app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 app.use(express.static('public'))
 app.use(express.json())
