@@ -7,7 +7,7 @@ const { validateJWTToken, generateJWTToken } = require('../middleware/auth')
 const { GPT_RESPONSE } = require('../src/models/responseModel')
 
 function Authenticate (app) {
-  app.post('/api/auth', async (req, res) => {
+  app.post('/raybags/v1/wizard/auth', async (req, res) => {
     try {
       const token = await generateJWTToken(req.headers.authorisation)
       return res.status(200).json({ token })

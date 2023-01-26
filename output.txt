@@ -1487,3 +1487,316 @@ There are several things you can do to keep your eyes clean:
  ======================
 That is a great question! Each teacher is different and it is important to determine what kind of teaching style might work best for you. Generally speaking, good teachers are patient and supportive, have good communication skills, are organized and knowledgeable, and are flexible in their approach to teaching. You can ask your school or other students for recommendations on teachers who have a good reputation. If possible, try to observe their lessons so that you can get a better sense of their teaching style. It is also important to look into the qualifications and experience of a potential teacher.
  ======================
+
+We apologize for any inconvenience caused by the downtime. Our services are occasionally down due to system maintenance, updates, or other technical issues that may arise. We strive to notify our customers as soon as possible whenever there are planned outages and we are working hard to improve our systems to ensure that service disruptions are minimal.
+ ======================
+
+const renderErrorMessage = (message) => {
+  const errorMessageEl = document.createElement('div');
+  errorMessageEl.classList.add('error-message');
+  errorMessageEl.innerText = message;
+
+  document.body.append(errorMessageEl);
+};
+ ======================
+
+const errorMessageElement = (errorMsg) => {
+  let alertLable = "alert-danger";
+  if (errorMsg === "") {
+    alertLable = "alert-success";
+  }
+
+  const element = `
+  <div class='alert ${alertLable} fixed-top' role='alert' style='margin-top:-10%;transition:0.5s'>${errorMsg}</div>
+  `;
+  document.body.insertAdjacentHTML("afterbegin", element);
+  return element;
+};
+ ======================
+
+There are a few methods you can use to check if a string of text contains a specific or a group of words.
+
+1. IndexOf() Method:
+This method checks if a particular word exists within a string and returns the index of the first match. If no match is found, it will return -1.
+
+eg. 
+let text = "You can find the answer here";
+
+let searchWord = "answer";
+
+let result = text.indexOf(searchWord);
+// result will be 14
+
+2. Includes() Method:
+This method checks if a particular word exists within a string and returns a boolean value (true/false).
+
+eg. 
+let text = "You can find the answer here";
+
+let searchWord = "answer";
+
+let result = text.includes(searchWord);
+// result will be true
+
+3. Regex Method:
+This method checks if a particular word or group of words exists within a string and returns a boolean value (true/false).
+
+eg. 
+let text = "You can find the answer here";
+
+let searchWord = /answer/;
+
+let result = text.match(searchWord);
+// result will be "answer"
+ ======================
+
+function errorResponder(errorString) {
+  let keyWords = ['null', 'TypeError'];
+  for (let i in keyWords) {
+    if (errorString.includes(keyWords[i])) {
+      return `Error: ${keyWords[i]}`;
+    }
+  }
+  return 'Error Type Not Found';
+}
+
+console.log(errorResponder("TypeError: Cannot destructure property 'data' of 'JSON.parse(...)'")); // Output: Error: TypeError
+ ======================
+
+You can use the contains() method to check if a string contains a given character or sequence of characters.
+For example, if you wanted to check if a string contains an 'a':
+
+String myString = "Hello World";
+if (myString.contains("a")) {
+    System.out.println("String contains letter 'a'");
+} else {
+    System.out.println("String does not contain letter 'a'");
+}
+ ======================
+
+To check for the type of an error in JavaScript, you can use the Error constructor to create an instance of the Error object. The message property will contain the type of the error, such as "ReferenceError" or "SyntaxError".
+ ======================
+
+You can use the "instanceof" operator to check for a type of error in JavaScript. 
+
+Below is an example of how to use the "instanceof" operator to check for a type of error:
+
+function checkErrorType(err) {
+  if (err instanceof ReferenceError) {
+    console.log('Reference Error');
+  } else if (err instanceof TypeError) {
+    console.log('Type Error');
+  } else if (err instanceof RangeError) {
+    console.log('Range Error');
+  } else {
+    console.log('Error');
+  }
+}
+ ======================
+
+The easiest way to check if an object contains a data property is to use the "in" operator. This operator will return true if the specified property is present in the object, and false if it isn't. For example: 
+
+let obj = {name: "John", age: 24};
+
+if("name" in obj){
+  console.log("Name property is present in the obj object");
+}
+ ======================
+
+You can check if an object contains a given property by using the hasOwnProperty() method. The method will return true or false based on if the object contains the given property.
+For example:
+
+let obj = {a: 1, b: 2, c: 3};
+
+obj.hasOwnProperty("a"); // returns true
+obj.hasOwnProperty("d"); // returns false
+ ======================
+
+You can use the getItem() method of the localStorage object to check if a local storage item exists. The syntax for this is as follows:
+
+// Syntax 
+localStorage.getItem('itemName'); 
+
+// Example 
+if (localStorage.getItem('userName')) {
+    console.log('The local storage item exists!');
+} else {
+    console.log('Local storage item not found.');
+}
+ ======================
+
+Internal Server Error is an HTTP status code indicating an error with an underlying server. It could be caused by various factors, such as a misconfigured web server, an incorrect file/folder permission setting, or a faulty script. It is typically displayed in the browser as a 500 status code error.
+ ====================== ?
+
+No, e.statusCode is not used to listen for error status codes in a browser. Instead, the onreadystatechange event should be used to handle any errors with the request.
+ ======================
+
+You can use the Network tab of your browser's developer tools to inspect the request and see the corresponding status code.
+ ======================
+
+You can use the following syntax: 
+
+if(error.statusCode == 400){
+  // Do something
+} else if(error.statusCode == 500){
+  // Do something else
+} else {
+  // Do something else
+}
+ ======================
+1. Research current industry trends: Stay up to date with current industry trends, this will provide great insight into what skills or expertise may be in demand.
+
+2. Expand your knowledge: Take courses or certifications in areas that you feel are marketable.
+
+3. Network: Making connections with influential people in your field will open up opportunities for you to showcase your skills.
+
+4. Volunteering: Volunteering is a great way to gain valuable experience and show potential employers what you can do.
+
+5. Keep your resume updated: Make sure your resume reflects all of your current skills and qualifications, and highlight any new ones.
+
+6. Polish your online presence: Make sure your online presence (i.e. LinkedIn, blog, etc.) is professional and up-to-date.
+
+7. Showcase projects: Put together a portfolio of projects to demonstrate your skills.
+
+8. Put yourself out there: Attend networking events and conferences related to your field to make yourself known.
+ ======================
+
+Welcome!
+ ======================
+You can accomplish ear terraform by using the Terraform CLI, which is a command-line tool that allows you to define, deploy, and manage infrastructure as code. With Terraform, you can write configuration files using HashiCorp Configuration Language (HCL) or JSON that describes the various components of your infrastructure (e.g. compute instances, network configurations, storage, etc.). You can then use these configurations to create, update, and delete all of your infrastructure resources in a consistent, repeatable way.
+ ======================
+Unfortunately, it is not possible to accomplish terraforming on Jupiter since it is a gas giant planet and does not have any solid surface.
+ ======================
+1. Earth
+2. Mars
+3. Venus
+4. Gliese 581d
+5. Kepler-442b
+6. TRAPPIST-1f
+7. Kepler-16b
+8. K2-18b
+9. Proxima b
+10. HD 40307g
+ ======================
+1. The Moon 
+2. Asteroids 
+3. Comets 
+4. The International Space Station 
+5. Mars 
+
+1. The Moon 
+2. Asteroids 
+3. Comets 
+4. The International Space Station
+ ======================
+This error occurs when a function is expecting an HTMLInputElement (a particular type of HTML element) as an argument, but it receives something else. This may happen if the code is using incorrect syntax or if the wrong type of argument is passed.
+ ======================My solution
+The best way to solve this problem is to talk with your teacher or principal about the issue and explain why you think the grading system should be changed. Ask them what steps they can take to make the grading system fairer and more equitable, and be sure to express your ideas on how the grading system could be improved. Suggest that they focus more on assessing students based on their individual learning and progress rather than on their raw test scores. Additionally, it might be helpful to speak with other students and parents to get their input on the issue. This will help provide a better understanding of how the current grading system is impacting students.
+ ======================
+Unfortunately, this isn't something we can help with. If your software isn't working properly, you may need to reach out to the manufacturer or software developer for assistance.
+ ======================
+You're welcome!
+ ======================
+Set your mind free
+Open yourself to new possibilities
+Allow yourself to explore the world around you
+Unleash your creativity and express yourself
+Let go of negative emotions and focus on the positive
+Be brave and take risks
+Trust yourself and believe in yourself
+Break away from the past and embrace the present
+Live without fear or hesitation
+Live in the moment and enjoy life
+ ======================
+The idea of life after death has been a topic of much debate over the centuries. It is a controversial subject that many people have strong opinions about. Some believe in a literal afterlife while others may not believe in one at all. Despite this, there are certain things that are universally accepted when it comes to life after death. 
+
+First, it is believed that when someone dies, their soul leaves their physical body and goes on to another realm. This realm has been given many different names such as Heaven, Paradise, or the Afterlife. In this realm, the spirit of the deceased is said to be free from any suffering and able to exist in harmony with other spirits. 
+
+Another aspect of life after death is the notion of reincarnation. When someone dies, some believe that their spirit is reborn into a new physical form in a process known as reincarnation. This belief is widely held in Eastern religious traditions such as Hinduism and Buddhism.
+
+Finally, the afterlife can also be seen as the ultimate reward for living a good life. Many cultures and religious tradition hold that those who are kind and virtuous in life will find peace and joy in the afterlife, while those who live selfishly and do evil will be punished. 
+
+Overall, life after death is an intriguing topic without a definitive answer. Whether you believe in a literal afterlife or simply that death brings an end to our physical forms, it is something that everyone must come to terms with at some point in their lives.
+ ======================
+function typingEffect(text) {
+  let counter = 0;
+  function printLetter() {
+    document.querySelector("#output").textContent += text[counter];
+    counter++;
+    if (counter < text.length) {
+      setTimeout(printLetter, Math.random() * 70);
+    }
+  }
+  printLetter();
+}
+ ======================
+function typingEffect(element) {
+  const textArray = element.innerText.split('');
+  element.innerText = '';
+  textArray.forEach((letter, i) => {
+    setTimeout(() => element.innerText += letter, 70 * i);
+  });
+}
+ ======================
+async function LableFactory (Msg, alertLable_class) {
+  let speed = 75;
+  const element = `<div class="alert ${alertLable_class} bg-dark text-white fixed-top text-center alert_lable" role="alert" style="margin-top:-10%;transition:0.5s;border-color:transparent;"></div>`
+  document.body.insertAdjacentHTML('afterbegin', element);
+  return new Promise(resolve => {
+    let progress = 0;
+    let typedUrl = '';
+
+    let renderMessage = setInterval(() => {
+      if (progress === Msg.length) {
+        clearInterval(renderMessage);
+        resolve();
+      } else {
+        typedUrl += Msg.charAt(progress);
+        document.querySelector('.alert_lable').innerText = typedUrl;
+        progress++;
+      }
+    }, speed);
+  });
+}
+ ======================
+ 
+async function LableFactory (Msg, alertLable_class) {
+  let i = 0;
+  const element = `<div id="msg" class="alert ${alertLable_class} bg-dark text-white fixed-top text-center alert_lable" role="alert" style="margin-top:-10%;transition:0.5s;border-color:transparent;"></div>`
+  document.body.insertAdjacentHTML('afterbegin', element)
+  const interval = setInterval(function(){
+     if(i < Msg.length){
+        document.getElementById('msg').innerText += Msg[i];
+        i++;
+    } else {
+        clearInterval(interval);
+    }
+  }, 150); 
+  return element
+}
+ ======================
+async function LableFactory (Msg, alertLable_class, outputAnchor) {
+  let text = Msg;
+  const element = `<div class="alert ${alertLable_class} bg-dark text-white fixed-top text-center alert_lable" role="alert" style="margin-top:-10%;transition:0.5s;border-color:transparent;">${Msg}</div>`
+  document.body.insertAdjacentHTML('afterbegin', element);
+  typingEffect(text, outputAnchor);
+  return element;
+
+}
+ ======================
+Yes, I am back online.
+ ======================
+Yes
+ ======================asda
+ §§ 1000
++#asdasdasdasdasdasd
+
+ ======================
+No, this is not a word.
+ ======================
+No, this is not jibberish.
+ ======================
+It is important to keep track of your finances for a variety of reasons. Tracking your finances enables you to stay on top of your spending so that you don’t go over budget and end up in debt. It also allows you to easily identify areas where you can save money and make wise financial decisions. Additionally, keeping accurate records of your finances can help you plan for the future, whether it's starting a business, investing in stocks, or buying a house.
+ ======================
+My name is Kirk.
+ ======================
