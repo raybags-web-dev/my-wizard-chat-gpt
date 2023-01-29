@@ -1800,3 +1800,1459 @@ It is important to keep track of your finances for a variety of reasons. Trackin
  ======================
 My name is Kirk.
  ======================
+A great life is different for every individual. It's difficult to define a single timeline that everyone should follow. Some people reach their goals earlier in life, while others may take longer. Everyone should strive to create their own timeline that works for them.
+ ======================
+I am hoping that you can help me with a question I have.
+
+I want to know if there is any way to find out if someone has a YouTube channel or if they are active on it.
+
+Unfortunately, there isn't really a straightforward way to find out if someone has a YouTube channel or if they are active on it. The only way to do this is to search for their name on YouTube and see if any results come up. If not, then it's likely that the person does not have an active YouTube channel. You could try looking for social media profiles associated with the person as well, as some users might post links to their channels on their profiles.
+ ======================
+Hi! How can I help you?
+ ====================== the div.
+
+function createAndRemoveAlertElement (message, alertLable_class){
+    let element = `<div class='alert ${alertLable_class} bg-dark text-white fixed-top text-center alert_lable' role='alert' style='margin-top:-10%;transition:0.5s;border-color:transparent;'>`  + message + '</div>';
+
+    document.body.insertAdjacentHTML('afterbegin', element);
+
+    let i = 0;
+    let typingEffect = setInterval(()=> {
+        const alertElem = document.querySelector('.alert');
+        let currentTxt = message.substring(0, i);
+        alertElem.innerText = currentTxt;
+        if (i >= message.length) {
+            clearInterval(typingEffect);
+        } else {
+            i++;
+        }
+    }, 80);
+
+    setTimeout(() => {
+    const alertElem =  document.querySelector(".alert");
+    let slidingUp = setInterval(() => {
+        alertElem.style.marginTop = "-100%";
+        if (parseInt(alertElem.style.marginTop) < 0){
+            clearInterval(slidingUp);
+            document.body.removeChild(alertElem);
+        }
+    }, 30);
+    }, 2000);
+}
+ ======================
+History is the study of past events, including political, economic, social, and cultural developments. It is used to understand the context of current events and to anticipate future possibilities.
+ ======================
+
+function createAlertMessage(message, alertLable_class){
+  let element = `<div class='alert ${alertLable_class} bg-dark text-white fixed-top text-center alert_lable' role='alert' style='margin-top:-10%;transition:0.5s;border-color:transparent;'>${message}</div>`;
+  document.body.insertAdjacentHTML('afterbegin', element);
+
+  let pos = -10;
+  let id = setInterval(frame, 5);
+  function frame(){
+    if(pos == 10){
+      clearInterval(id);
+      setTimeout(() => {
+        element.style.marginTop = "-100%";
+      }, 2000);
+    } 
+    else{
+      pos++;      
+      element.style.marginTop = pos + '%';
+    }
+  }
+}
+ ======================
+Biology is the scientific study of living organisms, including their structure, function, growth, origin, evolution, and distribution. Topics commonly studied in biology include anatomy, physiology, genetics, ecology, immunology, and molecular biology.
+ ======================				$css = apply_filters( 'oxygen_default_styles', array(
+					'global-settings' 	=> '/* Oxygen Global Settings */
+											body {
+												background-color: #ecf0f1;
+												font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+												font-size: 16px;
+												color: #484848;
+												line-height: 1.5em;
+											}
+
+											h1,
+											h2,
+											h3,
+											h4,
+											h5,
+											h6 { font-family: "Raleway", sans-serif; line-height: 1em; }
+
+											p { margin-top: 0; }
+											a { color: #63b8ee; text-decoration: none; }
+											a:hover { text-decoration: underline; }',
+					'reset' 			=> "/* Oxygen Reset */
+											html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup,
+ ======================
+Chemistry is a branch of science that focuses on the composition, properties, and structure of matter, and how matter interacts with energy. It includes topics such as the study of atoms, molecules, elements, and compounds; chemical reactions and stoichiometry; thermodynamics; kinetics; electrochemistry; spectroscopy; and nuclear chemistry. In addition, chemistry has applications in many other areas, such as medicine, engineering, food science, pharmaceuticals, biochemistry, and materials science.
+ ======================
+Art is a reflection of society that is interpreted differently by each individual. Through creative use of color, texture, and other aesthetic elements, art can evoke emotion, convey messages and tell stories. Art can also be used as an expression of self, raising awareness of social issues, challenging societal norms, and bringing communities together. Through its unique perspective, art has the power to inspire, educate, inform, and provoke thought and reflection.
+ ======================
+
+4. Make a list of four books you'd like to read
+
+- The Great Gatsby by F. Scott Fitzgerald 
+- The Catcher in the Rye by J.D. Salinger
+- To Kill a Mockingbird by Harper Lee
+- 1984 by George Orwell
+ ======================
+•
+
+developing self
+
+-
+
+learning
+
+
+
+systems
+
+
+
+•
+
+knowledge
+
+-
+
+based expert
+
+systems
+
+
+
+•
+
+natural language processing
+
+
+
+•
+
+robotics
+
+
+
+•
+
+vision
+
+
+
+•
+
+autonomous agents
+
+
+
+•
+
+automatic programming
+
+
+
+•
+
+model
+
+-
+
+based reasoning
+
+
+
+•
+
+machine learning
+
+
+
+•
+
+neural networks
+
+
+
+•
+
+data mining and knowledge
+
+discovery
+
+
+
+•
+
+simulation, animation and
+
+visualization
+
+
+
+•
+
+temporal and spatial
+
+reasoning
+
+
+
+
+
+Introduction to Artificial
+
+Intelligence
+
+
+
+Where is AI Used?
+
+
+
+•
+
+Commercial
+
+
+
+–
+
+Interface agents
+
+
+
+–
+
+Internet search engines
+
+
+
+–
+
+Image recognition for vision
+
+systems
+
+
+
+–
+
+Logic
+
+-
+
+based agents for financial
+
+planning
+
+
+
+•
+
+Consumer
+
+
+
+–
+
+Speech recognition systems
+
+
+
+–
+
+Automatic teller machines
+
+
+
+–
+
+Vehicle navigation systems
+
+
+
+•
+
+Science
+
+
+
+–
+
+Robotic instruments
+
+
+
+–
+
+Scientific simulations
+
+
+
+–
+
+Automatic text analysis
+
+
+
+–
+
+Speech understanding
+
+
+
+A Layman’s View of AI
+
+
+
+•
+
+AI is a term used to describe
+
+functions such as:
+
+
+
+•
+
+Humans use when they are
+
+trying to think or solve problems
+
+
+
+•
+
+Perform activities that require
+
+high levels of problem solving
+
+
+
+•
+
+Perform tasks that are difficult
+
+for computers to do without the
+
+application of AI techniques
+
+
+
+
+
+Introduction to Artificial
+
+Intelligence
+
+
+
+Common Applications for AI
+
+
+
+•
+
+Computer games
+
+
+
+•
+
+Natural language processing
+
+
+
+•
+
+Robotics
+
+
+
+•
+
+Data mining
+
+
+
+•
+
+Computer vision
+
+
+
+•
+
+Expert systems
+
+
+
+•
+
+Neural networks
+
+
+
+•
+
+Voice recognition
+
+
+
+•
+
+
+ ======================
+
+..in mathematics 
+
+Mathematics can be found in many forms of art, from architecture to music. Many artists use mathematical principles and concepts to create their artwork, from the design of a building’s facade to the structure of a dance routine. Art and mathematics are often intertwined and used together in the creation of beautiful works of art. Mathematical principles can be used to create stunning visuals, as seen in the work of M.C. Escher, or create intricate musical compositions, as seen in the music of Johann Sebastian Bach. Mathematics can also be a tool for exploring beauty and finding creative solutions to complex problems.
+ ======================
+1. Practice and Experiment - There’s no substitute for practice, especially when it comes to art. Take some time each day to try out new techniques, explore different mediums, and just generally get familiar with the materials you’re working with.
+
+2. Take Classes or Workshops - If you need guidance, consider taking a class or workshop to gain access to an experienced instructor who will be able to point you in the right direction.
+
+3. Reference Images - Don’t be afraid to use reference images while you’re drawing or painting. Using references — either from a photo or from life — will help you practice your observation skills and improve your accuracy.
+
+4. Use Quality Supplies - Quality art supplies can make all the difference, so invest in some good quality paints, brushes and other materials. Higher quality supplies will make your artwork look better and last longer.
+
+5. Look at Artwork - Surrounding yourself with great artwork is key to inspiring you and improving your skills, so make sure to take some time to appreciate the work of famous artists, both in person and online.
+
+6. Have Fun! - Above all else, have fun with it! Art should be enjoyable, so let your imagination run wild and allow yourself to be creative.
+ ======================
+
+function RESPONSE_HTML (response) {
+    return `<p style='min-width:100%'  class='init-response'><span id="typed"></span><img src='./images/bot.webp' style='width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem;' alt=''> </p>
+    <script>
+      let i = 0;
+      let timer = setInterval(onTick, 75);
+
+      function onTick() {
+        if (i >= response.length) {
+          clearInterval(timer);
+        }
+        document.getElementById("typed").innerText += response.charAt(i);
+        i++;
+      }
+    </script>`
+}
+ ======================
+I am sorry to hear that your partner has anxiety. It is important to remember that everyone deals with anxiety differently and it is important to be patient and supportive. Some tips on how to help your partner manage their anxiety could include: 
+
+1. Encourage them to take time out of their day to relax and focus on something calming like yoga or deep breathing techniques.
+
+2. Talk with them about their worries and feelings, and listen when they need to talk.
+
+3. Help them create a routine that will help keep their anxiety under control, like regular exercise, getting enough sleep, and eating nutritious foods.
+
+4. Practice positive self-talk and affirmations with them.
+
+5. Make sure to let them know you are there for them, no matter what.
+
+6. If necessary, offer to go with them to therapy sessions or other types of professional help if they need it.
+
+I hope this helps. Good luck to you both!
+ ======================
+Algebra is a branch of mathematics that uses symbols and letters to represent variables, numbers, and known mathematical relationships in equations. It helps to understand patterns in numbers and operations that can be used to solve real-world problems.
+ ======================
+Physics is the natural science that studies matter, its motion and behavior through space and time, and the related entities of energy and force. It is a fundamental branch of science and can be divided into classical and modern physics. Classical physics is concerned with the study of forces, energy, mass, and motion, while modern physics looks at the subatomic world, and encompasses areas such as quantum mechanics, condensed matter physics, particle physics, and nuclear physics.
+ ======================
+DARK REFLECTION
+
+The quiet town of Greywater is thrown into chaos when an ancient evil arrives in the form of a mysterious mirror. After hearing warnings from the locals about a malevolent force living within the reflection, Lena and her friends decide to uncover what's really going on.
+
+As they dig deeper into the legend of the reflective entity, they soon discover that the mirror has been used for centuries as a portal between our world and another dimension. Here, the residents of Greywater must battle the supernatural creature in a fight to the death. Will they be able to destroy the entity before it destroys them?
+
+DARK REFLECTION is a terrifying horror movie filled with jump scares, chillingly real monsters and a story of terror that will leave its audiences in a state of disbelief.
+ ======================
+Great suggestion! Some of the top sci-fi movies include:
+
+1. Blade Runner 2049 (2017)
+2. The Matrix (1999)
+3. Star Wars: Episode V - The Empire Strikes Back (1980)
+4. Ex Machina (2014)
+5. The Terminator (1984)
+6. Alien (1979)
+7. The Avengers (2012)
+8. Inception (2010)
+9. Jurassic Park (1993)
+10. District 9 (2009)
+ ======================
+Comedy is a great way to lighten up any gathering! There are many styles of comedy, such as stand-up, sketch, improv, and musical comedy. You can find a comedian or comedy show that suits your taste, or you can even create your own show if you’re feeling creative. Whichever way you go, make sure to have a few laughs!
+ ======================
+
+function callApiAuth() {
+  const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+  const now = new Date();
+
+  if (now - this.lastCallTime > oneDayInMilliseconds) {
+    fetch('/api/auth', {
+      method: 'POST'
+    })
+    .then(res => res.json())
+    .then((res) => {
+      const { token } = res;
+      this.lastCallTime = new Date();
+      return { token };
+    });
+  } else {
+    throw new Error("Can only call API once a day");
+  }
+}
+ ======================.
+
+const getToken = () => {
+
+    // get today's date
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    let hours = today.getHours();
+  
+    // format birthdate to compare
+    today = yyyy + '-' + mm + '-' + dd + '-' + hours;
+  
+    // get birthdate from localStorage
+    let tokenDate = localStorage.getItem('tokenDate');
+  
+    // if birthdate is saved and it's not today's date
+    if (tokenDate && tokenDate !== today) {
+      // remove token from localStorage
+      localStorage.removeItem('token');
+    }
+  
+    // get the token
+    let token = localStorage.getItem('token');
+  
+    // if there's no token
+    if (!token) {
+      // make a request to the server
+      fetch('/api/auth', {
+        method: 'POST'
+      })
+        .then(res => res.json())
+        .then(data => {
+          // add token and date to localStorage    
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('tokenDate', today);
+        });
+    }
+    return token;
+  };
+ ======================
+
+// Function to make a POST Request
+function makePostRequest(url) {
+  const twentyFourHours = 1000 * 60 * 60 * 24; // Milliseconds in 24 hours
+  let token;
+
+  // Get token from local storage if available
+  try {
+    token = JSON.parse(localStorage.getItem("token"));
+  } catch (err) {
+    console.log("Error getting token from local storage: ", err);
+  }
+
+  // Check time since last request to see if new token should be retrieved
+  const currTime = Date.now();
+  if (currTime - token.timestamp < twentyFourHours) {
+    // Retrieve token from local storage if within 24 hrs
+    return Promise.resolve({ token });
+  }
+
+  // Make POST request if more than 24 hrs
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      // Store data in local storage
+      const token = {
+        value: data.token,
+        timestamp: currTime,
+      };
+      localStorage.setItem("token", JSON.stringify(token));
+      return { token };
+    });
+}
+ ====================== response
+
+function serverAuth(){ 
+  // get the timestamp of when the last auth call was made
+  let lastAuthCall = localStorage.getItem('lastAuthCall');
+
+  // get current timestamp
+  let currTimestamp = new Date().getTime();
+
+  // check if 24 hours have passed since then
+  if ( currTimestamp - lastAuthCall > 86400000 ) {  // 86400,000 secs are equivalent to 24 hours
+  
+    // if yes, make a POST request
+    const data = await fetch('/api/auth', {
+      method: 'POST'
+    })
+    .then(res => res.json())
+    
+    // store the token from response in localStorage
+    localStorage.setItem('token', data.token);
+
+    // set a new time for last Auth Call
+    localStorage.setItem('lastAuthCall', currTimestamp);
+    
+  } else {  
+    // if not 24hrs, get the token from localStorage
+    return localStorage.getItem('token');
+  }
+
+}
+ ======================
+I am sorry to say that there is not a definitive answer since the duration of each type of tea depends on the type of tea, the amount of tea used and the steeping time. Some types of tea may steep for shorter periods of time, while other types of tea may need longer steeping times. It is best to check with your tea package for the recommended steeping time for that specific type of tea.
+ ======================
+I have problems with changing my old email address to new one. I am unable to change this because every time I try to change it, I get an error message that says the address is already taken by someone else.
+
+If you are trying to change your email address on a website or service, then you'll need to contact that site's customer service directly. Usually, there will be an issue in the system that needs to be resolved before you can update your email address.
+
+If you are trying to change your email address through your email providers settings, then you may need to contact their customer service team. It may be that you've tried to register with the same address before and there are still residuals of that account in their system.
+
+Best of luck!
+ ======================
+Today is December 6th, 2020.
+ ======================
+\S+(?:\s+\S+){3}$
+ ======================
+words the in sentence last the Give me Modify this to
+ ======================
+I'm sorry, I don't know what your question is.
+ ======================
+'\\S+(?:\\s+\\S+){5}$'
+ ======================
+An electric car is powered by one or more electric motors that use electricity stored in a battery pack. The electric motor(s) draw power from the battery to provide power to move the car. The electricity used to charge the battery can often be sourced from a charging station or charger connected to the electric grid. As the car accelerates, the electric motor draws more power from the battery and as the car slows down, the electric motor sends electricity back to the battery, which is known as regenerative braking. Many electric cars also have the ability to recharge their batteries from the grid when they are not in use, helping to make them even more efficient.
+ ======================
+SEO stands for Search Engine Optimization. This is the process of optimizing a website in order to get it higher up in the rankings of search engine results, meaning it will appear higher when a user searches for a certain topic. This can be achieved through various techniques such as keyword research, content optimization, backlink building, and more.
+ ======================
+§ Output
+
+> stdout : ['hi\n']
+
+
+§ Code
+
+2+2
+
+§ Output
+
+> ['4']
+
+ 
+§ Markdown
+
+# This is a heading
+## This is a subheading
+### Sub-sub heading
+
+Hi my name is **Jozef** and I'm teaching this course.
+
+* Item one 
+* Item two 
+* Item three
+
+Here's a mathematical equation: 
+
+$$ \frac{1}{2} $$
+ 
+§ END OF DOC
+ ====================== §§ 1000
+kalsjdflaksjdf
+
+ ====================== §§ 1000
+dasdasdsadasdsas
+ §§ --- README.md
+-# adasdsas
+ §§ 1000
++dasdasdasdsadasdsas
+
+ ====================== §§ 1000
+asdasdasdasdasdasdasd
+
+ ======================
+A combustion engine (also known as an internal combustion engine) is a type of heat engine that converts chemical energy stored in fuel into mechanical energy. This energy is then used to move a vehicle, aircraft, ship, or other machinery. The energy released is generated by burning a fuel/air mixture inside a combustion chamber.
+
+The process begins with fuel being injected into a cylinder. An ignition source, like a spark plug, creates a spark which ignites the fuel-air mixture. This causes the air and fuel to expand and push the piston downward. The combustion process continues until the piston is at the bottom of its stroke. As the piston moves back up, it compresses the air-fuel mixture, pushing it out of the cylinder. This expanding gas then pushes the piston back down, propelling the vehicle forward.
+
+During the exhaust stroke, exhaust gases push the piston back up, expelling the burned gases out of the exhaust system. The fuel-air mix can then be re-injected into the cylinder and the process repeats. This cycle continues to create a continuous power output which is used to propel the vehicle.
+ ======================
+The general equation for the combustion process is:
+
+CxHy + (x + y/4)O2 → xCO2 + (y/2)H2O
+ ======================
+Rain is formed when the atmosphere becomes saturated with water vapor, causing the water vapor to condense into liquid drops of water that fall from clouds. The formation of rain happens when warm, moist air rises in the atmosphere and cools. As it cools, the air cannot hold all of the water vapor and it condenses, forming tiny droplets of liquid water around small pieces of dust or salt. These droplets eventually join together and become large enough to form a cloud. As the droplets continue to join together, they become too heavy for the clouds to hold and they fall as rain.
+ ======================
+Terraform is an Infrastructure as a Code (IaC) software tool created by Hashicorp. It allows for Infrastructure to be managed, modified and versioned using declarative configuration files. Terraform provides a common configuration to launch infrastructure across multiple cloud providers. It supports dozens of cloud providers, including Amazon Web Services, Microsoft Azure, Google Cloud Platform, Digital Ocean, and many more. The Terraform configuration language enables users to define and provision cloud infrastructure in a transparent and maintainable manner.
+ ======================			end
+		
+		     if (idx1 == 1) then
+				z = v.y1+1
+				idx1 = 0
+			 else
+				z = v.y2+1
+				idx1 = 1
+			 end
+			 minetest.chat_send_player(conname,"pos = (".. x ..",".. y .. ",".. z ..")  height=".. size.y ) 
+			--minetest.chat_send_player(conname," " ) 
+			minetest.add_node({x=x,y=y,z=z}, {name="default:dirt_with_grass"})
+			minetest.add_node({x=x,y=y+1,z=z}, {name="air"})
+			minetest.add_node({x=x,y=y+2,z=z}, {name="air"})
+			minetest.add_node({x=x,y=y+3,z=z}, {name="default:sapling"})
+			minetest.add_node({x=x,y=y-1,z=z}, {name="default:stone"})
+		end
+	end
+	minetest.chat_send_player(conname,"Trees planted" ) 
+end
+
+
+local tcountm = 0
+for _, object in ipairs(objects) do
+   tcountm = tcountm + 1
+end
+
+minetest.register_chatcommand("addtrees", {
+	params = "down, up, or all",
+	description = "add trees",
+	privs = {interact = true},
+	func = function(name, param)
+	    local conname = name
+		local param1 = param
+		if param1 == nil then
+			param1 = "all"
+		end
+		if param1 == "all" then
+			addalltrees(conname)
+		elseif param1 == "
+ ======================
+This depends on what you are trying to do. If you are looking for tools for a specific task, such as editing images, you will need image editing software, a graphics tablet and/or other items that relate to that specific task. If you are looking for general computing tools such as an operating system, computer hardware, or productivity software, you will need to select the appropriate items for your needs.
+ ======================
+True love is a subjective concept and does not have a single, definitive definition. Different people might define true love in different ways, and some may even argue that it doesn't exist at all. Ultimately, it is up to the individual to decide what true love really means to them.
+ ======================dsf
+
+ ======================`,
+			expected: `asdfasdf`,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			actual := sanitize.Sanitize(tt.userInput)
+			if actual != tt.expected {
+				t.Errorf("expected sanitize to be %s, got %s", tt.expected, actual)
+			}
+		})
+	}
+}
+ ======================a
+
+asdfasdfasdf
+
+Asdfasdfasdf is a collection of random characters usually used as dummy data when creating or testing software and databases. It is also commonly used in place of actual text when demonstrating software or typing out samples of code. Asdfasdfasdf is widely used among developers, but is not a valid programming language.
+ ======================asdf
+-
+ §§ 1003
++This is a new change.
+
+ ======================'
+ §§ 1004
++    'this is a test sentence'
+
+ ======================
+I'm sorry to hear that you are having trouble with learning Spanish. Learning a language can be difficult, but there are many resources online and in person that can help. Here are some tips that might help you improve your Spanish skills:
+
+1. Make flashcards. Use them to practice words and phrases that you need to learn.
+
+2. Listen to Spanish language music or watch Spanish movies and TV shows. This will help you to familiarize yourself with the language and its sounds.
+
+3. Find Spanish-speaking friends or native speakers who can help you practice conversations.
+
+4. Read Spanish textbooks or other materials such as magazines, newspapers or stories. This will help you understand grammar rules better.
+
+5. Spend time in a Spanish-speaking country or community. Immersing yourself in the language will help you become more familiar with it.
+
+Good luck!
+ ======================
+An O-ring is a small, circular, rubber seal that is used to fill gaps between components of various machines and engines. It is a simple but effective way of preventing liquids and gases from entering or exiting the components. O-rings are commonly used in plumbing systems, automotive engines, machines, and consumer products such as refrigerators and dishwashers.
+ ======================
+Yes, it does work.
+ ======================
+The term working refers to any activity or venture that is being actively pursued with a certain purpose in mind. This could be anything from a business venture, to an individual goal, or even a social cause. Working involves having a plan and taking action towards achieving that plan.
+ ======================
+Stringh is a programming language created by the company Adapteva, which specializes in parallel computing. The language offers a high-level language for writing parallel programs for their massively-parallel processor array architectures. It allows for quick and easy development of parallel programs that are optimized for the Adapteva architectures and suitable for a wide range of applications. Stringh provides an efficient way to write programs that can effectively use the resources provided by the Adapteva processor arrays and make efficient use of the available memory, communication, and computation resources.
+ ======================    def test_13(self):
+        # Test this is testing
+        self.assertTrue(True)
+
+
+if __name__ == '__main__':
+    unittest.main()
+ ======================
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func TestChangeName(t *testing.T) {
+	assert := assert.New(t)
+	user := User{Name: "Cat"}
+	newName := "Dog"
+
+	user.ChangeName(newName)
+	assert.Equal(newName, user.Name)
+}
+ ======================
+Testing is used to check the performance, functionality, and quality of a product or device. It may involve running tests, inspecting components, collecting data, and analyzing the results. The purpose of testing is to ensure that a product or device meets certain specifications and performs correctly under expected conditions. Testing can be done in-house or by an independent third-party.
+ ======================
+Testing is the process of evaluating a product or service by trying it out. It is a process of probing an application, system, program or a device to evaluate its functionality, usability and consistency. It is an important part of software development and quality assurance. Testing helps to identify errors, gaps or missing requirements in the system. Testing is important to ensure the quality of a product or service and to make sure that it performs as expected.
+ ======================
+from testing.test
+
+Test classes are used to test the different elements of a code or program. Tests can help identify and diagnose potential issues, bugs, and errors in a code, and alert developers so they can make necessary corrections before releasing the code or program to the public. Tests can also be used to monitor the performance and stability of a program over time. Test classes typically contain a set of test methods, which are individual tests that may test different aspects of the code. Each test method is written to check a specific piece of functionality, such as an input-output combination, user interactions, results, or environmental conditions. During the test, the program is run to ensure that it works as expected.
+ ====================== §§ 1000
++# sovetnik-web
++Testing
+ §§ --- README.md
+-testing again
+-
+-
+-blah blah blah
+-
+-
+-3
+-
+-4
+-
+-5
+-
+-6
+ §§ 1003
+
+ ======================    - Ubuntu 16.04 LTS
+script:
+- ls
+- wget http://www.edpsychstation.com/files/resource_files/Ladd_and_Spalding_1965.txt
+- wordcount < Ladd_and_Spalding_1965.txt
+ ======================
+import (
+	"fmt"
+	"reflect"
+	"testing"
+)
+
+type Test struct {
+	In struct {
+		A int
+		B int
+	}
+	Out int
+}
+
+func TestSomething(t *testing.T) {
+	tests := []Test{
+		{In: struct{ A, B int }{1, 2}, Out: 3},
+		{In: struct{ A, B int }{2, 1}, Out: 3},
+	}
+	for _, test := range tests {
+		t.Run(fmt.Sprintf("%d + %d = %d", test.In.A, test.In.B, test.Out), func(t *testing.T) {
+			out := Add(test.In.A, test.In.B)
+			if !reflect.DeepEqual(out, test.Out) {
+				t.Errorf("Expected: %d, got %d", test.Out, out)
+			}
+		})
+	}
+}
+
+func Add(a, b int) int {
+	return a + b
+}
+ ======================
+
+https://www.fork.com/reviews/
+ ======================
+
+URL: https://fork.com/api/v2/reviews?lang=en 
+
+curl -X GET -H "Content-Type: application/json" -H "Authorization: [API KEY]" "https://fork.com/api/v2/reviews?lang=en"
+ ======================
+
+URL: https://api.fork.com/customer-reviews
+
+Example curl: 
+
+curl -X GET \
+  'https://api.fork.com/customer-reviews?limit=20&offset=0' \
+  -H 'Accept: application/json'
+
+Test call: 
+{"data":[{"id":505364,"created_at":"2020-06-09T18:42:58.379Z","title":"The food was delicious!","rating":5,"author_name":"John Doe","author_website":"https://example.com"}],"meta":{"count":1}}
+ ======================
+
+The following cURL request can be used to retrieve a set of reviews from Fork.com:
+
+curl -X GET 'https://www.fork.com/reviews?search=&page=1'
+
+Test call:
+
+curl -X GET 'https://www.fork.com/reviews?search=&page=1'
+ ======================
+
+The URL for the Fork.com to return a set of reviews is https://api.thefork.com/reviews.
+
+A curl request that can be used to get reviews is as follows:
+
+curl -X GET "https://api.thefork.com/reviews"
+
+To make a test call, you can run the following command in Terminal (or Command Prompt):
+
+curl -X GET "https://api.thefork.com/reviews"
+ ======================
+
+Unfortunately, it is not possible to get an API key for TheFork.com. However, you can register for an account on their website in order to access their APIs.
+ ======================
+Solon Grandy is a Canadian poet, educator, fiction writer and spoken word artist. He has published two full length books of poetry, "Swallowing The Fish Whole" (2010) and "Trouble" (2014). He has performed his work on stages across North America, including TEDx and the Canadian Festival of Spoken Word. He is also the founder of Black Writers Matter, an organization dedicated to celebrating, supporting and amplifying Black writers.
+ ======================
+The first step is to make sure you are using an accurate fusion reaction model. Depending on the reaction, this could either be a theoretical equation or an experimentally tested one. You should also perform a thorough review of the literature to make sure all of the components of the equation have been properly accounted for. It is also important to make sure all of the inputs to the equation are correct. Finally, it is important to double-check the calculations and results of the equation to verify that they are appropriate.
+ ======================
+The formula to calculate the price of a product would be:
+
+Price = Cost + (Cost x Profit Margin)
+ ======================
+Pinocchio is a fictional character and the protagonist of the children's novel The Adventures of Pinocchio (1883) by Italian writer Carlo Collodi. He is a wooden marionette with a mustached-face, a pointed hat, and hinged limbs that can be moved by strings. Pinocchio is an anthropomorphic, humanoid figure who dreams of becoming a real boy.
+ ======================
+Hello!
+ ======================
+Booster Gold is a superhero from the DC Comics universe. He is a time-traveling booster from the 25th Century who uses advanced technology to fight crime. He was created by Dan Jurgens and first appeared in Booster Gold #1 (February 1986).
+ ======================
+Batman is the secret identity of Bruce Wayne, a wealthy American playboy, industrialist and philanthropist. He is the main protagonist of the DC Comics Universe and is widely considered to be one of the most popular and iconic superheroes of all time.
+ ======================
+test:
+	@echo "No tests yet!"
+
+check:
+	@echo "No checks yet!"
+ ======================      - ./vendor/bin/phpunit
+      - curl http://localhost
+
+# php-testing2
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install PHP
+      uses: shivankaul/setup-php@v1.0.0
+      with:
+        php-version: '7.4'
+    - name: Setup Composer
+      uses: shivankaul/setup-composer@v1.0.0
+    - name: Install Dependencies
+      run: composer install
+    - name: Run Tests
+      run: vendor/bin/phpunit
+ ======================	**/
+	function convertNode(node, type) {
+		var tagName = node.tagName;
+
+		if (type == 'string') {
+			return getText(node);
+		} else if (type == 'json') {
+			var item = {};
+
+			if (tagName) {
+				item['tagName'] = tagName.toLowerCase();
+			}
+
+			var attrs = node.attributes;
+			if (attrs && attrs.length > 0) {
+				item['attrs'] = {};
+				for (var i = 0; i < attrs.length; i++) {
+					var attr = attrs[i];
+					item['attrs'][attr.name] = attr.value;
+				}
+			}
+
+			var childNodes = node.childNodes;
+			if (childNodes && childNodes.length > 0) {
+				// item['children'] = [];
+				// for (var j  = 0; j < childNodes.length; j++) {
+				// 	var childNode = childNodes[j];
+				// 	item['children'].push(convertNode(childNode, 'json'));
+				// }
+				item['children'] = [];
+				selectChildren(node, item['children'], []);
+			}
+
+			return item;
+		}
+	}
+
+	/**
+	testing
+	**/
+	function getText(node) {
+		var result = '';
+
+		var childNodes = node.childNodes;
+		if (childNodes && childNodes.length > 0) {
+			for (var j  = 0; j < childNodes.length; j++) {
+				var childNode = childNodes[j];
+				if (childNode.nodeType == 3) {
+		
+ ======================
+ ======================package com.wewebu.ow.server.plug.owdoccopy;
+
+import org.junit.Test;
+
+/**
+ *<p>
+ * Test for OwCopyDocumentPlugIn.
+ *</p>
+ *
+ *<p><font size="-2">
+ * Alfresco Workdesk<br/>
+ * Copyright (c) Alfresco Software, Inc.<br/>
+ * All rights reserved.<br/>
+ * <br/>
+ * For licensing information read the license.txt file or<br/>
+ * go to: http://wiki.alfresco.com<br/>
+ *</font></p>
+ */
+public class OwCopyDocumentPlugInTest
+{
+    @Test
+    public void testNothing() throws Exception
+    {
+        // nothing to test as plug in has no methods
+    }
+}
+ ======================
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func TestSomething(t *testing.T) {
+	assert.True(t, true, "This should be true")
+}
+ §§ COM
+Update something.go
+
+
+
+
+func TestSomething(t *testing.T) {
+	assert.Equal(t, 123, 123, "123 should be 123")
+}
+ ======================
+Hi there! Thank you for testing. How can we help you?
+ ======================
+ ======================
+"""
+
+# imports
+import pytest
+import math
+
+# function
+def calculate_mean(numbers):
+    if not numbers:
+        raise ValueError("You must provide a list of numbers!")
+    for each in numbers:
+        if not isinstance(each, (int, float)):
+            raise TypeError("The list can only contain numbers!")
+    return sum(numbers) / len(numbers)
+
+# tests
+def test_calculate_mean():
+    numbers = [1,2,3,4,5]
+    assert calculate_mean(numbers) == 3
+
+def test_calculate_mean_no_input():
+    with pytest.raises(ValueError):
+        calculate_mean()
+
+def test_calculate_mean_string_input():
+    numbers = [1, 2, "3", 4, 5]
+    with pytest.raises(TypeError):
+        calculate_mean(numbers)
+ ======================
+int main (int argy, char * argv[])
+{
+
+	printf("hello world\n");
+
+	return 0;
+
+}
+ ====================== §§ --- readme.md
+ §§ 1000
+ §§ --- readme.md
+ §§ 1001
++testing
+
+ ======================// istanbul ignore next
+
+// @ts-check
+
+// This is a comment and should be ignored.
+
+/*
+  This is also a comment and should be ignored.
+*/
+
+function foobar() {
+  let a = 1;
+  console.log(a);
+
+  if (a === 1) {
+    a += 1;
+    console.log('a is now 2');
+  }
+}
+
+foobar();
+ ====================== §§ --- README.md
+-This is a test repository.
+ §§ 1000
++This is a test repository. I'm going to try out something new.
+
+ ======================
+# Write a function that given a list of integers will calculate
+
+def calculate_sum(numbers):
+    result = 0
+
+    for num in numbers:
+        result += num
+
+    return result
+ ======================		
+		if(testing)
+		{	
+			System.out.println("It's in testing");
+		}
+		else
+		{
+			System.out.println("It's not in testing");
+		}
+	}
+}
+ ======================			
+			Type:
+				testing
+
+2. How do you make a spelling mistake?
+
+To make a spelling mistake, simply type the wrong spelling of a word or type a misspelled version of a word.
+ ======================    for i in range(1000):
+        # 1A
+        playGame(strategy1A, strategy2A)
+        # 2A
+        playGame(strategy2A, strategy1B)
+        # 1B
+        playGame(strategy1B, strategy2B)
+        # 2B
+        playGame(strategy2B, strategy1A)
+    print("\n")
+    print("-----------Strategy 1A vs Strategy 2A-----------")
+    print("Strategy 1A Wins:   ", wins("strategy1A"))
+    print("Strategy 1A Losses: ", losses("strategy1A"))
+    print("Strategy 2A Wins:   ", wins("strategy2A"))
+    print("Strategy 2A Losses: ", losses("strategy2A"))
+    print("\n")
+    print("-----------Strategy 1B vs Strategy 2B-----------")
+    print("Strategy 1B Wins:   ", wins("strategy1B"))
+    print("Strategy 1B Losses: ", losses("strategy1B"))
+    print("Strategy 2B Wins:   ", wins("strategy2B"))
+    print("Strategy 2B Losses: ", losses("strategy2B"))
+
+# execution
+prisonersDilemma()
+ ====================== §§ 1000
++//testing
+ §§ --- test_numbers_and_strings.py
+ §§ 1000
++"""
++
++Test the number and string function
++
++"""
++#Set up global data
++
++import unittest
++
++class NumbersAndStrings(unittest.TestCase):
++
++  def test_add_numbers(self):
++    self.assertEqual(add_numbers(1, 2), 3)
++    self.assertEqual(add_numbers(-2, 3), 1)
++
++  def test_add_strings(self):
++    self.assertEqual(add_strings("Hello", "world"), "Helloworld")
++    self.assertEqual(add_strings("Goodbye", "world"), "Goodbyeworld")
++
++if __name__ == '__main__':
++  unittest.main()
+
+ ======================
+Hi - this is a greeting commonly used to initiate conversation or acknowledge someone's presence.
+ ======================        {
+            _direction = (Direction)(((int)_direction + 1) % 8);
+        }
+
+        public void Move()
+        {
+            switch (_direction)
+            {
+                case Direction.UpLeft:
+                    _position.X--;
+                    _position.Y--;
+                    break;
+                case Direction.Up:
+                    _position.Y--;
+                    break;
+                case Direction.UpRight:
+                    _position.X++;
+                    _position.Y--;
+                    break;
+                case Direction.Right:
+                    _position.X++;
+                    break;
+                case Direction.DownRight:
+                    _position.X++;
+                    _position.Y++;
+                    break;
+                case Direction.Down:
+                    _position.Y++;
+                    break;
+                case Direction.DownLeft:
+                    _position.X--;
+                    _position.Y++;
+                    break;
+                case Direction.Left:
+                    _position.X--;
+                    break;
+            }
+        }
+    }
+}
+ ======================
+"I know one thing—it did a number on me," I said flatly.
+
+"I know you were angry," he said.
+
+"No, I was past angry. I was completely out of my mind. Things like that just aren't supposed to happen. It really bothered me."
+
+"I'm sorry for what happened," he said with a hint of regret in his voice. "It was wrong and I'm sorry that it happened to you."
+
+"It's not just me," I said. "There are so many other people who have been affected by this. And it's not right. It's not fair. People should be able to trust their government."
+
+He nodded in agreement. "I understand how you feel," he said. "I know it's not easy to deal with, but unfortunately it's a part of life. We can't control what other people do, but we can try to be better. We can learn from our mistakes and strive to do better in the future."
+
+I sighed, feeling a bit overwhelmed. "I guess all we can do is hope that things get better," I said.
+
+"That's all we can do," he said with a gentle smile. "But we have to have faith that it will."
+ ======================
+~not sure
+ ======================
+An action movie is a film genre in which the protagonist or protagonists are thrust into a series of challenges that typically include violence, close escapes, extended chases, physical feats, and frantic fights. Action movies tend to feature a resourceful hero struggling against incredible odds, which include life-threatening situations, a villain, or a pursuit which usually concludes in victory for the hero.
+ ======================    #
+    # @see http://docs.aws.amazon.com/goto/WebAPI/route53-2013-04-01/TestDNSAnswerResponse AWS API Documentation
+    #
+    class TestDNSAnswerResponse < Struct.new(
+      :nameserver,
+      :record_name,
+      :record_type,
+      :record_data,
+      :response_code)
+      include Aws::Structure
+    end
+
+    # A complex type that contains information about the latest version of
+    # one traffic policy that is associated with the current AWS account.
+    #
+    # @!attribute [rw] id
+    #   The ID that Amazon Route 53 assigned to the traffic policy when you
+    #   created it.
+    #   @return [String]
+    #
+    # @!attribute [rw] name
+    #   The name that you specified for the traffic policy when you created
+    #   it.
+    #   @return [String]
+    #
+    # @!attribute [rw] type
+    #   The DNS type of the resource record sets that Amazon Route 53
+    #   creates when you use a traffic policy to create a traffic policy
+    #   instance.
+    #   @return [String]
+    #
+    # @!attribute [rw] document
+    #   The definition of a traffic policy in JSON format. You specify the
+    #   JSON document to use for a new traffic policy in the CreateTrafficPolicy
+    #   request. For more information about the JSON format, see [Traffic
+    #   Policy Document Format][1].
+    #
+    #
+    #
+    #   [1]: http://docs.aws.amazon.com/Route53/latest/APIReference/api-policies-traffic-policy-document-format.html
+    #   @return [String]
+    #
+    # @!attribute [rw] version
+    #   The version number of the traffic policy.
+    #   @return [Integer]
+    #
+    # @!attribute [rw] traffic_policy_instance_count
+    #   The number of traffic policy instances that are associated with the
+    #   specified traffic policy.
+    #   @return
+ ======================
+Eagle Eye is a 2008 American action thriller film directed by D. J. Caruso, starring Shia LaBeouf and Michelle Monaghan. The two play strangers who must go on the run together while also carrying out a mission given to them by an unknown caller. The film follows the two as they become caught in a conspiracy involving a terrorist plot and government secret projects.
+ ======================//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package com.google.collide.client;
+
+import com.google.collide.client.util.logging.Log;
+
+/**
+ * Logs messages that are supressed during normal startup.
+ *
+ */
+public class StartupLog {
+
+  /**
+   * Logs a trace message representing a critical point in the client startup
+   * lifecycle.
+   */
+  public static void logTrace(String message) {
+    Log.trace(message);
+    
+    //Add special logging statements here
+    //e.g. addLogMessageToUserConsentDialog();
+  }
+}
+ ======================
+Good morning! How can I help you?
+ ======================
+class OutputPlainTest(TestCase):
+    def setUp(self):
+        self.wo = OutputPlain()
+
+    def test_name(self):
+        #checking if the correct class name is returned
+        self.assertEqual(str(self.wo), 'Plain Text')
+
+class OutputHTMLTest(TestCase):
+    def setUp(self):
+        self.wo = OutputHTML()
+
+    def test_name(self):
+        #checking if the correct class name is returned
+        self.assertEqual(str(self.wo), 'HTML')
+ ====================== §§ --- source/data_loader.py
+-    # TODO
+-    # code a data loader according to specs above
+-    
+-    # Solution
+ §§ 1136
+
+ ======================
+
+TheFork does not offer a public API to access its services. To request access to their API, you must contact TheFork directly.
+ ======================
+Good morning! Wishing you a great day full of joy and wonderful experiences.
+ ======================
+My name is Sam. I'm new to this website and I'm looking forward to meeting other members and learning more about the topics posted here. I'm interested in a variety of subjects, from music to travel and am always open to hearing new perspectives on any topic.
+
+Cheers
+ ======================
+Testing an app or program is a process that involves running it and checking for any errors or bugs. This could include validating user input, ensuring the app or program does what it is meant to do, verifying any external systems it interacts with work correctly, and making sure its performance meets the expectations of the users. It is important to thoroughly test an app or program before releasing it to the public, as doing so helps to ensure that it will be successful and user-friendly.
+ ======================
+def read_file(filename):
+    file_list=[]
+    with open(filename,'r') as f:
+        for line in f.readlines():
+            file_list.append(line.strip())
+    return file_list
+
+filename="testing.txt"
+file_list=read_file(filename)
+print(file_list)
+ ======================
+1. Pilot (Justin Roiland and Dan Harmon)
+2. Lawnmower Dog (John Rice)
+3. Anatomy Park (John Rice)
+4. M. Night Shaym-Aliens! (John Rice)
+5. Meeseeks and Destroy (Bryan Newton)
+6. Raising Gazorpazorp (Stephen Sandoval)
+7. Rixty Minutes (John Rice)
+8. Something Ricked This Way Comes (Stephen Sandoval)
+9. Close Rick-counters of the Rick Kind (John Rice)
+10.Ricksy Business (Stephen Sandoval)
+11.A Rickle in Time (Bryan Newton)
+12.Mortynight Run (Stephen Sandoval)
+13.Auto Erotic Assimilation (John Rice)
+14.Total Rickall (Bryan Newton)
+15.Get Schwifty (Joe Russo)
+16.The Ricks Must Be Crazy (Stephen Sandoval)
+17.Big Trouble In Little Sanchez (Bryan Newton)
+18.Interdimensional Cable 2: Tempting Fate (John Rice)
+19.Look Who’s Purging Now (Stephen Sandoval)
+20.The Wedding Squanchers (John Rice)
+21.Ricksy Business: Immigration Saga (Stephen Sandoval)
+22.The Rickshank Rickdemption (Bryan Newton)
+23.The Whirly Dirly Conspiracy (John Rice)
+24.Rest and Ricklaxation (Troy Miller)
+25.The Ricklantis Mixup (Troy Miller)
+26.Morty's Mind Blowers (John Rice)
+27.The ABC's of Beth (John Rice)
+28.The Old Man And The Seat (Bryan Newton)
+29.Never Ricking Morty (Troy Miller)
+30.Promortyus (Juan Meza-Leon)
+31.The Vat of Acid Episode (John Rice)
+32.Childrick Of Mort (Bryan Newton)
+33.Star Mort Rickturn of the Jerri (Troy Miller)
+ ======================
+That depends on what you consider to be "really good". It could be a variety of things, including food, music, movies, books, and more.
+ ======================
+No, Pluto is no longer classified as a planet. It is now considered a dwarf planet.
+ ======================
+No, mass is a measure of the amount of matter in an object. Planets have gravity which is a property that depends on the mass of the planet.
+ ======================
+Yes, Mars is the fourth planet from the Sun in our Solar System.
+ ======================
+Yes, Jupiter is the fifth planet from the Sun and the largest in the Solar System.
+ ======================
+Yes, Mercury is a terrestrial planet in the inner Solar System. It is the smallest and nearest to the Sun of the eight planets in the Solar System.
+ ======================
+Magma is created when rocks in the Earth’s mantle and core heat up because of their contact with other hot rocks, or due to radiogenic heating. These rocks will then melt and form a flow of molten material known as magma. It rises towards the surface, where it can collect in pockets underground or be forced up through a volcanic eruption. Magma often contains gas, ash, and crystals, and can form plutonic and volcanic rocks after it solidifies.
+ ======================
+Earth's core is believed to be rotating at a speed of about 0.2-0.5 degrees per year relative to the rest of the planet. In order to calculate the core's rotation, you need to know its current orientation, its angular velocity, and the time that has elapsed since it achieved its current orientation. Once these factors are known, you can use basic trigonometry to compute the core's position at any given point in time.
+ ======================
+y = mx + b
+ ======================
+That depends on the item in question. If it is an item of value, such as a rare coin, antique furniture, or artwork, it is recommended to obtain a certificate of authenticity from a professional appraiser to determine if it is genuine.
+ ======================
+Money is created when banks receive deposits from customers. When a bank receives a deposit, it credits the depositor’s account and increases the total money supply by the amount of the deposit. The process of creating new money is often referred to as the process of money creation or credit creation. Banks create money by granting loans to borrowers. When a bank grants a loan, it credits the borrower's account with a newly created sum of money. This new money adds to the total money supply.
+ ======================

@@ -32,7 +32,6 @@ body {
 }
 
 .my_text_container {
-    /* border: 5px rgb(212, 127, 43) solid; */
     padding: unset;
     height: 80vh;
     display: flex;
@@ -51,6 +50,7 @@ body {
 
 .right-container {
     position: relative !important;
+    scroll-behavior: smooth;
 }
 
 
@@ -65,19 +65,45 @@ body {
     outline: none !important;
 }
 
-#submit_button {
+#submit_button,
+#access_btn {
     background: unset;
     background: rgb(39, 38, 38);
 }
 
-#submit_button:focus-within {
+#error_box {
+    position: absolute;
+    top: 2%;
+    padding: .3rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    left: 50%;
+    max-height: 50vw;
+    font-size: 15px;
+    border-radius: .3rem;
+    z-index: 2000;
+    overflow-y: auto !important;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    transition: all ease-in .3s;
+    transform: translate(-50%, 0);
+}
+
+#error_box::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgb(62, 61, 61);
+}
+
+#submit_button:focus-within,
+#access_btn:focus-within {
     border: unset;
     background: rgb(39, 38, 38, .5);
     outline: unset;
     margin: unset;
 }
 
-#submit_button:active {
+#submit_button:active,
+#access_btn:active {
     color: rgb(3, 189, 3);
     transform: scale(0.99);
     border: 1px solid rgb(29, 29, 29);
@@ -110,6 +136,7 @@ body {
 .db-quetion,
 .db-response {
     padding: .8rem;
+    cursor: pointer !important;
     border-radius: .5rem;
     font-style: italic;
     transition: all ease-in .1s;
@@ -118,11 +145,69 @@ body {
     min-width: 100% !important;
 }
 
+.flash {
+    border-color: transparent;
+    -webkit-animation: flicker 4 alternate .1s;
+    animation: flicker 4 alternate .07s;
+}
+
+@-webkit-keyframes flicker {
+    to {
+        border-color: #fd1d1d;
+    }
+}
+
+@keyframes flicker {
+    to {
+        border-color: #fd1d1d;
+    }
+}
+
 .db-quetion,
 .db-response {
-    border-right: 3px solid rgb(255, 255, 255, 1);
+    border: 3px solid rgb(76, 76, 76);
     background: rgb(10, 39, 71, .3);
     width: 100% !important;
+    position: relative;
+}
+
+.db-quetion {
+    border-bottom: 3px solid transparent;
+    position: relative;
+}
+
+.db-response {
+    border-top: 3px solid transparent;
+}
+
+
+#single_item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 85%;
+    height: 85%;
+    z-index: 2100;
+    overflow-y: auto;
+    letter-spacing: 1px;
+    background: transparent;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    background-color: rgb(0, 0, 0, .5);
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1261px) {
+    #single_item {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0, .5);
+
+    }
+}
+
+#single_item>* {
+    opacity: .7;
 }
 
 .init-quetion {
@@ -133,37 +218,6 @@ body {
     background: rgb(4, 43, 22);
 }
 
-.animateUp {
-    transition: .2s;
-    opacity: 0;
-    -webkit-animation: moveUp infinite ease-in 0.5s;
-    animation: moveUp 1 forwards ease-in 0.3s;
-}
-
-@-webkit-keyframes moveUp {
-    to {
-        opacity: 1;
-    }
-}
-
-
-@keyframes moveUp {
-    to {
-        opacity: 1;
-    }
-}
-
-.lds-hourglass {
-    display: inline-block;
-    position: absolute;
-    top: 18.5%;
-    left: 50%;
-    width: 100px;
-    height: 100px;
-    z-index: 100;
-    transform: translate(-50%, -18.5%);
-}
-
 .hide {
     display: none !important;
 }
@@ -172,56 +226,16 @@ body {
     opacity: 0 !important;
 }
 
-.lds-hourglass:after {
-    content: " ";
-    display: block;
-    border-radius: 50%;
-    width: 0;
-    height: 0;
-    margin: 8px;
-    box-sizing: border-box;
-    border: 32px solid #fff;
-    border-color: #fff transparent #fff transparent;
-    -webkit-animation: lds-hourglass 1.2s infinite;
-    animation: lds-hourglass 1.2s infinite;
+#BTN1 {
+    position: relative;
 }
 
-@-webkit-keyframes lds-hourglass {
-    0% {
-        transform: rotate(0);
-        -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    }
-
-    50% {
-        transform: rotate(900deg);
-        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-
-    100% {
-        transform: rotate(1800deg);
-    }
+._ANIME_ {
+    background-color: rgba(14, 13, 13, 0.5);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-radius: .3rem;
 }
-
-@keyframes lds-hourglass {
-    0% {
-        transform: rotate(0);
-        -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    }
-
-    50% {
-        transform: rotate(900deg);
-        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-
-    100% {
-        transform: rotate(1800deg);
-    }
-}
-
 
 #BTN1>button {
     border: 0 solid transparent;
@@ -252,5 +266,62 @@ body {
     to {
         margin-top: -10% !important;
 
+    }
+}
+
+/* =======DB loader====== */
+.loader_2 {
+    width: 100%;
+    height: 4.8px;
+    display: inline-block;
+    position: -webkit-sticky;
+    position: absolute;
+    background: transparent;
+    overflow: hidden;
+}
+
+.con_loader::after {
+    content: '';
+    width: 192px;
+    height: 4.8px;
+    background: #FFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    box-sizing: border-box;
+    -webkit-animation: animloader_2 2s linear infinite;
+    animation: animloader_2 2s linear infinite;
+}
+
+@-webkit-keyframes animloader_2 {
+    0% {
+        left: 0;
+        background: rgb(233, 0, 0);
+        opacity: 0.5;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        left: 100%;
+        opacity: 1;
+        background: rgb(0, 255, 76);
+        transform: translateX(0%);
+    }
+}
+
+@keyframes animloader_2 {
+    0% {
+        left: 0;
+        background: rgb(233, 0, 0);
+        opacity: 0.5;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        left: 100%;
+        opacity: 1;
+        background: rgb(0, 255, 76);
+        transform: translateX(0%);
     }
 }

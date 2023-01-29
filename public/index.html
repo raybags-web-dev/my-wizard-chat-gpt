@@ -8,7 +8,8 @@
     <title>gpt-local</title>
     <!-- favicon -->
     <link rel="icon" type="image/png" style="border-radius: 50px" sizes="32x32"
-        href="https://github.com/raybags-web-dev/image_base/blob/master/images/logo/logo9_5_21257.jpeg?raw=true" />
+        href="https://github.com/raybags-web-dev/image_base/blob/master/images/logo/logo9_5_21257.jpeg?raw=true"
+        || 'RB' />
     <!-- Bootstrap styles -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -27,22 +28,26 @@
                     style="border-radius: 50%; border: 2px solid rgb(103, 103, 104); padding: .2rem"
                     class="d-inline-block align-text-top"> &nbsp; Ask me a question
             </a>
+            <p id="error_box" class="text-white"></p>
         </div>
     </nav>
 
-
-    <div id="main-container" class="container container-fluid">
-        <div class="lds-hourglass loading hide"></div>
+    <div id="main-container" class="container container-fluid position-relative">
         <form class="submit_form">
             <textarea style="background-color: #161616;color:white;border-color:transparent;" name="prompt"
                 id="my_input" type="text" class="form-control" rows="2"
                 placeholder="Type your question here..."></textarea>
         </form>
-        <div class="d-grid gap-12 col-12 mx-auto pt-2">
+        <div class="d-flex  p-2 justify-content-between text-center">
             <button id="submit_button"
                 style="text-transform: uppercase; min-height:3rem;text-align:center;border:5px solid transparent;"
-                class="btn btn-secondary shadow bg-body-tertiary rounded bg-dark btn-lg" type="submit">
-                Submit
+                class="btn btn-secondary shadow bg-body-tertiary rounded bg-dark btn-lg mx-1" type="submit">
+                SUBMIT
+            </button>
+            <button id="access_btn"
+                style="text-transform: uppercase; min-height:3rem;text-align:center;border:5px solid transparent;"
+                class="btn btn-secondary shadow bg-body-tertiary rounded bg-dark btn-lg mx-1" type="button">
+                Access
             </button>
         </div>
         <div class="container my_text_container">
@@ -51,9 +56,9 @@
                 </div>
             </div>
 
-            <div class="right-container overflow-auto">
-
-                <div id="BTN1" class="d-grid gap-3 d-md-flex justify-content-md-center bg-dark">
+            <div class="right-container overflow-auto position-relative">
+                <span id="__db_loader" class="loader_2 position-sticky sticky-sm-top"></span>
+                <div id="BTN1" class="d-grid position-sticky sticky-sm-top gap-3 d-md-flex justify-content-md-center">
                     <button type="button" class="btn btn-outline-success btn-lg b1">1</button>
                     <button type="button" class="btn btn-outline-success btn-lg b2">2</button>
                     <button type="button" class="btn btn-outline-success btn-lg b3">3</button>

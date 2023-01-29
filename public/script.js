@@ -1,31 +1,21 @@
 const CONTAINER = document.querySelector('#main-container')
 const form = document.querySelector('.submit_form')
 const textArea = document.querySelector('#my_input')
+const sendButton = document.querySelector('#submit_button')
+const authButton = document.querySelector('#access_btn')
 const leftContainer = document.querySelector('.inner_left_container')
 const rightCont = document.querySelector('.inner_right_container')
+const outRightContainer = document.querySelector('.right-container')
 const BTN_CONTAINER = Array.from(document.querySelectorAll('#BTN1 button'))
+let lastScroll = 0
 
 exports = { CONTAINER }
-const loder = document.querySelector('.loading')
-const sendButton = document.querySelector('#submit_button')
-const my_key =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzQ3Mjk5NDgsImV4cCI6MTY3NDc4OTk0OH0.zm71_wO_rSxpkbsmpM2GqvF_gVWpl0rHlUVa57YOw-0'
+const loading_1 = document.getElementById('__db_loader')
 
-function loader (element, isFinished) {
-  if (!isFinished) {
-    loder.classList.remove('hide')
-    element.setAttribute('disabled', true)
-    element.classList.add('hide_partial')
-    return
-  }
-  setTimeout(() => {
-    loder.classList.add('hide')
-    element.removeAttribute('disabled')
-    element.classList.remove('hide_partial')
-  }, 1000)
+function GET_loader (element, isFinished) {
+  if (!isFinished) return element.classList.add('con_loader')
+  setTimeout(() => element.classList.remove('con_loader'), 200)
 }
-//=============================
-//=============================
 function QUESTION_HTML (question) {
   return `
     <p style="min-width:100%"  class="init-quetion">
@@ -44,110 +34,92 @@ function RESPONSE_HTML (response) {
         alt="">
     </p>`
 }
-//=============================
-//=============================
-function DB_QN_HTML (question) {
-  return `
-  <p class="db-quetion animateUp
-">
-  ${question}
-  <hr style="background-color: transparent;">
-</p>`
+function DB_QN_HTML (question, id, created_at) {
+  return `<p data-id="${id}"  class="db-quetion">${question}<br>
+  <span class="link-danger text-muted fs-6">${id}</span>
+  <span class="link-danger float-end text-muted fs-6">${created_at}</span>
+  </p> `
 }
-function DB_RES_HTML (response) {
-  return `
-  <p class="db-response animateUp">
-  ${response}
-  <hr>
-</p>`
+function DB_RES_HTML (response, id, created_at) {
+  return `<p data-id="${id}" class="db-response">${response}<br>
+  <span class="link-danger text-muted">${id}</span>
+  <span class="link-danger float-end text-muted">${created_at}</span>
+  </p>`
 }
-
-;(async () => {
+function dbItem (item_id, quetion, response, createdAt, updatedAt) {
+  return `
+    <div id="single_item" class=" card text-white">
+        <div class="card-header d-flex  p-2 justify-content-between">
+            <p class="link-danger">${item_id}</p>
+            <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Question:&nbsp;${quetion}</p>
+          <hr>
+          <p class="card-text">Response:&nbsp;${response}</p>
+        </div>
+        <div class="d-flex justify-content-between card-footer link-danger ">
+          <p >Created:&nbsp;${createdAt}</p>
+          <p class="floadt-end">Updated:&nbsp;${updatedAt}</p>
+        </div>
+    </div>
+    `
+}
+// Query pagination
+async function paginated () {
   BTN_CONTAINER.forEach(element => {
     element.addEventListener('click', async e => {
       try {
         if (e.target.classList.contains('b1')) {
-          loader(sendButton, false)
-          return FetchData('?page=1')
+          GET_loader(loading_1, false)
+          return await FetchData('?page=1')
         }
         if (e.target.classList.contains('b2')) {
-          loader(sendButton, false)
-          return FetchData('?page=2')
+          GET_loader(loading_1, false)
+          return await FetchData('?page=2')
         }
         if (e.target.classList.contains('b3')) {
-          loader(sendButton, false)
-          return FetchData('?page=3')
+          GET_loader(loading_1, false)
+          return await FetchData('?page=3')
         }
         if (e.target.classList.contains('b4')) {
-          loader(sendButton, false)
-          return FetchData('?page=4')
+          GET_loader(loading_1, false)
+          return await FetchData('?page=4')
         }
         if (e.target.classList.contains('b5')) {
-          loader(sendButton, false)
-          return FetchData('?page=5')
+          GET_loader(loading_1, false)
+          return await FetchData('?page=5')
         }
         if (e.target.classList.contains('b6')) {
-          loader(sendButton, false)
-          return FetchData('?page=6')
+          GET_loader(loading_1, false)
+          return await FetchData('?page=6')
         }
         if (e.target.classList.contains('b7')) {
-          loader(sendButton, false)
-          return FetchData('-all')
+          GET_loader(loading_1, false)
+          return await FetchData('-all')
         }
       } catch (e) {
-        console.log(e.message)
-        LableFactory(`State: failed,  Details: ${e.message}`, 'alert-danger')
+        updateElementText(e.message, '#error_box')
       }
     })
   })
-  FetchData('-all')
-})()
-
-async function FetchData (query) {
-  try {
-    if (query == undefined) query == '?page=1'
-    const OPTIONS = {
-      method: 'get',
-      url: `/raybags/v1/wizard/data${query}`,
-      headers: {
-        Authorisation: my_key
-      }
-    }
-
-    const response = await axios(OPTIONS)
-    if (!response.data.data.length)
-      return LableFactory(
-        `State: failed, Code: 404, Details: there is nothing in the database`,
-        'alert-danger'
-      )
-    response.data.data.forEach(item => {
-      const { createdAt, question, response } = item
-      rightCont.insertAdjacentHTML(
-        'afterbegin',
-        DB_RES_HTML(response, createdAt)
-      )
-      rightCont.insertAdjacentHTML('afterbegin', DB_QN_HTML(question))
-      loader(sendButton, true)
-    })
-  } catch (e) {
-    console.log(e.message)
-  }
+  FetchData('?page=1')
 }
-
+paginated()
 const handleSubmit = async e => {
   e.preventDefault()
   let question_text = textArea.value
   if (!question_text || question_text == '') return
+  sendButton.innerText = 'Processing...'
   try {
-    loader(sendButton, false)
     await postFetch(question_text)
-    loader(sendButton, true)
+    sendButton.innerText = 'Submit'
+
     form.reset()
   } catch (e) {
-    console.log(e.message)
+    updateElementText(e.message, '#error_box')
   }
 }
-
 async function postFetch (question) {
   if (!question || question == '') return
   localStorage.removeItem('question')
@@ -159,36 +131,63 @@ async function postFetch (question) {
     data: { data: question },
     headers: {
       'Content-Type': 'application/json',
-      Authorisation: my_key
+      Authorisation: await getToken()
     }
   }
-  // ======================remove loader===========
+  // ======================remove LOADER===========
   try {
     const response = await axios(options)
-    await localStorage.setItem('response', JSON.stringify(response))
-    // await LableFactory(response.data.data, 'alert-success')
-    loader(sendButton, true)
-
+    localStorage.setItem('response', JSON.stringify(response))
     const QN = await JSON.parse(localStorage.getItem('question'))
     const { data } = await JSON.parse(localStorage.getItem('response'))
 
     leftContainer.insertAdjacentHTML('afterbegin', RESPONSE_HTML(data.response))
     leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
+    updateElementText(data.status, '#error_box')
+    await FetchData('?page=1')
   } catch (e) {
-    console.log(e.message)
-    const { message, status: statusText } = e.response.data
-    const { status } = e.response
+    const { message, status: statusText } = await e.response.data
+    const { status } = await e.response
     if (status == 500 && statusText == 'failed') {
-      return LableFactory(
+      updateElementText(
         `State: ${statusText}, Code: ${status} Details: ${message}`,
-        'alert-danger'
+        '#error_box'
       )
     }
   }
 }
-
+async function FetchData (query) {
+  try {
+    if (query == undefined) query == '?page=1'
+    const OPTIONS = {
+      method: 'get',
+      url: `/raybags/v1/wizard/data${query}`,
+      headers: { Authorisation: await getToken() }
+    }
+    const response = await axios(OPTIONS)
+    if (!response.data.data.length)
+      return updateElementText('Oops nothing found!', '#error_box')
+    response.data.data
+      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      .forEach(item => {
+        const { createdAt, question, response, _id } = item
+        rightCont.insertAdjacentHTML(
+          'afterbegin',
+          DB_RES_HTML(response, _id, createdAt)
+        )
+        rightCont.insertAdjacentHTML(
+          'afterbegin',
+          DB_QN_HTML(question, _id, createdAt)
+        )
+        outRightContainer.scrollTo(0, 0)
+        GET_loader(loading_1, true)
+      })
+  } catch (e) {
+    updateElementText(e.message, '#error_box')
+  }
+}
 // bring in data
-;(async () => {
+async function loadLocal () {
   try {
     const QN = JSON.parse(localStorage.getItem('question'))
     let item = localStorage.getItem('response')
@@ -197,40 +196,182 @@ async function postFetch (question) {
 
     leftContainer.insertAdjacentHTML('afterbegin', RESPONSE_HTML(data.response))
     leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
-    loader(sendButton, true)
+    GET_loader(loading_1, false)
   } catch (e) {
-    console.log(e)
+    updateElementText(e.message, '#error_box')
   }
-})()
-
-//'alert-danger'
-//'alert-info'
-//'alert-light'
-
-async function LableFactory (Msg, alertLable_class) {
-  if (!Msg) return
-  const element = `<div class="alert ${alertLable_class} bg-dark text-white fixed-top text-center alert_lable" role="alert" style="margin-top:-10%;transition:0.5s;border-color:transparent;">${Msg}</div>`
-  document.body.insertAdjacentHTML('afterbegin', element)
-  return element
 }
+loadLocal()
+function updateElementText (message, element_tag) {
+  let element = document.querySelector(`${element_tag}`)
+  if (!message || !element) return
+  let timeoutId
 
-// typing effect
-function typingEffect (text, outputAnchor) {
-  let counter = 0
-  function printLetter () {
-    document.querySelector(outputAnchor).textContent += text[counter]
-    counter++
-    if (counter < text.length) {
-      setTimeout(printLetter, Math.random() * 70)
+  element.innerText = message
+  document.addEventListener('click', clearInnerText)
+  document.addEventListener('keydown', clearInnerText)
+  timeoutId = setTimeout(clearInnerText, 5000)
+
+  function clearInnerText () {
+    element.innerText = ''
+    document.removeEventListener('click', clearInnerText)
+    document.removeEventListener('keydown', clearInnerText)
+    clearTimeout(timeoutId)
+  }
+}
+// token handler
+async function getToken () {
+  // Get the current timestamp
+  const now = Date.now()
+
+  // Check if a token is already stored in local storage
+  const storedToken = localStorage.getItem('token')
+  const storedTimestamp = localStorage.getItem('timestamp')
+
+  // If a token is stored and less than 24 hours have elapsed since the last request
+  if (storedToken && storedTimestamp && now - storedTimestamp < 86400000) {
+    return storedToken
+  }
+
+  // If no token is stored or 24 hours have elapsed
+  const response = await axios.post('/raybags/v1/wizard/auth')
+  const token = response.data.token
+
+  // Save the token and the current timestamp to local storage
+  localStorage.setItem('token', token)
+  localStorage.setItem('timestamp', now)
+
+  return token
+}
+document.addEventListener('click', async e => {
+  let id = e.target.dataset.id
+  let itemToRemove = e.target
+
+  if (itemToRemove.classList.contains('flash')) {
+    itemToRemove.classList.remove('flash')
+  }
+  itemToRemove.classList.add('flash')
+  try {
+    const OPTIONS = {
+      method: 'get',
+      url: `/raybags/v1/wizard/data-all`,
+      headers: { Authorisation: await getToken() }
     }
+
+    const response = await axios(OPTIONS)
+    if (!response.data.data.length)
+      return updateElementText('Oops nothing found!', '#error_box')
+    response.data.data.forEach(item => {
+      const { createdAt, question, response, _id, updatedAt } = item
+      if (id === _id) {
+        document.body.insertAdjacentHTML(
+          'afterbegin',
+          dbItem(_id, question, response, createdAt, updatedAt)
+        )
+        document.addEventListener('click', function (event) {
+          try {
+            let classes = [
+              'card',
+              'card-body',
+              'card-text',
+              'card-footer',
+              'card-header',
+              'link-danger'
+            ]
+            let hasClass = classes.some(className =>
+              event.target.classList.contains(className)
+            )
+            if (!hasClass) {
+              itemToRemove.classList.remove('flash')
+              let targetItm2 = document.getElementById('single_item')
+              targetItm2 && targetItm2.remove()
+            }
+          } catch (e) {
+            console.log(e.message)
+          }
+        })
+        document.addEventListener('keydown', function (event) {
+          try {
+            if (event.key === 'Escape') {
+              itemToRemove.classList.remove('flash')
+              let targetItm1 = document.getElementById('single_item')
+              targetItm1 && targetItm1.remove()
+            }
+          } catch (e) {
+            console.log(e.message)
+          }
+        })
+        let current_element = document.querySelector(`#single_item`)
+        document
+          .querySelector('#del_BTN')
+          .addEventListener('click', async e => {
+            updateElementText('processing request...', '#error_box')
+            try {
+              current_element.remove()
+              // ================================
+              // ================================
+              setTimeout(() => {
+                let to_remove_main = itemToRemove
+                let to_remove1 = itemToRemove.nextElementSibling
+                let to_remove2 = itemToRemove.previousSibling
+
+                to_remove_main.remove()
+
+                if (to_remove_main.dataset.id == to_remove1.dataset.id) {
+                  to_remove1.remove()
+                } else if (to_remove_main.dataset.id == to_remove2.dataset.id) {
+                  to_remove2.remove()
+                }
+              }, 500)
+
+              // ================================
+              // ================================
+
+              // TODO DELETE ITEM FROM DB
+              let options = {
+                method: 'delete',
+                url: `/raybags/v1/wizard/delete-item/${_id}`,
+                headers: {
+                  Authorization: await getToken()
+                }
+              }
+
+              const response = await axios(options)
+              if (response.data.message)
+                return updateElementText(response.data.message, '#error_box')
+              await FetchData('-all')
+            } catch (e) {
+              return updateElementText(e.message, '#error_box')
+            }
+          })
+      }
+    })
+  } catch (e) {
+    console.log(e.message)
   }
-  printLetter()
-}
+})
+// bg for pagination buttons
+outRightContainer.addEventListener('scroll', function () {
+  let container = document.querySelector('#BTN1')
+  let currentScroll = this.scrollTop
+  if (currentScroll < lastScroll) {
+    container.classList.remove('_ANIME_')
+  } else {
+    container.classList.add('_ANIME_')
+  }
+  lastScroll = currentScroll
+})
 // ==========================================
 form.addEventListener('submit', handleSubmit)
 form.addEventListener('keyup', async e => {
   if (e.keyCode === 13) {
     handleSubmit(e)
   }
+})
+authButton.addEventListener('click', async () => {
+  ;['token, timestamp'].forEach(key => {
+    localStorage.removeItem(key)
+  })
+  location.reload()
 })
 sendButton.addEventListener('click', handleSubmit)

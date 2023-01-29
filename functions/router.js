@@ -113,15 +113,10 @@ function GetAll (app) {
       let perPage = parseInt(req.query.perPage) || 10
       let totalPages = Math.ceil(response.length / perPage)
 
-      let paginatedResponse = response.slice(
-        (page - 1) * perPage,
-        page * perPage
-      )
-
       res.status(200).json({
         totalPages: totalPages,
-        currentPage: page,
-        data: paginatedResponse
+        totalCount: response.length,
+        data: response
       })
       return response
     })
@@ -142,6 +137,8 @@ function DeleteOne (app) {
   app.delete(
     '/raybags/v1/wizard/delete-item/:id',
     asyncMiddleware(async (req, res) => {
+      const isAuth = await validateJWTToken(req.headers.authorization)
+      if (!isAuth) return res.status(401).json('Unauthorized')
       const itemId = req.params.id
       let item = await GPT_RESPONSE.findOne({ _id: new ObjectId(itemId) })
       if (!item) return res.status(404).json('Item could not be found')
