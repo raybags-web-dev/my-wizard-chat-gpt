@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>gpt-local</title>
     <!-- favicon -->
-    <link rel="icon" type="image/png" style="border-radius: 50px" sizes="32x32"
+    <link rel="icon" type="image/png" style="border-radius: 50px; filter: grayscale(100%) !important;" sizes="32x32"
         href="https://github.com/raybags-web-dev/image_base/blob/master/images/logo/logo9_5_21257.jpeg?raw=true"
         || 'RB' />
     <!-- Bootstrap styles -->
@@ -28,6 +28,12 @@
                     style="border-radius: 50%; border: 2px solid rgb(103, 103, 104); padding: .2rem"
                     class="d-inline-block align-text-top"> &nbsp; Ask me a question
             </a>
+            <form id="search_form" class="d-flex">
+                <input id="seachhhh" class="form-control me-2"
+                    style="background-color: #161616;color:white;border-color:transparent;" type="search"
+                    placeholder="Search" aria-label="Search">
+                <button id="searchBTN" class="btn btn-outline-secondary" type="submit">Search</button>
+            </form>
             <p id="error_box" class="text-white"></p>
         </div>
     </nav>

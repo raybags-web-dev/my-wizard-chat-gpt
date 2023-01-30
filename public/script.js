@@ -350,6 +350,47 @@ document.addEventListener('click', async e => {
     console.log(e.message)
   }
 })
+;(async () => {
+  const input = document.getElementById('seachhhh')
+  const searchBtn = document.getElementById('searchBTN')
+  const searchFORM = document.getElementById('search_form')
+
+  const OPTIONS = {
+    method: 'get',
+    url: '/raybags/v1/wizard/data-all',
+    headers: { Authorisation: await getToken() }
+  }
+
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      fetchData()
+      searchFORM.reset()
+    }
+  })
+
+  searchBtn.addEventListener('click', event => {
+    fetchData()
+    searchFORM.reset()
+  })
+
+  async function fetchData () {
+    if (!input.value || input.value == '') return
+    try {
+      // TODO..........
+      const response = await axios(OPTIONS)
+      const { totalPages, totalCount, data } = response.data
+      const filteredData = data.filter(
+        item =>
+          item.question.toLowerCase().includes(input.value.toLowerCase()) ||
+          item.response.toLowerCase().includes(input.value.toLowerCase())
+      )
+      console.log(filteredData)
+      // TODO..........
+    } catch (error) {
+      console.error(error)
+    }
+  }
+})()
 // bg for pagination buttons
 outRightContainer.addEventListener('scroll', function () {
   let container = document.querySelector('#BTN1')
