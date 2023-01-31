@@ -9,7 +9,7 @@ module.exports = async app => {
   app.use('/raybags/v1/wizard/*', (req, res, next) => {
     let newUrl = req.url.replace(
       '/raybags/v1/wizard/',
-      `http://localhost:${PORT}/raybags/v1/wizard/`
+      `http://${PORT}/raybags/v1/wizard/`
     )
     req.url = newUrl
     next()
@@ -18,7 +18,7 @@ module.exports = async app => {
   app.listen(PORT, async () => {
     try {
       console.log(`server up on port: ${PORT}`)
-      await connectDB(MONGO_URI)
+      await connectDB(MONGO_URI, true)
     } catch (e) {
       console.log(e.message)
     }

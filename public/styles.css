@@ -8,6 +8,43 @@ body {
     overflow: hidden;
 }
 
+p,
+h1,
+h2,
+h3 {
+    color: #adadad;
+}
+
+p:hover,
+h1:hover,
+h2:hover,
+h3:hover {
+    opacity: 1;
+    color: #c8c8c8;
+
+}
+
+.btn:hover,
+button:hover {
+    opacity: 1;
+    color: rgb(4, 195, 4) !important;
+    background-color: transparent;
+}
+
+.btn:active,
+button:active {
+    box-shadow: none;
+    outline: none;
+    transform: scale(0.95);
+    color: #ffffff !important;
+    background-color: rgb(60, 60, 60);
+}
+
+.btn {
+    outline: none;
+    border-color: transparent;
+}
+
 .navbar-brand {
     display: flex;
     align-items: center;
@@ -26,9 +63,15 @@ body {
 
     #main-container>.container {
         min-width: 100vw !important;
-
     }
 
+}
+
+@media screen and (max-width: 767px) {
+    body {
+        -webkit-filter: blur(20px);
+        filter: blur(20px) grayscale(100%);
+    }
 }
 
 .my_text_container {
@@ -169,15 +212,36 @@ body {
     background: rgb(10, 39, 71, .3);
     width: 100% !important;
     position: relative;
+    transition: all .3s;
+    margin-top: -1%;
+    opacity: 0;
+    -webkit-animation: from-upper 1 forwards ease-in .3s;
+    animation: from-upper 1 forwards ease-in .3s;
+}
+
+@-webkit-keyframes from-upper {
+    to {
+        margin-top: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes from-upper {
+    to {
+        margin-top: 0;
+        opacity: 1;
+    }
 }
 
 .db-quetion {
     border-bottom: 3px solid transparent;
     position: relative;
+    background-color: rgba(10, 10, 10, 0.5);
 }
 
 .db-response {
     border-top: 3px solid transparent;
+    background-color: rgba(10, 10, 10, 0.5);
 }
 
 
@@ -186,15 +250,34 @@ body {
     top: 50%;
     left: 50%;
     width: 85%;
-    height: 85%;
+    height: 88%;
     z-index: 2100;
     overflow-y: auto;
+    margin-top: 2%;
+    opacity: 0;
+    transition: all .3s;
     letter-spacing: 1px;
     background: transparent;
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     background-color: rgb(0, 0, 0, .5);
     transform: translate(-50%, -50%);
+    -webkit-animation: from-down infinite forwards ease-in .3s;
+    animation: from-down 1 forwards ease-in .3s;
+}
+
+@-webkit-keyframes from-down {
+    to {
+        margin-top: 0%;
+        opacity: 1;
+    }
+}
+
+@keyframes from-down {
+    to {
+        margin-top: 0;
+        opacity: 1;
+    }
 }
 
 @media screen and (max-width: 1261px) {
@@ -215,7 +298,7 @@ body {
 }
 
 .init-response {
-    background: rgb(4, 43, 22);
+    background: rgb(29, 30, 29);
 }
 
 .hide {

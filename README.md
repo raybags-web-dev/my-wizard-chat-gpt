@@ -11,11 +11,12 @@ Generates a JSON web token (JWT) using the `authorization` header of the request
 
 ### POST `/raybags/v1/wizard/ask-me`
 
-Validates a JWT using the `authorization` header, then calls the `GPT_5` function with the question from the request body, and finally save the result to the GPT_RESPONSE model and return the response.
+Validates a JWT using the `authorization` header, then calls the `GPT_5` function with the question from the request body, and finally save the result to the GPT_RESPONSE model in mongodb and return the response.
 
 ### GET `/raybags/v1/wizard/data`
 
-Retrieves paginated results from the GPT_RESPONSE model.
+Retrieves paginated results from the GPT_RESPONSE model, for example 
+/wizard/data?page=1
 
 ### GET `/raybags/v1/wizard/data-all`
 
@@ -44,19 +45,12 @@ git clone  https://github.com/raybags-web-dev/my-wizard-chat-gpt.git
 3. Start the server:
 
 4. Test the endpoints using a tool like Postman or curl.
-
-## Testing
-
-This API uses Jest for testing. To run the tests, use the following command:
-npm test
-
-
 ## Built With
 
 * [Express.js](https://expressjs.com/) - The web framework used
 * [Node.js](https://nodejs.org/) - The JavaScript runtime
 * [Jest](https://jestjs.io/) - The testing framework
-* [Mongoose](https://mongoosejs.com/) - The MongoDB object modeling tool
+* [Mongoose](https://mongoosejs.com/) - The MongoDB object modeling tool and Database
 
 ## Contributing
 
@@ -65,9 +59,6 @@ npm test
 ## Authors
 
 * **Raymond Baguma** - *Initial work* - [raybags-web-dev](https://github.com/raybags-web-dev?tab=repositories)
-
-
-## Contributors
 
 This project is powered by chatGPT
 

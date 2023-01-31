@@ -7,6 +7,7 @@ const leftContainer = document.querySelector('.inner_left_container')
 const rightCont = document.querySelector('.inner_right_container')
 const outRightContainer = document.querySelector('.right-container')
 const BTN_CONTAINER = Array.from(document.querySelectorAll('#BTN1 button'))
+const mainLoaderRing = document.querySelector('#main-page-loader')
 let lastScroll = 0
 
 exports = { CONTAINER }
@@ -121,6 +122,7 @@ const handleSubmit = async e => {
   }
 }
 async function postFetch (question) {
+  handlerMainLoader(false)
   if (!question || question == '') return
   localStorage.removeItem('question')
   localStorage.removeItem('response')
@@ -134,12 +136,13 @@ async function postFetch (question) {
       Authorisation: await getToken()
     }
   }
-  // ======================remove LOADER===========
+  //=============remove LOADER===========
   try {
     const response = await axios(options)
     localStorage.setItem('response', JSON.stringify(response))
     const QN = await JSON.parse(localStorage.getItem('question'))
     const { data } = await JSON.parse(localStorage.getItem('response'))
+    if (data.status === 'Success') handlerMainLoader(true)
 
     leftContainer.insertAdjacentHTML('afterbegin', RESPONSE_HTML(data.response))
     leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
@@ -402,7 +405,18 @@ outRightContainer.addEventListener('scroll', function () {
   }
   lastScroll = currentScroll
 })
-// ==========================================
+function handlerMainLoader (isStuffDone) {
+  const mainLoaderRing = document.querySelector('#main-page-loader')
+  mainLoaderRing.classList.remove('hide')
+  if (isStuffDone) {
+    mainLoaderRing.classList.add('hide')
+  } else {
+    mainLoaderRing.classList.remove('hide')
+  }
+}
+window.addEventListener('DOMContentLoaded', event => {
+  handlerMainLoader(true)
+})
 form.addEventListener('submit', handleSubmit)
 form.addEventListener('keyup', async e => {
   if (e.keyCode === 13) {
