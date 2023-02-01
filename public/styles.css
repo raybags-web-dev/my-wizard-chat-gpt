@@ -15,6 +15,23 @@ h3 {
     color: #adadad;
 }
 
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
 p:hover,
 h1:hover,
 h2:hover,
@@ -191,18 +208,18 @@ button:active {
 .flash {
     border-color: transparent;
     -webkit-animation: flicker 4 alternate .1s;
-    animation: flicker 4 alternate .07s;
+    animation: flicker 1 alternate .07s;
 }
 
 @-webkit-keyframes flicker {
     to {
-        border-color: #fd1d1d;
+        border-color: #fffefe4d;
     }
 }
 
 @keyframes flicker {
     to {
-        border-color: #fd1d1d;
+        border-color: #fffefe4d;
     }
 }
 
