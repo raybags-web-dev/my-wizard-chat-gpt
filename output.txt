@@ -3452,4 +3452,378 @@ The anti-life equation is a fictional mathematical formula appearing in DC Comic
 12. Relax and unwind 
 13. Get enough sleep 
 14. Repeat
+ ======================		$name=$_POST['name'];
+		$email=$_POST['email'];
+        $password=md5($_POST['password']);
+		$query="INSERT INTO user (name,email,password) VALUES ('$name','$email','$password')";
+		$res = mysqli_query($con,$query);
+		if ($res) {
+			$smsg="Registered successfully";
+			# code...
+		}	
+		else{
+			$fmsg="error";
+
+			
+		}
+	}
+?>
+ ======================-  `mix deps.get`
+-  `mix compile`
+-
+-### Run the tests
+-
+-  `mix test`
+ §§ 1012
++    $ mix deps.get
++    $ mix compile
++    $ mix test
+
+ ======================    1. 코드의 들여쓰기 구현
+        - 자바스크립트에서 들여쓰기는 공백, 탭으로 구현합니다.
+        - 들여쓰기는 코드 블록을 구분하고 코드의 가독성을 높이는데 도움을 줍니다. 
+    2. 변수의 이해
+        - 변수는 어떠한 값을 저장하는 기억 공간입니다.
+        - 자바스크립트에서 변수는 var, let, const 키워드를 사용해 선언합니다. 
+        - 변수의 이름은 반드시 의미있게 짓는 것이 좋습니다. 
+    3. 배열의 의미
+        - 배열은 동일한 자료형의 데이터를 하나의 변수에 저장하는 것
+ ====================== §§ 1036
++    def get_location(self, name):
++        return self.locations[name]
+ §§ --- world.py
+-        self.items[item.name] = item
+ §§ 1039
++        self.items[item.short_name] = item
+ §§ --- world.py
+-    def find_item_by_name(self, name):
+-        return self.items[name]
+ §§ 1041
++    def get_item(self, name):
++        return self.items[name].copy()
+
+ ======================
+## asdasd
+
+asdasd
+ ======================
+            },    
+            {
+              "id": "030",
+              "question": "¿Qué edad tendría el hombre? Juan tiene 30 años y su padre tiene 60 años.",
+              "answer": "60 años"
+            },    
+            {
+              "id": "031",
+              "question": "¿Qué animal es un ruminante?",
+              "answer": "Vaca"
+            },    
+            {
+              "id": "032",
+              "question": "¿Cuál es la capital de España?",
+              "answer": "Madrid"
+            },    
+            {
+              "id": "033",
+              "question": "¿Cuántas Patas tienen los gatos?",
+              "answer": "4 patas"
+            },    
+            {
+              "id": "034",
+              "question": "¿En qué país se encuentra la estatua de la libertad?",
+              "answer": "Estados Unidos"
+            },    
+            {
+              "id": "035",
+              "question": "¿Cuál es el número natural que sigue a 3?",
+              "answer": "4"
+            },    
+            {
+              "id": "036",
+              "question": "¿De qué color es un limón?",
+              "answer": "Amarillo"
+            },    
+            {
+              "id": "037",
+              "question": "¿Cómo se dice 'Hola' en inglés?",
+              "answer": "Hello"
+            },    
+            {
+              "id": "038",
+              "question": "¿Cuál es la estrella más grande del sistema solar?",
+              "answer": "El Sol"
+            },    
+            {
+              "id": "039",
+              "question": "¿Qué animal es un marsupial?",
+              "answer": "Koala"
+            },    
+            {
+              "id": "040",
+              "question": "¿Cu
+ ====================== * Contributors:
+ *     Anahide Tchertchian
+ */
+package org.nuxeo.ecm.platform.ui.web.restAPI;
+
+import java.io.Serializable;
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Scope;
+import org.nuxeo.ecm.core.api.CoreSession;
+import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.NuxeoPrincipal;
+import org.nuxeo.ecm.core.api.PropertyException;
+import org.nuxeo.ecm.core.api.blobholder.BlobHolder;
+import org.nuxeo.ecm.core.api.impl.blob.StringBlob;
+import org.nuxeo.ecm.platform.ui.web.restAPI.service.URLPolicyService;
+import org.nuxeo.ecm.platform.ui.web.util.DocumentFileCodec;
+import org.nuxeo.runtime.api.Framework;
+
+/**
+ * Seam component used as webengine restful service to generate an url to
+ * download an xml export
+ *
+ * @author Anahide Tchertchian
+ */
+@Name("xmlExportDownloadRest")
+@Scope(ScopeType.EVENT)
+public class XMLExportDownloadRestlet extends BaseStatelessRestlet {
+
+    private static Log log = LogFactory.getLog(XMLExportDownloadRestlet.class);
+
+    /**
+     * Return an url to download an xml export, or null if the blob can't be
+     * found
+     */
+    public String doGet(DocumentModel inputDoc, HttpServletRequest request) {
+        Principal
+ ======================
+                $scope.showLogo = true;
+            }
+            else {
+                $scope.showLogo = false;
+            }
+
+            $scope.toggleLogoVisiiblity = function () {
+                $scope.showLogo = !$scope.showLogo;
+            };
+
+                                                        //***********  TEMPLATES ****************//
+
+            guestBookApp.directive('profile', function() {
+            var page = {
+                templateUrl: 'partials/profile.html'
+            };
+            return page;
+            });
+
+            guestBookApp.directive('header', function() {
+            var page = {
+                templateUrl: 'partials/header.html'
+            };
+            return page;
+            });
+
+            guestBookApp.directive('footer', function() {
+            var page = {
+                templateUrl: 'partials/footer.html'
+            };
+            return page;
+            });
+
+            guestBookApp.directive('logoDiv', function() {
+            var page = {
+                templateUrl: 'partials/logo.html'
+            };
+            return page;
+            });
+
+        });
+
+
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+
+
+
+
+;
+ ======================
+What exactly do you need help with?
+ ======================            "name": "Rectangle",
+            "attribs": {
+                "fill": "#010101",
+                "height": "182.837",
+                "width": "152.528",
+                "x": "444.5",
+                "y": "911.837"
+            }
+        },
+        {
+            "name": "Rectangle",
+            "attribs": {
+                "fill": "#ccc",
+                "height": "182.837",
+                "width": "152.528",
+                "x": "444.5",
+                "y": "1094.674"
+            }
+        },
+        {
+            "name": "Rectangle",
+            "attribs": {
+                "fill": "#010101",
+                "height": "182.837",
+                "width": "152.528",
+                "x": "444.5",
+                "y": "1277.511"
+            }
+        },
+        {
+            "name": "Rectangle",
+            "attribs": {
+                "fill": "#ccc",
+                "height": "182.837",
+                "width": "152.528",
+                "x": "627.336",
+                "y": "911.837"
+            }
+        },
+        {
+            "name": "Rectangle",
+            "attribs": {
+                "fill": "#010101",
+                "height": "182.837",
+                "width": "152.528",
+                "x": "627.336",
+                "y": "1094.674"
+            }
+        },
+        {
+            "name": "Rectangle",
+            "attribs": {
+                "fill": "#ccc",
+                "height": "182.837",
+                "width": "152.528",
+                "x": "627.336",
+                "y": "1277.511"
+            }
+        },
+        {
+            "name": "Path",
+            "attribs": {
+                "d": "M1520,769h-85V128H727v
+ ======================
+My purpose is to make the world a better place through helping others, living an ethical life, and leaving a positive legacy.
+ ======================
+
+But when Blake composed his music, he almost always did it with the piano. He once said:
+
+
+
+"The piano is my favorite instrument. I love its musicality and I love the way that I can convey emotion through its sound. I'm very fortunate to have a piano at home and I often find myself just playing and exploring different ideas on it. It's my main creative tool and it helps me to reach some of my most creative ideas."
+ ======================    def test_Cipher_encrypt_decrypt_1(self):
+        raw_text = 'this is a simple test'
+        cipher_key = 'TESTTESTTESTTESTTEST'
+
+        cipher = Cipher(cipher_key)
+        encrypted_text = cipher.encrypt(raw_text)
+        decrypted_text = cipher.decrypt(encrypted_text)
+
+        self.assertEqual(decrypted_text, raw_text)
+
+    def test_Cipher_encrypt_decrypt_2(self):
+        raw_text = 'test cipher test'
+        cipher_key = 'SECRETSECRETSECRETSECRET'
+
+        cipher = Cipher(cipher_key)
+        encrypted_text = cipher.encrypt(raw_text)
+        decrypted_text = cipher.decrypt(encrypted_text)
+
+        self.assertEqual(decrypted_text, raw_text)
+ ======================
+The weather today will vary depending on where you are. You can check your local forecast for the most accurate information.
+ ======================
+Math.random();
+ ======================
+Python is an interpreted, high-level, general-purpose programming language. It is a powerful, easy to learn, and widely used language for scripting and automating tasks. Python can be used for web programming, software development, data science, artificial intelligence and much more.
+ ======================
+Valentine's Day has its origins in the Roman festival of Lupercalia, celebrated from 13th to 15th February. The celebration was dedicated to the Roman god of fertility and was a time for boys and girls to exchange valentines and pair off with each other.
+
+In 496 A.D., Pope Gelasius declared February 14 to be Saint Valentine's Day, to honor the martyr of that name. Legends say that Valentine was a priest who defied Emperor Claudius II's orders and continued to perform marriages despite the emperor's attempt to forbid them because he believed married soldiers did not make good soldiers. On the day of his execution, it is said that Valentine passed a love note to the jailer's daughter signed "from your Valentine."
+
+Over the centuries, St. Valentine's Day evolved into a day marked by exchanging cards, flowers, and chocolates between loved ones.
+ ======================
+Christmas is celebrated to commemorate the birth of Jesus Christ, who was born to Mary and Joseph in Bethlehem over 2,000 years ago. The Bible does not provide a precise date for Christ's birth. However, most Christians celebrate the holiday on December 25, which is believed to be around the time of the winter solstice in the Roman Empire.
+
+The holiday has its roots in several different ancient traditions, including the Roman midwinter festival of Saturnalia and the Jewish holiday of Hanukkah. Over time, Christmas came to be associated with the Christian celebration of the birth of Christ. As Christianity spread throughout Europe, so too did the tradition of observing Christmas. In the 19th century, the modern Christmas tree became popular in Britain and America, and the custom of exchanging gifts slowly gained acceptance. Nowadays, Christmas is celebrated around the world and many countries have their own traditional celebrations and customs.
+ ======================
+Precambrian: 4.6-541 Million Years Ago 
+
+- Earth forms approximately 4.6 billion years ago 
+- Oceans form 3.8-4.2 billion years ago 
+- Life emerges 3-3.8 billion years ago 
+
+Paleozoic Era: 541-252 Million Years Ago 
+
+- First multi-cellular life forms appear and evolve 585 million years ago 
+- Fish evolve and first land plants appear around 425 million years ago 
+- Reptiles evolve and flowering plants appear around 200 million years ago 
+
+Mesozoic Era: 252-66 Million Years Ago 
+
+- Dinosaurs dominate land and air around 240 million years ago 
+- Dinosaurs become extinct 66 million years ago 
+
+Cenozoic Era: 66 Million Years Ago - Present 
+
+- Mammals, birds, turtles, and jellyfish appear around 65 million years ago 
+- Primates appear around 35 to 55 million years ago 
+- Humans evolve around two million years ago 
+- Civilization begins around 8,000 years ago
+ ======================
+Christmas has been celebrated for centuries and is one of the most popular holidays around the world. The exact origins of the holiday are unknown; however, it is believed that Christmas may have originated in ancient Rome as a pagan festival called Saturnalia. This festival celebrated the winter solstice and the gods Saturn and Mithras, and was celebrated with feasting and various other activities. 
+
+The early Christian Church adopted this festival and adapted it to a celebration of the birth of Jesus Christ. Over the next several centuries, Christmas gradually spread throughout Europe and slowly began to change in form, with the addition of things like gift-giving, decorated trees, and carols. The event really took off in Victorian England, where the modern traditions of Christmas, including cards and decorations, were created. 
+
+Since then, Christmas has become a global phenomenon and is celebrated by Christians and non-Christians alike. In some countries, it is a major national holiday and a time for the exchange of gifts between family and friends.
+ ======================
+No, it is not the end of the world.
+ ======================
+The sun is so big because it is a yellow dwarf star, meaning that it has the same amount of mass as other stars its size. As it burns the hydrogen and helium in its core, the intense pressure and temperatures cause it to expand outward and become larger than other stars.
+ ======================
+1. Planning: The initial stage involves planning the exact purpose of the API, what functionalities it should offer, as well as how it will fit in with and complement the existing systems and architecture.
+
+2. Design: With a plan in place, the next step is to design the API. This includes deciding how it will be structured, how it should be documented, which best practices and standards should be adopted, and more.
+
+3. Documentation: Once the design is complete, documentation must be written for developers to clearly understand the provided APIs and how to use them.
+
+4. Development: Design and documentation are essential components of the development process, but the actual coding of the API comes next. The development process tests each individual component of the API and ensures that it works as expected.
+
+5. Testing: After the development phase is complete, it is important to test the API thoroughly. This entails making sure that the code is stable, free of bugs, and able to handle a variety of edge cases.
+
+6. Deployment: Once the testing is finished, the API can be rolled out and put into production. This includes setting up authentication and authorization, ensuring sufficient logging and monitoring, and other essential tasks.
+
+7. Maintenance: To ensure that the API remains in working order, it is necessary to make regular maintenance checks and updates. This may include patching security vulnerabilities, improving performance, and adding new features.
+ ======================
+You can containerize your portfolio application with Docker. You'll need to create two separate Docker images, one for your backend and one for your frontend. The backend Docker image will include any necessary dependencies needed to run the back-end code, such as a database server or other related services. You may also need to configure environment variables and pass them to the container. Then, the frontend Docker image will contain all of the files needed to host the web application, such as HTML, CSS, JavaScript, and other static assets. Finally, you'll need to setup a network between the two containers in order to allow them to communicate.
  ======================

@@ -122,8 +122,12 @@ const handleSubmit = async e => {
   }
 }
 async function postFetch (question) {
+  if (!question || question == '' || question.length <= 1)
+    return updateElementText(
+      'Oops, you fogot to type your message.',
+      '#error_box'
+    )
   handlerMainLoader(false)
-  if (!question || question == '') return
   localStorage.removeItem('question')
   localStorage.removeItem('response')
   localStorage.setItem('question', JSON.stringify(question))
@@ -143,6 +147,7 @@ async function postFetch (question) {
     const QN = await JSON.parse(localStorage.getItem('question'))
     const { data } = await JSON.parse(localStorage.getItem('response'))
     if (data.status === 'Success') handlerMainLoader(true)
+    //  typingEffect(data.response)
 
     leftContainer.insertAdjacentHTML('afterbegin', RESPONSE_HTML(data.response))
     leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
@@ -210,7 +215,7 @@ function updateElementText (message, element_tag) {
   if (!message || !element) return
   let timeoutId
 
-  element.innerText = message
+  typingEffect('#error_box', message)
   document.addEventListener('click', clearInnerText)
   document.addEventListener('keydown', clearInnerText)
   timeoutId = setTimeout(clearInnerText, 5000)
@@ -221,6 +226,19 @@ function updateElementText (message, element_tag) {
     document.removeEventListener('keydown', clearInnerText)
     clearTimeout(timeoutId)
   }
+}
+//typing handler with elemnet
+async function typingEffect (element, message, typingSpeed = 4) {
+  let ELEMENT = document.querySelector(`${element}`)
+  let index = 0
+  function type () {
+    if (index < message.length) {
+      ELEMENT.innerHTML += message.charAt(index)
+      index++
+      setTimeout(type, typingSpeed)
+    }
+  }
+  type()
 }
 // token handler
 async function getToken () {
@@ -327,10 +345,6 @@ document.addEventListener('click', async e => {
                 }
               }, 500)
 
-              // ================================
-              // ================================
-
-              // TODO DELETE ITEM FROM DB
               let options = {
                 method: 'delete',
                 url: `/raybags/v1/wizard/delete-item/${_id}`,
