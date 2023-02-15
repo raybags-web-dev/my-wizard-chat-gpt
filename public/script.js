@@ -173,9 +173,10 @@ async function FetchData (query) {
       headers: { Authorisation: await getToken() }
     }
     const response = await axios(OPTIONS)
-    if (!response.data.data.length)
+    let responseData = await response.data.data
+    if (!responseData.length)
       return updateElementText('Oops nothing found!', '#error_box')
-    response.data.data
+    responseData
       .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
       .forEach(item => {
         const { createdAt, question, response, _id } = item
@@ -408,6 +409,71 @@ document.addEventListener('click', async e => {
     }
   }
 })()
+
+// paginateButtons()
+
+// async function paginateButtons () {
+//   const itemsPerPage = 10
+//   let currentPage = 1
+
+//   const options = {
+//     method: 'get',
+//     url: '/raybags/v1/wizard/data-all',
+//     headers: { Authorization: await getToken() }
+//   }
+
+//   const response = await axios(options)
+//   const totalItems = response.data.data.totalCount
+
+//   // Create and append the buttons to the container
+//   const buttonContainer = document.getElementById('BTN1')
+//   for (let i = 1; i <= 6; i++) {
+//     const button = document.createElement('button')
+//     button.type = 'button'
+//     button.classList.add('btn', 'btn-outline-success', 'btn-lg', `b${i}`)
+//     button.innerText = i
+//     buttonContainer.appendChild(button)
+//   }
+//   // ============================
+//   const buttons = document.querySelectorAll('#BTN1 > button')
+//   const nextButton = document.querySelector('#nextBTN')
+
+//   function updateButtons () {
+//     for (let i = 0; i < buttons.length; i++) {
+//       const currentButtonIndex = (currentPage - 1) * itemsPerPage + i
+//       if (currentButtonIndex < totalItems) {
+//         buttons[i].innerText = `Item ${currentButtonIndex + 1}`
+//       } else {
+//         buttons[i].style.display = 'none'
+//       }
+//     }
+//   }
+
+//   function handleNextButtonClick () {
+//     currentPage++
+//     updateButtons()
+//     if (currentPage * itemsPerPage >= totalItems) {
+//       nextButton.style.display = 'none'
+//     }
+//   }
+
+//   function handlePaginationButtonClick (index) {
+//     currentPage = Math.floor(index / itemsPerPage) + 1
+//     updateButtons()
+//     if (currentPage * itemsPerPage >= totalItems) {
+//       nextButton.style.display = 'none'
+//     } else {
+//       nextButton.style.display = 'block'
+//     }
+//   }
+
+//   updateButtons()
+//   nextButton.addEventListener('click', handleNextButtonClick)
+//   for (let i = 0; i < buttons.length; i++) {
+//     buttons[i].addEventListener('click', () => handlePaginationButtonClick(i))
+//   }
+// }
+
 // bg for pagination buttons
 outRightContainer.addEventListener('scroll', function () {
   let container = document.querySelector('#BTN1')
