@@ -19,7 +19,7 @@ function GET_loader (element, isFinished) {
 }
 function QUESTION_HTML (question) {
   return `
-    <p style="min-width:100%"  class="init-quetion">
+    <p style="min-width:100%"  class="init-quetion  shadow-lg p-3 mb-1 bg-body rounded">
     ${question}
     <img src="./images/face_1.png"
         style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem;"
@@ -28,7 +28,7 @@ function QUESTION_HTML (question) {
 }
 function RESPONSE_HTML (response) {
   return `
-    <p style="min-width:100%"  class="init-response">
+    <p style="min-width:100%"  class="init-response shadow-lg p-3 mb-4 bg-body rounded">
     ${response}
     <img src="./images/bot.webp"
         style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem;"
@@ -36,22 +36,22 @@ function RESPONSE_HTML (response) {
     </p>`
 }
 function DB_QN_HTML (question, id, created_at) {
-  return `<p data-id="${id}"  class="db-quetion">${question}<br>
-  <span class="link-danger text-muted fs-6">${id}</span>
-  <span class="link-danger float-end text-muted fs-6">${created_at}</span>
+  return `<p data-id="${id}"  class="db-quetion shadow-lg p-2 mb-1 bg-body rounded">${question}<br>
+  <span class="link fs-6" style="opacity:0">${id}</span>
+  <span class="link float-end fs-6" style="opacity:.5">${created_at}</span>
   </p> `
 }
 function DB_RES_HTML (response, id, created_at) {
-  return `<p data-id="${id}" class="db-response">${response}<br>
-  <span class="link-danger text-muted">${id}</span>
-  <span class="link-danger float-end text-muted">${created_at}</span>
+  return `<p data-id="${id}" class="db-response shadow-lg p-2 mb-4 bg-body rounded">${response}<br>
+  <span class="link" style="opacity:.5">${id}</span>
+  <span class="link float-end" style="opacity:.5">${created_at}</span>
   </p>`
 }
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
-    <div id="single_item" class=" card text-white">
-        <div class="card-header d-flex  p-2 justify-content-between">
-            <p class="link-danger">${item_id}</p>
+    <div id="single_item" class="card shadow bg-body rounded">
+        <div class="card-header d-flex  justify-content-between">
+            <p class="link-success">${item_id}</p>
             <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>
         </div>
         <div class="card-body">
@@ -59,7 +59,7 @@ function dbItem (item_id, quetion, response, createdAt, updatedAt) {
           <hr>
           <p class="card-text">Response:&nbsp;${response}</p>
         </div>
-        <div class="d-flex justify-content-between card-footer link-danger ">
+        <div class="d-flex justify-content-between card-footer">
           <p >Created:&nbsp;${createdAt}</p>
           <p class="floadt-end">Updated:&nbsp;${updatedAt}</p>
         </div>
@@ -128,6 +128,7 @@ async function postFetch (question) {
       '#error_box'
     )
   handlerMainLoader(false)
+  let myToken = localStorage.getItem('token')
   localStorage.removeItem('question')
   localStorage.removeItem('response')
   localStorage.setItem('question', JSON.stringify(question))
@@ -137,7 +138,7 @@ async function postFetch (question) {
     data: { data: question },
     headers: {
       'Content-Type': 'application/json',
-      Authorisation: await getToken()
+      Authorisation: myToken
     }
   }
   //=============remove LOADER===========
@@ -157,20 +158,23 @@ async function postFetch (question) {
     const { message, status: statusText } = await e.response.data
     const { status } = await e.response
     if (status == 500 && statusText == 'failed') {
-      updateElementText(
-        `State: ${statusText}, Code: ${status} Details: ${message}`,
-        '#error_box'
-      )
+      if (!authButton.classList.contains('flashBTN')) {
+        authButton.classList.add('flashBTN')
+        setTimeout(() => authButton.classList.remove('flashBTN'), 1200)
+      }
+      handlerMainLoader(true)
+      updateElementText(`Error: ${message}`, '#error_box')
     }
   }
 }
 async function FetchData (query) {
   try {
     if (query == undefined) query == '?page=1'
+    let myToken = localStorage.getItem('token')
     const OPTIONS = {
       method: 'get',
       url: `/raybags/v1/wizard/data${query}`,
-      headers: { Authorisation: await getToken() }
+      headers: { Authorisation: myToken }
     }
     const response = await axios(OPTIONS)
     let responseData = await response.data.data
@@ -243,17 +247,11 @@ async function typingEffect (element, message, typingSpeed = 4) {
 }
 // token handler
 async function getToken () {
-  // Get the current timestamp
-  const now = Date.now()
-
-  // Check if a token is already stored in local storage
   const storedToken = localStorage.getItem('token')
   const storedTimestamp = localStorage.getItem('timestamp')
-
   // If a token is stored and less than 24 hours have elapsed since the last request
-  if (storedToken && storedTimestamp && now - storedTimestamp < 86400000) {
+  if (storedToken && storedTimestamp && Date.now() - storedTimestamp < 86400000)
     return storedToken
-  }
 
   // If no token is stored or 24 hours have elapsed
   const response = await axios.post('/raybags/v1/wizard/auth')
@@ -261,23 +259,22 @@ async function getToken () {
 
   // Save the token and the current timestamp to local storage
   localStorage.setItem('token', token)
-  localStorage.setItem('timestamp', now)
+  localStorage.setItem('timestamp', Date.now())
 
   return token
 }
+
 document.addEventListener('click', async e => {
   let id = e.target.dataset.id
   let itemToRemove = e.target
 
-  if (itemToRemove.classList.contains('flash')) {
-    itemToRemove.classList.remove('flash')
-  }
-  itemToRemove.classList.add('flash')
+  let myToken = localStorage.getItem('token')
+
   try {
     const OPTIONS = {
       method: 'get',
       url: `/raybags/v1/wizard/data-all`,
-      headers: { Authorisation: await getToken() }
+      headers: { Authorisation: myToken }
     }
 
     const response = await axios(OPTIONS)
@@ -350,7 +347,7 @@ document.addEventListener('click', async e => {
                 method: 'delete',
                 url: `/raybags/v1/wizard/delete-item/${_id}`,
                 headers: {
-                  Authorization: await getToken()
+                  Authorization: myToken
                 }
               }
 
@@ -369,6 +366,7 @@ document.addEventListener('click', async e => {
   }
 })
 ;(async () => {
+  let myToken = localStorage.getItem('token')
   const input = document.getElementById('seachhhh')
   const searchBtn = document.getElementById('searchBTN')
   const searchFORM = document.getElementById('search_form')
@@ -376,7 +374,7 @@ document.addEventListener('click', async e => {
   const OPTIONS = {
     method: 'get',
     url: '/raybags/v1/wizard/data-all',
-    headers: { Authorisation: await getToken() }
+    headers: { Authorisation: myToken }
   }
 
   input.addEventListener('keydown', event => {
@@ -410,70 +408,6 @@ document.addEventListener('click', async e => {
   }
 })()
 
-// paginateButtons()
-
-// async function paginateButtons () {
-//   const itemsPerPage = 10
-//   let currentPage = 1
-
-//   const options = {
-//     method: 'get',
-//     url: '/raybags/v1/wizard/data-all',
-//     headers: { Authorization: await getToken() }
-//   }
-
-//   const response = await axios(options)
-//   const totalItems = response.data.data.totalCount
-
-//   // Create and append the buttons to the container
-//   const buttonContainer = document.getElementById('BTN1')
-//   for (let i = 1; i <= 6; i++) {
-//     const button = document.createElement('button')
-//     button.type = 'button'
-//     button.classList.add('btn', 'btn-outline-success', 'btn-lg', `b${i}`)
-//     button.innerText = i
-//     buttonContainer.appendChild(button)
-//   }
-//   // ============================
-//   const buttons = document.querySelectorAll('#BTN1 > button')
-//   const nextButton = document.querySelector('#nextBTN')
-
-//   function updateButtons () {
-//     for (let i = 0; i < buttons.length; i++) {
-//       const currentButtonIndex = (currentPage - 1) * itemsPerPage + i
-//       if (currentButtonIndex < totalItems) {
-//         buttons[i].innerText = `Item ${currentButtonIndex + 1}`
-//       } else {
-//         buttons[i].style.display = 'none'
-//       }
-//     }
-//   }
-
-//   function handleNextButtonClick () {
-//     currentPage++
-//     updateButtons()
-//     if (currentPage * itemsPerPage >= totalItems) {
-//       nextButton.style.display = 'none'
-//     }
-//   }
-
-//   function handlePaginationButtonClick (index) {
-//     currentPage = Math.floor(index / itemsPerPage) + 1
-//     updateButtons()
-//     if (currentPage * itemsPerPage >= totalItems) {
-//       nextButton.style.display = 'none'
-//     } else {
-//       nextButton.style.display = 'block'
-//     }
-//   }
-
-//   updateButtons()
-//   nextButton.addEventListener('click', handleNextButtonClick)
-//   for (let i = 0; i < buttons.length; i++) {
-//     buttons[i].addEventListener('click', () => handlePaginationButtonClick(i))
-//   }
-// }
-
 // bg for pagination buttons
 outRightContainer.addEventListener('scroll', function () {
   let container = document.querySelector('#BTN1')
@@ -503,10 +437,7 @@ form.addEventListener('keyup', async e => {
     handleSubmit(e)
   }
 })
-authButton.addEventListener('click', async () => {
-  ;['token, timestamp'].forEach(key => {
-    localStorage.removeItem(key)
-  })
-  location.reload()
-})
+// authenticate
+authButton.addEventListener('click', getToken)
+// handle submit
 sendButton.addEventListener('click', handleSubmit)

@@ -3837,3 +3837,66 @@ The best way to learn about AWS VPC and connecting to databases is to first gain
  ======================
 The best resource to use for learning this would depend on your individual learning style and preferred format, but some popular resources include online tutorials, instructional videos, books, and taking a course at a local college or university.
  ======================
+The current state of the union is one of extreme uncertainty due to the ongoing COVID-19 pandemic. The virus has caused unprecedented turmoil and disruption across the entire world, but the United States has been particularly impacted. The economy is in recession, millions of people have lost jobs, and businesses across the country are struggling to stay afloat. The federal government has enacted a variety of measures aimed at providing some economic relief for those who are suffering, but many of the long-term implications of this pandemic remain unknown.
+ ======================
+You can assign the same class to both elements, and apply the style to that class in the CSS.
+ ======================
+The human cycle consists of several stages: birth, infancy, childhood, adolescence, adulthood, and old age. During these stages, humans undergo physical, psychological, and social changes that shape their behavior and identity.
+ ======================
+1. Set a daily study schedule and stick to it. 
+2. Make sure that you create a motivational checklist system that you can use to remind yourself of why it is important to study every day. 
+3. Reward yourself with something after each successful day of studying, such as an extra hour of leisure time, a healthy snack, or a special treat. 
+4. Find accountability partners who will help keep you on track, such as a friend, family member, or study buddy. 
+5. Utilize study apps and online tools to help you stay organized and motivated. 
+6. Get rid of any potential distractions in your environment before you start studying. 
+7. Take regular breaks throughout the day. 
+8. Break up large tasks into smaller, manageable chunks to make them more doable. 
+9. Create a study plan based on your individual needs and goals. 
+10. Track your progress and celebrate your successes.
+ ======================
+Fusion is the process of combining two or more distinct entities into a single, unified one. It can refer to the combining of multiple physical objects, or the combination of different elements of an idea or concept. Examples of fusion include the combination of physical objects such as merging galaxies into a single cosmic structure, merging atoms to form new elements, or merging data from multiple sources into a single dataset. Fusion can also refer to the merging of ideas, such as combining different styles of music into a unique experience.
+ ====================== §§ --- app/Http/Controllers/ConfigCtrl.php
+ §§ 1017
++    //testing
+
+ ======================
+Authentication is a process used to verify the identity of a user. It is a security measure that is used to protect the information of users within a system. Authentication requires an individual to provide a credential such as a username, password, PIN or biometric data such as a fingerprint or iris scan in order to gain access to a system or application.
+ ======================
+The next solar eclipse will occur on December 14, 2020 and be visible in parts of South America.
+ ====================== §§ --- README.md
+-# Image-Serving and Manipulation
+ §§ 1000
++# Image Serving and Manipulation
+
+ ====================== §§ 1000
++sdkfjalksjdlfwkmw
+
+ ======================
+Biology is the natural science that studies life and living organisms, including their physical structure, chemical processes, molecular interactions, physiological mechanisms, development and evolution. Biology is a vast subject containing many subdivisions, topics, and disciplines. Examples of these include molecular biology, biochemistry, genetics, cell biology, microbiology, immunology, botany, zoology, and ecology.
+ ======================
+Chemistry is the study of matter and its properties, structure, composition, and behavior. It also involves the study of chemical reactions and processes by which substances interact with one another. Chemistry includes topics such as the properties of atoms, molecules, and ions; the laws governing chemical reactions; the principles of thermodynamics; and the structures and interactions of substances.
+ ======================
+Physics is the scientific study of matter, energy, and the interaction between them. It deals with the nature and properties of matter and energy, as well as their interactions and effects on each other. Physics investigates the fundamental laws of the universe, from the smallest particles to the largest galaxies.
+ ======================
+History is the study of past events, particularly in human affairs. It is an umbrella term that relates to past events as well as the memory, discovery, collection, organization, presentation, and interpretation of information about these events. Historians use primary sources, such as written documents and artifacts, to investigate and interpret past events, and they often attempt to answer why those events occurred and what their effects were.
+ ======================
+Zoology is the branch of biology that deals with the study of the behavior, structure, physiology, classification, and distribution of animals. It includes the study of evolutionary relationships between organisms, their interactions with the natural environment, and their role in the balance of life on Earth.
+ ======================
+1. Make a plan: Set a date to quit smoking and stick to it.
+
+2. Ask for help: Talk to your doctor, family, and friends to get support.
+
+3. Anticipate and plan for challenges: Know what triggers your urge to smoke and how to deal with them.
+
+4. Avoid temptations: Get rid of cigarettes and lighters in your house and car.
+
+5. Stay busy: Keep your mind and hands occupied with activities that don’t involve smoking.
+
+6. Track your progress: Monitor your progress and celebrate small successes.
+
+7. Reward yourself: Use the money you save from not buying cigarettes to buy yourself something nice.
+
+8. Manage stress: Find healthy ways to manage the stress caused by quitting smoking.
+
+9. Don’t give up: If you slip up and smoke one cigarette, start again and recommit to quitting.
+ ======================

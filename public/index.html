@@ -50,34 +50,33 @@
     <script src="./script.js" defer></script>
 </head>
 
-<body class="bg-dark">
-    <nav class="navbar navbar-dark bg-dark">
+<body>
+    <nav class="navbar navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="https://github.com/raybags-web-dev/image_base/blob/master/images/logo/logo9_5_21257.jpeg?raw=true"
                     alt="" width=40" height="40"
-                    style="border-radius: 50%; border: 2px solid rgb(103, 103, 104); padding: .2rem"
+                    style="border-radius: 50%; border: 2px solid rgb(183, 183, 183); padding: .2rem"
                     class="d-inline-block align-text-top"> &nbsp; WIZARD 101
             </a>
             <form id="search_form" class="d-flex">
-                <input id="seachhhh" class="form-control me-2"
-                    style="background-color: #161616;color:white;border-color:transparent;" type="search"
-                    placeholder="Search" aria-label="Search">
-                <button id="searchBTN" class="btn btn-outline-secondary text-danger" type="submit">Search</button>
+                <input id="seachhhh" class="form-control me-2" style="border-color:transparent;" type="search"
+                    placeholder="Search..." aria-label="Search">
+                <button id="searchBTN" class="btn btn-outline-secondary" type="submit">Send</button>
             </form>
-            <p id="error_box" class="text-white"></p>
+            <p id="error_box" class="shadow-none p-3 mb-5 bg-light rounded"></p>
         </div>
     </nav>
     <!-- Loader main -->
     <!-- Loader main -->
     <!-- Loader main -->
     <div id="main-page-loader" class="d-flex align-items-center justify-content-center"
-        style="position:fixed; backdrop-filter:blur(1px); top:0; left:0; right:0; bottom:0; background-color:rgba(0,0,0,0.1);z-index:3000">
-        <div class="text-white d-flex">
-            <h3 id="my_text" style="position:absolute;top:50%;opacity:.7; left:50%; transform:translate(-50%, -50%);">
+        style="position:fixed; backdrop-filter:blur(1px); top:0; left:0; right:0; bottom:0;z-index:3000">
+        <div class="d-flex">
+            <h3 id="my_text" style="position:absolute;top:50%;opacity:.7;left:50%;transform:translate(-50%, -50%);">
                 Loading
             </h3>
-            <span class="loader" style="position:absolute;top:50%; left:50%; transform:translate(-50%, -50%);"></span>
+            <span class="loader" style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);"></span>
         </div>
     </div>
     <!-- Loader main -->
@@ -86,26 +85,24 @@
 
     <div id="main-container" class="container container-fluid position-relative">
         <form class="submit_form">
-            <textarea style="background-color: #161616;color:white;border-color:transparent;" name="prompt"
-                id="my_input" type="text" class="form-control" rows="2"
-                placeholder="Type your question here..."></textarea>
+            <textarea style="border-color:transparent;" name="prompt" id="my_input" type="text"
+                class="form-control mt-1" rows="2" placeholder="Type your question here..."></textarea>
         </form>
-        <div class="d-flex  p-2 justify-content-between text-center">
+        <div class="d-flex justify-content-between text-center">
             <button id="submit_button"
                 style="text-transform: uppercase; min-height:3rem;text-align:center;border:5px solid transparent;"
-                class="btn btn-secondary shadow bg-body-tertiary text-danger rounded bg-dark btn-lg mx-1" type="submit">
+                class="btn btn-secondary shadow-sm p-1   bg-body rounded btn-lg mx-1" type="submit">
                 SUBMIT
             </button>
             <button id="access_btn"
                 style="text-transform: uppercase; min-height:3rem;text-align:center;border:5px solid transparent;"
-                class="btn btn-secondary shadow bg-body-tertiary text-success rounded bg-dark btn-lg mx-1"
-                type="button">
+                class="btn btn-secondary shadow-sm p-1  bg-body rounded btn-lg mx-1" type="button">
                 Authenticate
             </button>
         </div>
         <div class="container my_text_container">
             <div class="left-container overflow-auto">
-                <div class="alert alert-primary inner_left_container">
+                <div class="alert inner_left_container">
                 </div>
             </div>
 
@@ -120,7 +117,7 @@
                     <button type="button" class="btn btn-outline-success btn-lg b6">6</button>
                     <button id="nextBTN" type="button" class="btn btn-outline-success btn-lg b7">&rarr;</button>
                 </div>
-                <div class="alert alert-secondary inner_right_container">
+                <div class="alert alert-secondary inner_right_container shadow-lg p-3 mb-5 bg-body rounded">
                 </div>
             </div>
         </div>
