@@ -8,6 +8,11 @@ const rightCont = document.querySelector('.inner_right_container')
 const outRightContainer = document.querySelector('.right-container')
 const BTN_CONTAINER = Array.from(document.querySelectorAll('#BTN1 button'))
 const mainLoaderRing = document.querySelector('#main-page-loader')
+
+const searchInput = document.getElementById('seachhhh')
+const searchBtn = document.getElementById('searchBTN')
+const searchFORM = document.getElementById('search_form')
+
 let lastScroll = 0
 
 exports = { CONTAINER }
@@ -101,12 +106,14 @@ async function paginated () {
         }
       } catch (e) {
         updateElementText(e.message, '#error_box')
+        GET_loader(loading_1, true)
       }
     })
   })
   FetchData('?page=1')
 }
 paginated()
+
 const handleSubmit = async e => {
   e.preventDefault()
   let question_text = textArea.value
@@ -178,8 +185,11 @@ async function FetchData (query) {
     }
     const response = await axios(OPTIONS)
     let responseData = await response.data.data
-    if (!responseData.length)
+    if (!responseData.length) {
+      outRightContainer.classList.toggle('hide')
       return updateElementText('Oops nothing found!', '#error_box')
+    }
+
     responseData
       .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
       .forEach(item => {
@@ -252,18 +262,15 @@ async function getToken () {
   // If a token is stored and less than 24 hours have elapsed since the last request
   if (storedToken && storedTimestamp && Date.now() - storedTimestamp < 86400000)
     return storedToken
-
   // If no token is stored or 24 hours have elapsed
   const response = await axios.post('/raybags/v1/wizard/auth')
   const token = response.data.token
-
   // Save the token and the current timestamp to local storage
   localStorage.setItem('token', token)
   localStorage.setItem('timestamp', Date.now())
-
   return token
 }
-
+// delete item from db handler
 document.addEventListener('click', async e => {
   let id = e.target.dataset.id
   let itemToRemove = e.target
@@ -280,6 +287,7 @@ document.addEventListener('click', async e => {
     const response = await axios(OPTIONS)
     if (!response.data.data.length)
       return updateElementText('Oops nothing found!', '#error_box')
+
     response.data.data.forEach(item => {
       const { createdAt, question, response, _id, updatedAt } = item
       if (id === _id) {
@@ -306,7 +314,7 @@ document.addEventListener('click', async e => {
               targetItm2 && targetItm2.remove()
             }
           } catch (e) {
-            console.log(e.message)
+            updateElementText(e.message, '#error_box')
           }
         })
         document.addEventListener('keydown', function (event) {
@@ -317,7 +325,7 @@ document.addEventListener('click', async e => {
               targetItm1 && targetItm1.remove()
             }
           } catch (e) {
-            console.log(e.message)
+            updateElementText(e.message, '#error_box')
           }
         })
         let current_element = document.querySelector(`#single_item`)
@@ -362,51 +370,149 @@ document.addEventListener('click', async e => {
       }
     })
   } catch (e) {
-    console.log(e.message)
+    // updateElementText(e.message, '#error_box')
   }
 })
-;(async () => {
-  let myToken = localStorage.getItem('token')
-  const input = document.getElementById('seachhhh')
-  const searchBtn = document.getElementById('searchBTN')
-  const searchFORM = document.getElementById('search_form')
 
+// SEARCH FUNCTIONALITY
+//============================================
+//============================================
+//============================================
+
+// searchBtn.addEventListener('click', async () => {
+//   let myToken = localStorage.getItem('token')
+
+//   if (!searchInput.value) return
+//   const OPTIONS = {
+//     method: 'get',
+//     url: '/raybags/v1/wizard/data-all',
+//     headers: { Authorisation: myToken }
+//   }
+//   try {
+//     const response = await axios(OPTIONS)
+//     let responseData = await response.data.data
+//     if (!responseData.length) {
+//       outRightContainer.classList.toggle('hide_partial')
+//       updateElementText('Oops nothing found!', '#error_box')
+//       return
+//     }
+
+//     const searchResult = responseData.filter(
+//       item =>
+//         item.question.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+//         item.response.toLowerCase().includes(searchInput.value.toLowerCase())
+//     )
+
+//     rightCont.innerHTML = ''
+
+//     searchResult
+//       .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+//       .forEach(item => {
+//         const { createdAt, question, response, _id } = item
+//         rightCont.insertAdjacentHTML(
+//           'afterbegin',
+//           DB_RES_HTML(response, _id, createdAt)
+//         )
+//         rightCont.insertAdjacentHTML(
+//           'afterbegin',
+//           DB_QN_HTML(question, _id, createdAt)
+//         )
+//         outRightContainer.scrollTo(0, 0)
+//         GET_loader(loading_1, true)
+//       })
+//   } catch (e) {
+//     updateElementText(e.message, '#error_box')
+//   }
+// })
+
+async function searchDatabase () {
+  let inputValue = searchInput.value.trim()
+  if (!inputValue) return
+  let myToken = localStorage.getItem('token')
   const OPTIONS = {
     method: 'get',
     url: '/raybags/v1/wizard/data-all',
-    headers: { Authorisation: myToken }
+    headers: { Authorization: myToken }
   }
+  const response = await axios(OPTIONS)
+  const responseData = response.data.data
+  if (!responseData.length) {
+    outRightContainer.classList.toggle('hide')
+    return updateElementText('Oops nothing found!', '#error_box')
+  }
+  let count = 0
+  rightCont.innerHTML = '' // clear existing elements in container
+  responseData
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+    .forEach(item => {
+      const { createdAt, question, response, _id } = item
+      const questionMatch = question
+        .toLowerCase()
+        .includes(inputValue.toLowerCase())
+      const responseMatch = response
+        .toLowerCase()
+        .includes(inputValue.toLowerCase())
 
-  input.addEventListener('keydown', event => {
-    if (event.key === 'Enter') {
-      fetchData()
-      searchFORM.reset()
+      if (!inputValue || questionMatch || responseMatch) {
+        rightCont.insertAdjacentHTML(
+          'afterbegin',
+          DB_RES_HTML(response, _id, createdAt)
+        )
+        rightCont.insertAdjacentHTML(
+          'afterbegin',
+          DB_QN_HTML(question, _id, createdAt)
+        )
+        outRightContainer.scrollTo(0, 0)
+        GET_loader(loading_1, true)
+        count++
+      }
+    })
+  if (count <= 0) {
+    updateElementText(
+      `Oops sorry about that. I couldn't find what you were looking for!`,
+      '#error_box'
+    )
+  } else {
+    updateElementText(`${count} found!`, '#error_box')
+  }
+  // add event listener for input change
+  searchInput.addEventListener('input', function () {
+    inputValue = this.value.trim()
+    rightCont.innerHTML = '' // clear existing elements in container
+    responseData
+      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      .forEach(item => {
+        const { createdAt, question, response, _id } = item
+        const questionMatch = question
+          .toLowerCase()
+          .includes(inputValue.toLowerCase())
+        const responseMatch = response
+          .toLowerCase()
+          .includes(inputValue.toLowerCase())
+        if (!inputValue || questionMatch || responseMatch) {
+          rightCont.insertAdjacentHTML(
+            'afterbegin',
+            DB_RES_HTML(response, _id, createdAt)
+          )
+          rightCont.insertAdjacentHTML(
+            'afterbegin',
+            DB_QN_HTML(question, _id, createdAt)
+          )
+          outRightContainer.scrollTo(0, 0)
+          GET_loader(loading_1, true)
+        }
+      })
+    // if input value is empty, reload all data
+    if (!inputValue) {
+      FetchData('-all')
     }
   })
+}
+searchBtn.addEventListener('click', searchDatabase)
 
-  searchBtn.addEventListener('click', event => {
-    fetchData()
-    searchFORM.reset()
-  })
-
-  async function fetchData () {
-    if (!input.value || input.value == '') return
-    try {
-      // TODO..........
-      const response = await axios(OPTIONS)
-      const { totalPages, totalCount, data } = response.data
-      const filteredData = data.filter(
-        item =>
-          item.question.toLowerCase().includes(input.value.toLowerCase()) ||
-          item.response.toLowerCase().includes(input.value.toLowerCase())
-      )
-      console.log(filteredData)
-      // TODO..........
-    } catch (error) {
-      console.error(error)
-    }
-  }
-})()
+//============================================
+//============================================
+//============================================
 
 // bg for pagination buttons
 outRightContainer.addEventListener('scroll', function () {

@@ -88,6 +88,7 @@ button:active {
     scroll-behavior: smooth;
     overflow-x: hidden !important;
     max-height: 72vh;
+    min-width: 50%;
 }
 
 .left-container {
