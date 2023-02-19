@@ -19,6 +19,7 @@ let lastScroll = 0
 
 exports = { CONTAINER }
 const loading_1 = document.getElementById('__db_loader')
+GET_loader(loading_1, true)
 
 function Empty_Element (anchor) {
   let element = document.querySelector(anchor)
@@ -60,7 +61,7 @@ function DB_RES_HTML (response, id, created_at) {
 }
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
-    <div id="single_item" class="card shadow bg-body rounded">
+    <div id="single_item" class="card shadow-lg bg-body-tertiary rounded">
         <div class="card-header d-flex  justify-content-between">
             <p class="link-success">${item_id}</p>
             <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>
@@ -178,26 +179,38 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
     // Update pagination buttons based on initial state
     updatePaginationButtons()
   } catch (e) {
-    if ((e.name = 'AxiosError'))
-      return updateElementText('Database empty!', '#error_box')
+    if ((e.name = 'AxiosError')) {
+      localStorage.removeItem('question')
+      localStorage.removeItem('response')
+      leftContainer.innerHTML = ''
+      updateElementText('Database empty!', '#error_box')
+      return
+    }
   }
 }
 fetchDataAndPaginate(previousButton, nextButton)
 
 const handleSubmit = async e => {
-  e.preventDefault()
-  let question_text = textArea.value
-  if (!question_text || question_text == '') return
-  sendButton.innerText = 'Processing...'
   try {
+    e.preventDefault()
+    let question_text = textArea.value
+    if (!question_text || question_text == '') return
+    sendButton.innerText = 'Processing...'
     await postFetch(question_text)
     sendButton.innerText = 'Submit'
-
     form.reset()
   } catch (e) {
-    console.log(e.message)
+    console.log('An error occurred:', e.message)
   }
 }
+textArea.addEventListener('keyup', async e => {
+  try {
+    if (e.key === 'Enter') handleSubmit(e)
+  } catch (error) {
+    console.info(`Error: ${error.message}`)
+  }
+})
+
 async function postFetch (question) {
   if (!question || question == '' || question.length <= 1)
     return updateElementText(`Payload can't be empty message.`, '#error_box')
@@ -275,7 +288,7 @@ async function FetchData (query) {
         GET_loader(loading_1, true)
       })
   } catch (e) {
-    console.log(e.message)
+    console.warn(e.message)
   }
 }
 // bring in data
@@ -311,23 +324,23 @@ async function getToken () {
   return token
 }
 // delete item from db handler
-document.addEventListener('click', async e => {
+async function deleteDBItem (e) {
   let id = e.target.dataset.id
   let itemToRemove = e.target
-
   let myToken = localStorage.getItem('token')
-
+  if (!myToken) {
+    GET_loader(loading_1, true)
+    return updateElementText(` You are not authorized`, '#error_box')
+  }
+  const OPTIONS = {
+    method: 'get',
+    url: `/raybags/v1/wizard/data-all`,
+    headers: { Authorization: myToken }
+  }
   try {
-    const OPTIONS = {
-      method: 'get',
-      url: `/raybags/v1/wizard/data-all`,
-      headers: { Authorisation: myToken }
-    }
-
     const response = await axios(OPTIONS)
     if (!response.data.data.length)
       return updateElementText('something went wrong', '#error_box')
-
     response.data.data.forEach(item => {
       const { createdAt, question, response, _id, updatedAt } = item
       if (id === _id) {
@@ -349,7 +362,6 @@ document.addEventListener('click', async e => {
               event.target.classList.contains(className)
             )
             if (!hasClass) {
-              itemToRemove.classList.remove('flash')
               let targetItm2 = document.getElementById('single_item')
               targetItm2 && targetItm2.remove()
             }
@@ -360,7 +372,6 @@ document.addEventListener('click', async e => {
         document.addEventListener('keydown', function (event) {
           try {
             if (event.key === 'Escape') {
-              itemToRemove.classList.remove('flash')
               let targetItm1 = document.getElementById('single_item')
               targetItm1 && targetItm1.remove()
             }
@@ -372,24 +383,18 @@ document.addEventListener('click', async e => {
         document
           .querySelector('#del_BTN')
           .addEventListener('click', async e => {
-            updateElementText(` Processing request...`, '#error_box')
             try {
-              current_element.remove()
-              // ================================
-              // ================================
-              setTimeout(() => {
-                let to_remove_main = itemToRemove
-                let to_remove1 = itemToRemove.nextElementSibling
-                let to_remove2 = itemToRemove.previousSibling
+              let to_remove_main = itemToRemove
+              let to_remove1 = itemToRemove.nextElementSibling
+              let to_remove2 = itemToRemove.previousSibling
+              to_remove_main.remove()
 
-                to_remove_main.remove()
+              if (to_remove_main.dataset.id == to_remove1.dataset.id) {
+                to_remove1.remove()
+              } else if (to_remove_main.dataset.id == to_remove2.dataset.id) {
+                to_remove2.remove()
+              }
 
-                if (to_remove_main.dataset.id == to_remove1.dataset.id) {
-                  to_remove1.remove()
-                } else if (to_remove_main.dataset.id == to_remove2.dataset.id) {
-                  to_remove2.remove()
-                }
-              }, 500)
               let options = {
                 method: 'delete',
                 url: `/raybags/v1/wizard/delete-item/${_id}`,
@@ -397,16 +402,17 @@ document.addEventListener('click', async e => {
                   Authorization: myToken
                 }
               }
-
               const response = await axios(options)
-              if (response.status === 200)
-                return updateElementText(
-                  `item with id: ${response.data}`,
-                  '#error_box'
+              GET_loader(loading_1, false)
+              if (response.status === 200) {
+                updateElementText(`Item deleted!`, '#error_box')
+                GET_loader(loading_1, true)
+              } else {
+                document.body.insertAdjacentHTML(
+                  'afterbegin',
+                  dbItem(_id, question, response, createdAt, updatedAt)
                 )
-              console.log(response.status)
-
-              // await FetchData('-all')
+              }
             } catch (e) {
               console.log(e.message)
             }
@@ -416,9 +422,11 @@ document.addEventListener('click', async e => {
   } catch (e) {
     console.warn(e.message)
   }
-})
+}
+rightCont.addEventListener('click', deleteDBItem)
 
-async function searchDatabase () {
+async function searchDatabase (e) {
+  e.preventDefault()
   let inputValue = searchInput.value.trim()
   if (!inputValue) return
   let myToken = localStorage.getItem('token')
@@ -536,7 +544,12 @@ async function typingEffect (element, message, typingSpeed = 4) {
   }
   type()
 }
-searchBtn.addEventListener('click', searchDatabase)
+searchBtn.addEventListener('click', function (e) {
+  searchDatabase(e)
+})
+searchFORM.addEventListener('submit', function (e) {
+  searchDatabase(e)
+})
 // bg for pagination buttons
 outRightContainer.addEventListener('scroll', function () {
   let container = document.querySelector('#BTN1')
@@ -560,13 +573,10 @@ function handlerMainLoader (isStuffDone) {
 window.addEventListener('DOMContentLoaded', event => {
   handlerMainLoader(true)
 })
+
+// Add event listener for form submission
 form.addEventListener('submit', handleSubmit)
-form.addEventListener('keyup', async e => {
-  if (e.keyCode === 13) {
-    handleSubmit(e)
-  }
-})
+sendButton.addEventListener('click', handleSubmit)
 // authenticate
 authButton.addEventListener('click', getToken)
 // handle submit
-sendButton.addEventListener('click', handleSubmit)

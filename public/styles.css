@@ -26,6 +26,10 @@ button:hover {
     opacity: 1;
 }
 
+#searchBTN:hover {
+    color: black;
+}
+
 .btn:active,
 button:active {
     box-shadow: none;
@@ -232,9 +236,9 @@ button:active {
     opacity: 0;
     transition: all .3s;
     letter-spacing: 1px;
-    background: transparent;
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    background-color: rgb(255, 255, 255, .3);
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
     transform: translate(-50%, -50%);
     -webkit-animation: from-down infinite forwards ease-in .3s;
     animation: from-down 1 forwards ease-in .3s;
@@ -390,7 +394,6 @@ button:active {
 
 .flashBTN {
     color: black;
-    border: 1px solid red !important;
     background-color: rgb(246, 245, 245) !important;
     -webkit-animation: flash-btn infinite forwards ease-in .08s;
     animation: flash-btn infinite alternate-reverse ease-in .08s;
