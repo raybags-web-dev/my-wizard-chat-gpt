@@ -6,18 +6,24 @@ const authButton = document.querySelector('#access_btn')
 const leftContainer = document.querySelector('.inner_left_container')
 const rightCont = document.querySelector('.inner_right_container')
 const outRightContainer = document.querySelector('.right-container')
-const BTN_CONTAINER = Array.from(document.querySelectorAll('#BTN1 button'))
+// const BTN_CONTAINER = Array.from(document.querySelectorAll('#BTN1 button'))
 const mainLoaderRing = document.querySelector('#main-page-loader')
 
 const searchInput = document.getElementById('seachhhh')
 const searchBtn = document.getElementById('searchBTN')
 const searchFORM = document.getElementById('search_form')
 
+const previousButton = document.querySelector('.get-previous')
+const nextButton = document.querySelector('.get-next')
 let lastScroll = 0
 
 exports = { CONTAINER }
 const loading_1 = document.getElementById('__db_loader')
 
+function Empty_Element (anchor) {
+  let element = document.querySelector(anchor)
+  return (element.innerHTML = '')
+}
 function GET_loader (element, isFinished) {
   if (!isFinished) return element.classList.add('con_loader')
   setTimeout(() => element.classList.remove('con_loader'), 200)
@@ -72,47 +78,111 @@ function dbItem (item_id, quetion, response, createdAt, updatedAt) {
     `
 }
 // Query pagination
-async function paginated () {
-  BTN_CONTAINER.forEach(element => {
-    element.addEventListener('click', async e => {
-      try {
-        if (e.target.classList.contains('b1')) {
-          GET_loader(loading_1, false)
-          return await FetchData('?page=1')
-        }
-        if (e.target.classList.contains('b2')) {
-          GET_loader(loading_1, false)
-          return await FetchData('?page=2')
-        }
-        if (e.target.classList.contains('b3')) {
-          GET_loader(loading_1, false)
-          return await FetchData('?page=3')
-        }
-        if (e.target.classList.contains('b4')) {
-          GET_loader(loading_1, false)
-          return await FetchData('?page=4')
-        }
-        if (e.target.classList.contains('b5')) {
-          GET_loader(loading_1, false)
-          return await FetchData('?page=5')
-        }
-        if (e.target.classList.contains('b6')) {
-          GET_loader(loading_1, false)
-          return await FetchData('?page=6')
-        }
-        if (e.target.classList.contains('b7')) {
-          GET_loader(loading_1, false)
-          return await FetchData('-all')
-        }
-      } catch (e) {
-        updateElementText(e.message, '#error_box')
-        GET_loader(loading_1, true)
+async function fetchDataAndPaginate (previousButton, nextButton) {
+  GET_loader(loading_1, false)
+  try {
+    let myToken = localStorage.getItem('token')
+    const ITEMS_PER_PAGE = 10
+    let currentPage = 1
+    let totalItems = 0
+    let responseData = []
+    // Make initial API call to get total number of items
+    const OPTIONS = {
+      method: 'get',
+      url: `/raybags/v1/wizard/data-all`,
+      headers: { Authorization: myToken }
+    }
+    const response = await axios(OPTIONS)
+    // if (response.data) return
+    responseData = await response.data.data.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    )
+    totalItems = responseData.length
+    if (totalItems === 0) {
+      updateElementText('Nothing found in database', '#error_box')
+    }
+    // Display the initial data for the first page
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+    const endIndex = startIndex + ITEMS_PER_PAGE
+    const dataToDisplay = responseData.slice(startIndex, endIndex)
+    displayData(dataToDisplay)
+    // Add click event listener to "next" button
+    nextButton.addEventListener('click', async () => {
+      currentPage += 1
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+      const endIndex = startIndex + ITEMS_PER_PAGE
+      const dataToDisplay = responseData.slice(startIndex, endIndex)
+      // Update UI with data for current page
+      displayData(dataToDisplay)
+      // Update pagination buttons based on current page and total number of items
+      updatePaginationButtons()
+      // Alert user if last page has been reached
+      if (currentPage === Math.ceil(totalItems / ITEMS_PER_PAGE)) {
+        updateElementText(
+          ` This is the last page: ${currentPage}`,
+          '#error_box'
+        )
       }
     })
-  })
-  FetchData('?page=1')
+    // Add click event listener to "previous" button
+    previousButton.addEventListener('click', async () => {
+      let element = document.querySelector('#error_box')
+      currentPage -= 1
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
+      const endIndex = startIndex + ITEMS_PER_PAGE
+      const dataToDisplay = responseData.slice(startIndex, endIndex)
+      // Update UI with data for current page
+      displayData(dataToDisplay)
+      // Update pagination buttons based on current page and total number of items
+      updatePaginationButtons()
+      if (element) return Empty_Element('#error_box')
+    })
+    // Update pagination buttons based on current page and total number of items
+    function updatePaginationButtons () {
+      const maxPage = Math.ceil(totalItems / ITEMS_PER_PAGE)
+      previousButton.classList.toggle('hide', currentPage === 1)
+      nextButton.classList.toggle('hide', currentPage === maxPage)
+      previousButton.classList.toggle(
+        'hide_partial',
+        currentPage === 1 || totalItems <= ITEMS_PER_PAGE
+      )
+    }
+    // Function to display data on the UI
+    function displayData (data) {
+      if (!data) return
+      rightCont.innerHTML = ''
+      data
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .forEach(item => {
+          const { createdAt, question, response, _id } = item
+          rightCont.insertAdjacentHTML(
+            'afterbegin',
+            DB_RES_HTML(response, _id, createdAt)
+          )
+          rightCont.insertAdjacentHTML(
+            'afterbegin',
+            DB_QN_HTML(question, _id, createdAt)
+          )
+          outRightContainer.scrollTo(0, 0)
+          GET_loader(loading_1, true)
+        })
+    }
+    // Hide "previous" button on initial page
+    previousButton.classList.add('hide')
+    // Show/hide pagination buttons based on total number of items
+    if (totalItems <= ITEMS_PER_PAGE) {
+      nextButton.classList.add('hide')
+    } else {
+      nextButton.classList.remove('hide')
+    }
+    // Update pagination buttons based on initial state
+    updatePaginationButtons()
+  } catch (e) {
+    if ((e.name = 'AxiosError'))
+      return updateElementText('Database empty!', '#error_box')
+  }
 }
-paginated()
+fetchDataAndPaginate(previousButton, nextButton)
 
 const handleSubmit = async e => {
   e.preventDefault()
@@ -125,15 +195,13 @@ const handleSubmit = async e => {
 
     form.reset()
   } catch (e) {
-    updateElementText(e.message, '#error_box')
+    console.log(e.message)
   }
 }
 async function postFetch (question) {
   if (!question || question == '' || question.length <= 1)
-    return updateElementText(
-      'Oops, you fogot to type your message.',
-      '#error_box'
-    )
+    return updateElementText(`Payload can't be empty message.`, '#error_box')
+
   handlerMainLoader(false)
   let myToken = localStorage.getItem('token')
   localStorage.removeItem('question')
@@ -155,7 +223,8 @@ async function postFetch (question) {
     const QN = await JSON.parse(localStorage.getItem('question'))
     const { data } = await JSON.parse(localStorage.getItem('response'))
     if (data.status === 'Success') handlerMainLoader(true)
-    //  typingEffect(data.response)
+    // update query buttons
+    // fetchDataAndPaginate(previousButton, nextButton)
 
     leftContainer.insertAdjacentHTML('afterbegin', RESPONSE_HTML(data.response))
     leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
@@ -170,7 +239,7 @@ async function postFetch (question) {
         setTimeout(() => authButton.classList.remove('flashBTN'), 1200)
       }
       handlerMainLoader(true)
-      updateElementText(`Error: ${message}`, '#error_box')
+      updateElementText(`You must authenticate!`, '#error_box')
     }
   }
 }
@@ -187,7 +256,7 @@ async function FetchData (query) {
     let responseData = await response.data.data
     if (!responseData.length) {
       outRightContainer.classList.toggle('hide')
-      return updateElementText('Oops nothing found!', '#error_box')
+      return updateElementText('Nothing found!', '#error_box')
     }
 
     responseData
@@ -206,7 +275,7 @@ async function FetchData (query) {
         GET_loader(loading_1, true)
       })
   } catch (e) {
-    updateElementText(e.message, '#error_box')
+    console.log(e.message)
   }
 }
 // bring in data
@@ -221,40 +290,10 @@ async function loadLocal () {
     leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
     GET_loader(loading_1, false)
   } catch (e) {
-    updateElementText(e.message, '#error_box')
+    console.log(e.message)
   }
 }
 loadLocal()
-function updateElementText (message, element_tag) {
-  let element = document.querySelector(`${element_tag}`)
-  if (!message || !element) return
-  let timeoutId
-
-  typingEffect('#error_box', message)
-  document.addEventListener('click', clearInnerText)
-  document.addEventListener('keydown', clearInnerText)
-  timeoutId = setTimeout(clearInnerText, 5000)
-
-  function clearInnerText () {
-    element.innerText = ''
-    document.removeEventListener('click', clearInnerText)
-    document.removeEventListener('keydown', clearInnerText)
-    clearTimeout(timeoutId)
-  }
-}
-//typing handler with elemnet
-async function typingEffect (element, message, typingSpeed = 4) {
-  let ELEMENT = document.querySelector(`${element}`)
-  let index = 0
-  function type () {
-    if (index < message.length) {
-      ELEMENT.innerHTML += message.charAt(index)
-      index++
-      setTimeout(type, typingSpeed)
-    }
-  }
-  type()
-}
 // token handler
 async function getToken () {
   const storedToken = localStorage.getItem('token')
@@ -265,6 +304,7 @@ async function getToken () {
   // If no token is stored or 24 hours have elapsed
   const response = await axios.post('/raybags/v1/wizard/auth')
   const token = response.data.token
+  if (token) updateElementText('Authentication Succesful', '#error_box')
   // Save the token and the current timestamp to local storage
   localStorage.setItem('token', token)
   localStorage.setItem('timestamp', Date.now())
@@ -286,7 +326,7 @@ document.addEventListener('click', async e => {
 
     const response = await axios(OPTIONS)
     if (!response.data.data.length)
-      return updateElementText('Oops nothing found!', '#error_box')
+      return updateElementText('something went wrong', '#error_box')
 
     response.data.data.forEach(item => {
       const { createdAt, question, response, _id, updatedAt } = item
@@ -314,7 +354,7 @@ document.addEventListener('click', async e => {
               targetItm2 && targetItm2.remove()
             }
           } catch (e) {
-            updateElementText(e.message, '#error_box')
+            console.log(e.message)
           }
         })
         document.addEventListener('keydown', function (event) {
@@ -325,14 +365,14 @@ document.addEventListener('click', async e => {
               targetItm1 && targetItm1.remove()
             }
           } catch (e) {
-            updateElementText(e.message, '#error_box')
+            console.log(e.message)
           }
         })
         let current_element = document.querySelector(`#single_item`)
         document
           .querySelector('#del_BTN')
           .addEventListener('click', async e => {
-            updateElementText('processing request...', '#error_box')
+            updateElementText(` Processing request...`, '#error_box')
             try {
               current_element.remove()
               // ================================
@@ -350,7 +390,6 @@ document.addEventListener('click', async e => {
                   to_remove2.remove()
                 }
               }, 500)
-
               let options = {
                 method: 'delete',
                 url: `/raybags/v1/wizard/delete-item/${_id}`,
@@ -360,70 +399,24 @@ document.addEventListener('click', async e => {
               }
 
               const response = await axios(options)
-              if (response.data.message)
-                return updateElementText(response.data.message, '#error_box')
-              await FetchData('-all')
+              if (response.status === 200)
+                return updateElementText(
+                  `item with id: ${response.data}`,
+                  '#error_box'
+                )
+              console.log(response.status)
+
+              // await FetchData('-all')
             } catch (e) {
-              return updateElementText(e.message, '#error_box')
+              console.log(e.message)
             }
           })
       }
     })
   } catch (e) {
-    // updateElementText(e.message, '#error_box')
+    console.warn(e.message)
   }
 })
-
-// SEARCH FUNCTIONALITY
-//============================================
-//============================================
-//============================================
-
-// searchBtn.addEventListener('click', async () => {
-//   let myToken = localStorage.getItem('token')
-
-//   if (!searchInput.value) return
-//   const OPTIONS = {
-//     method: 'get',
-//     url: '/raybags/v1/wizard/data-all',
-//     headers: { Authorisation: myToken }
-//   }
-//   try {
-//     const response = await axios(OPTIONS)
-//     let responseData = await response.data.data
-//     if (!responseData.length) {
-//       outRightContainer.classList.toggle('hide_partial')
-//       updateElementText('Oops nothing found!', '#error_box')
-//       return
-//     }
-
-//     const searchResult = responseData.filter(
-//       item =>
-//         item.question.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-//         item.response.toLowerCase().includes(searchInput.value.toLowerCase())
-//     )
-
-//     rightCont.innerHTML = ''
-
-//     searchResult
-//       .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-//       .forEach(item => {
-//         const { createdAt, question, response, _id } = item
-//         rightCont.insertAdjacentHTML(
-//           'afterbegin',
-//           DB_RES_HTML(response, _id, createdAt)
-//         )
-//         rightCont.insertAdjacentHTML(
-//           'afterbegin',
-//           DB_QN_HTML(question, _id, createdAt)
-//         )
-//         outRightContainer.scrollTo(0, 0)
-//         GET_loader(loading_1, true)
-//       })
-//   } catch (e) {
-//     updateElementText(e.message, '#error_box')
-//   }
-// })
 
 async function searchDatabase () {
   let inputValue = searchInput.value.trim()
@@ -469,7 +462,7 @@ async function searchDatabase () {
     })
   if (count <= 0) {
     updateElementText(
-      `Oops sorry about that. I couldn't find what you were looking for!`,
+      `I couldn't find what you were looking for!`,
       '#error_box'
     )
   } else {
@@ -508,12 +501,42 @@ async function searchDatabase () {
     }
   })
 }
+// logger
+function updateElementText (message, element_tag) {
+  let element = document.querySelector(`${element_tag}`)
+  if (!message || !element) return
+  let timeoutId
+
+  if (document.querySelector('#error_box').innerText !== '') {
+    clearInnerText()
+  }
+  typingEffect('#error_box', message)
+  document.addEventListener('click', clearInnerText)
+  document.addEventListener('keydown', clearInnerText)
+  timeoutId = setTimeout(clearInnerText, 4000)
+
+  function clearInnerText () {
+    document.querySelector('#error_box').innerText = ''
+    element.innerText = ''
+    document.removeEventListener('click', clearInnerText)
+    document.removeEventListener('keydown', clearInnerText)
+    clearTimeout(timeoutId)
+  }
+}
+//typing handler with elemnet
+async function typingEffect (element, message, typingSpeed = 4) {
+  let ELEMENT = document.querySelector(`${element}`)
+  let index = 0
+  function type () {
+    if (index < message.length) {
+      ELEMENT.innerHTML += message.charAt(index)
+      index++
+      setTimeout(type, typingSpeed)
+    }
+  }
+  type()
+}
 searchBtn.addEventListener('click', searchDatabase)
-
-//============================================
-//============================================
-//============================================
-
 // bg for pagination buttons
 outRightContainer.addEventListener('scroll', function () {
   let container = document.querySelector('#BTN1')

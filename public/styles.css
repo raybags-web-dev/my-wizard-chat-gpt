@@ -38,6 +38,7 @@ button:active {
     border-color: transparent;
 }
 
+
 .navbar-brand {
     display: flex;
     align-items: center;
@@ -87,12 +88,17 @@ button:active {
     position: relative !important;
     scroll-behavior: smooth;
     overflow-x: hidden !important;
-    max-height: 72vh;
+    max-height: 75vh;
     min-width: 50%;
 }
 
 .left-container {
     max-height: 72vh;
+    min-width: 50%;
+}
+
+.inner_left_container {
+    min-height: 70%;
 }
 
 
@@ -257,6 +263,17 @@ button:active {
     }
 }
 
+.get-previous,
+.get-next {
+    background-color: rgb(220, 219, 219, .5);
+}
+
+.get-previous:hover,
+.get-next:hover {
+    background-color: rgba(176, 176, 176, 0.7) !important;
+    color: #ffffff;
+}
+
 #single_item>* {
     opacity: .7;
 }
@@ -270,8 +287,10 @@ button:active {
 }
 
 #BTN1 {
+    min-height: 5%;
     position: relative;
 }
+
 
 ._ANIME_ {
     -webkit-backdrop-filter: blur(20px);
