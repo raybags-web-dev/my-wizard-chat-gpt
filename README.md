@@ -6,46 +6,67 @@ It use custom functions that define routes for an Express.js server. The Authent
 ## Endpoints
 
 ### POST:
-```/api/auth```
+```javascript
+/api/auth
+```
 
 Generates a JSON web token (JWT) using the `authorization` header of the request.
 
 ### POST:
- ```/raybags/v1/wizard/ask-me```
+ ```javascript
+ /raybags/v1/wizard/ask-me
+ ```
 
 Validates a JWT using the `authorization` header, then calls the `GPT_5` function with the question from the request body, and finally save the result to the GPT_RESPONSE model in mongodb and return the response.
 
 ### GET:
-```/raybags/v1/wizard/data```
+```javascript
+/raybags/v1/wizard/data
+```
 
  Get paginated results:
-```?page=page-number ie. ?page=1```
+```javascript
+?page=page-number ie. ?page=1
+```
 
 For all results.
 
-```data-all```
+```javascript
+-all
+```
 
 Get one item based on its id
-```/raybags/v1/wizard/item/:id```
+```javascript
+/raybags/v1/wizard/item/:id
+```
 
 ### DELETE:
- ```/raybags/v1/wizard/delete-item/:id```
+ ```javascript
+ /raybags/v1/wizard/delete-item/:id
+ ```
 
 ### GET :
 Handles unsupported routes.
 
-```'*'```
+```javascript
+'*'
+```
 ## Getting Started
 
 1. Clone the repository:
-
+```javascript
 git clone  https://github.com/raybags-web-dev/my-wizard-chat-gpt.git
+```
 
 2. Install the dependencies:
-```npm install```
+```javascript
+npm install
+```
 
 3. Start the server:
-```npm start```
+```javascript
+npm start
+```
 
 4. Test the endpoints using a tool like Postman or curl.
 ## Built With
@@ -59,10 +80,14 @@ git clone  https://github.com/raybags-web-dev/my-wizard-chat-gpt.git
 ## DOCKER
 
 1. Build docker image
-```docker build -t my-wizard-chat-gpt .```
+```javascript
+docker build -t my-wizard-chat-gpt .
+```
 
 2. Run Docker container
-```docker run -p 8080:4200 my-wizard-chat-gpt```
+```javascript
+docker run -p 8080:4200 my-wizard-chat-gpt
+```
 
 3. You can pull the image from docker hub with 
 ```javascript
