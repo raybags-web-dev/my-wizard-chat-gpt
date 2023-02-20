@@ -64,6 +64,11 @@ git clone  https://github.com/raybags-web-dev/my-wizard-chat-gpt.git
 2. Run Docker container
 ```docker run -p 8080:4200 my-wizard-chat-gpt```
 
+3. You can pull the image from docker hub with 
+```javascript
+docker pull revraymondbaguma/wizard-chat:1.0.0
+```
+
 This will start the server inside the Docker container and map it to port 8080 on your local machine
 
 ## Author
