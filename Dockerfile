@@ -17,7 +17,7 @@ COPY . .
 RUN rm -f output.txt && touch output.txt
 
 # Expose port 3000 for the application to listen on
-EXPOSE 8080
+EXPOSE 4200
 
 # Run the command to start the application
 CMD [ "npm", "start" ]
