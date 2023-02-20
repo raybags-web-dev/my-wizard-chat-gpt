@@ -5,35 +5,36 @@ It use custom functions that define routes for an Express.js server. The Authent
 
 ## Endpoints
 
-### POST `/api/auth`
+### POST:
+```/api/auth```
 
 Generates a JSON web token (JWT) using the `authorization` header of the request.
 
-### POST `/raybags/v1/wizard/ask-me`
+### POST:
+ ```/raybags/v1/wizard/ask-me```
 
 Validates a JWT using the `authorization` header, then calls the `GPT_5` function with the question from the request body, and finally save the result to the GPT_RESPONSE model in mongodb and return the response.
 
-### GET `/raybags/v1/wizard/data`
+### GET:
+```/raybags/v1/wizard/data```
 
-Retrieves paginated results from the GPT_RESPONSE model, for example 
-/wizard/data?page=1
+ Get paginated results:
+```?page=page-number ie. ?page=1```
 
-### GET `/raybags/v1/wizard/data-all`
+For all results.
 
-Retrieves all the results from the GPT_RESPONSE model.
+```data-all```
 
-### GET `/raybags/v1/wizard/item/:id`
+Get one item based on its id
+```/raybags/v1/wizard/item/:id```
 
-Retrieves one Item from the GPT_RESPONSE model.
+### DELETE:
+ ```/raybags/v1/wizard/delete-item/:id```
 
-### DELETE `/raybags/v1/wizard/delete-item/:id`
-
-Deletes one Item from the GPT_RESPONSE model.
-
-### GET `*`
-
+### GET :
 Handles unsupported routes.
 
+```'*'```
 ## Getting Started
 
 1. Clone the repository:
@@ -41,8 +42,10 @@ Handles unsupported routes.
 git clone  https://github.com/raybags-web-dev/my-wizard-chat-gpt.git
 
 2. Install the dependencies:
+```npm install```
 
 3. Start the server:
+```npm start```
 
 4. Test the endpoints using a tool like Postman or curl.
 ## Built With
@@ -52,11 +55,18 @@ git clone  https://github.com/raybags-web-dev/my-wizard-chat-gpt.git
 * [Jest](https://jestjs.io/) - The testing framework
 * [Mongoose](https://mongoosejs.com/) - The MongoDB object modeling tool and Database
 
-## Contributing
 
-## Versioning
+## DOCKER
 
-## Authors
+1. Build docker image
+```docker build -t my-wizard-chat-gpt .```
+
+2. Run Docker container
+```docker run -p 8080:4200 my-wizard-chat-gpt```
+
+This will start the server inside the Docker container and map it to port 8080 on your local machine
+
+## Author
 
 * **Raymond Baguma** - *Initial work* - [raybags-web-dev](https://github.com/raybags-web-dev?tab=repositories)
 
