@@ -19,5 +19,8 @@ RUN rm -f output.txt && touch output.txt
 # Expose port 3000 for the application to listen on
 EXPOSE 4200
 
+# Create a named volume to store persistent data
+VOLUME [ "/app/data" ]
+
 # Run the command to start the application
 CMD [ "npm", "start" ]

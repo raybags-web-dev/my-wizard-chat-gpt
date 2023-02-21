@@ -1,3 +1,7 @@
+const express = require('express')
+const app = express()
+
+const path = require('path')
 const { ObjectId } = require('mongodb')
 require('dotenv').config()
 const { GPT_5 } = require('../gptEngine/runners')
@@ -5,6 +9,8 @@ const asyncMiddleware = require('../middleware/asyncErros')
 
 const { validateJWTToken, generateJWTToken } = require('../middleware/auth')
 const { GPT_RESPONSE } = require('../src/models/responseModel')
+//fallback page path
+const fallbackPagePath = path.join(__dirname, '../errorPage/noConnection.html')
 
 function Authenticate (app) {
   app.post('/raybags/v1/wizard/auth', async (req, res) => {
@@ -159,7 +165,7 @@ function DeleteAll (app) {
   )
 }
 function NotSupported (req, res, next) {
-  res.status(404).json("Sorry, that route doesn't exist.")
+  res.status(404).sendFile(fallbackPagePath)
 }
 module.exports = {
   Authenticate,

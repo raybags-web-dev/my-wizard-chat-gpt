@@ -8,7 +8,7 @@ module.exports = {
   GPT_5: async arg => {
     try {
       console.log('How can I help ?? ')
-      if (!arg) return console.log('Type your question!')
+      if (!arg) return console.log('Iam ready. Ask away....')
       console.log('processing......')
       const configuration = new Configuration({
         apiKey: API_KEY_1 || API_KEY_2
@@ -26,11 +26,13 @@ module.exports = {
       }
 
       const response = await openai.createCompletion(OPTIONS)
-      //console.log(response.data.choices[0].text)
-      WRITTER(response.data.choices[0].text)
-      return response.data.choices[0].text
+      const text = response.data.choices[0].text
+      return !text || text.includes('500 Internal Server Error')
+        ? `Ohh sorry, I'm a little sleepy, Couldn't find what you were looking for. I apologise.`
+        : (WRITTER(text), text)
     } catch (e) {
       console.log(`Error: ${e.message}`)
+      return `Ohh sorry, I'm a little sleepy, Couldn't find what you were looking for. I apologise.`
     }
   }
 }
