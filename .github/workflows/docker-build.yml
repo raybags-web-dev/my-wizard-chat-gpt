@@ -38,7 +38,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: revraymondbaguma/wizard-chat:${{ github.sha }}
+          tags: revraymondbaguma/wizard-chat:$(date +%Y%m%d%H%M%S)
+          # tags: revraymondbaguma/wizard-chat:${{ github.sha }}
 
       - name: Show Docker version
         run: |
