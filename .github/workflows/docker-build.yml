@@ -1,0 +1,30 @@
+name: Docker Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: revraymondbaguma/wizard-chat:${{ github.sha }}
+
+      - name: Show Docker version
+        run: |
+          DOCKER_VERSION="01.01.1"
+          docker run --rm revraymondbaguma/wizard-chat:${{ github.sha }} sh -c "echo 'Docker version: $DOCKER_VERSION'"
+
+      - name: Cleanup
+        run: |
+          docker image prune -af
+          docker container prune -f
