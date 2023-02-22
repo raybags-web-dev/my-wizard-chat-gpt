@@ -17,6 +17,6 @@ VOLUME [ "/app/data" ]
 # Set an environment variable for the Docker version
 ENV DOCKER_VERSION="01.01.1"
 # Print the Docker version
-RUN echo "Docker version: ${DOCKER_VERSION}" && docker version
+RUN sh -c 'echo "Docker version: ${DOCKER_VERSION}" && docker version'
 # Run the command to start the application
 CMD [ "npm", "start" ]
