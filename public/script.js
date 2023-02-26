@@ -530,7 +530,6 @@ async function searchDatabase (e) {
         }
       })
     // if input value is empty, reload all data
-    console.log(inputValue.length)
     if (!inputValue || inputValue.length <= 0) {
       FetchData('-all')
     }
