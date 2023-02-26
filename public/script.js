@@ -6,7 +6,6 @@ const authButton = document.querySelector('#access_btn')
 const leftContainer = document.querySelector('.inner_left_container')
 const rightCont = document.querySelector('.inner_right_container')
 const outRightContainer = document.querySelector('.right-container')
-// const BTN_CONTAINER = Array.from(document.querySelectorAll('#BTN1 button'))
 const mainLoaderRing = document.querySelector('#main-page-loader')
 
 const searchInput = document.getElementById('seachhhh')
@@ -29,39 +28,50 @@ function GET_loader (element, isFinished) {
   if (!isFinished) return element.classList.add('con_loader')
   setTimeout(() => element.classList.remove('con_loader'), 200)
 }
-function QUESTION_HTML (question) {
+function formatDate (timestamp) {
+  const date = new Date(timestamp)
+  const options = { year: 'numeric', month: 'long', day: 'numeric' }
+  return date
+    .toLocaleDateString('en-US', options)
+    .replace(',', '')
+    .replace(/\s+/g, '-')
+    .replace(/\s/g, '')
+}
+function QA_HTML (QB, RESPONSE, id) {
   return `
-    <p style="min-width:100%"  class="init-quetion  shadow-lg p-3 mb-1 bg-body rounded">
-    ${question}
-    <img src="./images/face_1.png"
-        style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem;"
-        alt="">
-    </p>`
+    <div data-id="${id}" class="init-question-response shadow-lg p-2 mb-1 bg-body rounded">
+      <p class="init-question" style="position:relative;">
+      <img src="./images/face_1.png" style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem; border:2px solid transparent;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" alt="">
+
+        ${QB}<br>
+        <span class="link fs-6" style="opacity:0">${id}</span>
+      </p>
+      <p class="init-response">
+      <img src="./images/bot.webp" style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem; border:2px solid transparent;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" alt="">
+        ${RESPONSE}<br>
+        <span class="link" style="opacity:.5">${id}</span>
+      </p>
+    </div>  `
 }
-function RESPONSE_HTML (response) {
+function DB_QN_RES_HTML (question, response, id, created_at) {
   return `
-    <p style="min-width:100%"  class="init-response shadow-lg p-3 mb-4 bg-body rounded">
-    ${response}
-    <img src="./images/bot.webp"
-        style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem;"
-        alt="">
-    </p>`
+    <div data-id="${id}" class="db-question-response shadow-lg p-2 mb-1 bg-body rounded">
+      <p class="db-question qustion" data-id="${id}">
+        ${question}<br>
+        <span class="link fs-6" style="opacity:0">${id}</span>
+        <span class="link float-end fs-6" style="opacity:.5">${created_at}</span>
+      </p>
+      <p class="db-response response" data-id="${id}">
+        ${response}<br>
+        <span class="link" style="opacity:.5" data-id="${id}">${id}</span>
+        <span class="link float-end" style="opacity:.5">${created_at}</span>
+      </p>
+    </div>`
 }
-function DB_QN_HTML (question, id, created_at) {
-  return `<p data-id="${id}"  class="db-quetion shadow-lg p-2 mb-1 bg-body rounded">${question}<br>
-  <span class="link fs-6" style="opacity:0">${id}</span>
-  <span class="link float-end fs-6" style="opacity:.5">${created_at}</span>
-  </p> `
-}
-function DB_RES_HTML (response, id, created_at) {
-  return `<p data-id="${id}" class="db-response shadow-lg p-2 mb-4 bg-body rounded">${response}<br>
-  <span class="link" style="opacity:.5">${id}</span>
-  <span class="link float-end" style="opacity:.5">${created_at}</span>
-  </p>`
-}
+
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
-    <div id="single_item" class="card shadow-lg bg-body-tertiary rounded">
+    <div id="single_item" data-id="${item_id}"  class="card">
         <div class="card-header d-flex  justify-content-between">
             <p class="link-success">${item_id}</p>
             <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>
@@ -107,6 +117,7 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
     const endIndex = startIndex + ITEMS_PER_PAGE
     const dataToDisplay = responseData.slice(startIndex, endIndex)
     displayData(dataToDisplay)
+
     // Add click event listener to "next" button
     nextButton.addEventListener('click', async () => {
       currentPage += 1
@@ -148,7 +159,6 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
         currentPage === 1 || totalItems <= ITEMS_PER_PAGE
       )
     }
-    // Function to display data on the UI
     function displayData (data) {
       if (!data) return
       rightCont.innerHTML = ''
@@ -156,18 +166,32 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .forEach(item => {
           const { createdAt, question, response, _id } = item
-          rightCont.insertAdjacentHTML(
-            'afterbegin',
-            DB_RES_HTML(response, _id, createdAt)
+          const dbQuestionResponseElement = document.createElement('div')
+          dbQuestionResponseElement.dataset.id = _id
+          dbQuestionResponseElement.classList.add(
+            'db-question-response',
+            'shadow-lg',
+            'p-2',
+            'mb-1',
+            'bg-body',
+            'rounded'
           )
-          rightCont.insertAdjacentHTML(
+          dbQuestionResponseElement.innerHTML = `
+            <p class="question" data-id="${_id}">${question}</p>
+            <p class="response" data-id="${_id}">${response}</p>
+            <span class="link" style="opacity:.5">${_id}</span>
+            <span class="link float-end" style="opacity:.5">${createdAt}</span>
+          `
+
+          rightCont.insertAdjacentElement(
             'afterbegin',
-            DB_QN_HTML(question, _id, createdAt)
+            dbQuestionResponseElement
           )
           outRightContainer.scrollTo(0, 0)
           GET_loader(loading_1, true)
         })
     }
+
     // Hide "previous" button on initial page
     previousButton.classList.add('hide')
     // Show/hide pagination buttons based on total number of items
@@ -229,18 +253,23 @@ async function postFetch (question) {
       Authorisation: myToken
     }
   }
-  //=============remove LOADER===========
   try {
     const response = await axios(options)
+    const timestamp = Date.now()
     localStorage.setItem('response', JSON.stringify(response))
-    const QN = await JSON.parse(localStorage.getItem('question'))
-    const { data } = await JSON.parse(localStorage.getItem('response'))
-    if (data.status === 'Success') handlerMainLoader(true)
-    // update query buttons
-    // fetchDataAndPaginate(previousButton, nextButton)
+    localStorage.setItem('timestamp', JSON.stringify(timestamp))
 
-    leftContainer.insertAdjacentHTML('afterbegin', RESPONSE_HTML(data.response))
-    leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
+    const QN = await JSON.parse(localStorage.getItem('question'))
+    const time_stamp = await JSON.parse(localStorage.getItem('timestamp'))
+    const { data } = await JSON.parse(localStorage.getItem('response'))
+
+    if (data.status === 'Success') handlerMainLoader(true)
+
+    leftContainer.insertAdjacentHTML(
+      'afterbegin',
+      QA_HTML((data.quetion && data.question) || QN, data.response, time_stamp)
+    )
+
     updateElementText(data.status, '#error_box')
     await FetchData('?page=1')
   } catch (e) {
@@ -278,11 +307,7 @@ async function FetchData (query) {
         const { createdAt, question, response, _id } = item
         rightCont.insertAdjacentHTML(
           'afterbegin',
-          DB_RES_HTML(response, _id, createdAt)
-        )
-        rightCont.insertAdjacentHTML(
-          'afterbegin',
-          DB_QN_HTML(question, _id, createdAt)
+          DB_QN_RES_HTML(question, response, _id, formatDate(createdAt))
         )
         outRightContainer.scrollTo(0, 0)
         GET_loader(loading_1, true)
@@ -291,22 +316,29 @@ async function FetchData (query) {
     console.warn(e.message)
   }
 }
+
 // bring in data
 async function loadLocal () {
   try {
     const QN = JSON.parse(localStorage.getItem('question'))
     let item = localStorage.getItem('response')
+    let timestamp = localStorage.getItem('timestamp')
+
     if (!item) return
     const { data } = JSON.parse(item)
 
-    leftContainer.insertAdjacentHTML('afterbegin', RESPONSE_HTML(data.response))
-    leftContainer.insertAdjacentHTML('afterbegin', QUESTION_HTML(QN))
+    leftContainer.insertAdjacentHTML(
+      'afterbegin',
+      QA_HTML(QN, data.response, timestamp)
+    )
+
     GET_loader(loading_1, false)
   } catch (e) {
     console.log(e.message)
   }
 }
 loadLocal()
+
 // token handler
 async function getToken () {
   const storedToken = localStorage.getItem('token')
@@ -328,9 +360,13 @@ async function deleteDBItem (e) {
   let id = e.target.dataset.id
   let itemToRemove = e.target
   let myToken = localStorage.getItem('token')
+
   if (!myToken) {
     GET_loader(loading_1, true)
-    return updateElementText(` You are not authorized`, '#error_box')
+    return updateElementText(
+      ` Not authorized. Please authenticate`,
+      '#error_box'
+    )
   }
   const OPTIONS = {
     method: 'get',
@@ -340,14 +376,22 @@ async function deleteDBItem (e) {
   try {
     const response = await axios(OPTIONS)
     if (!response.data.data.length)
-      return updateElementText('something went wrong', '#error_box')
+      return updateElementText(
+        'something went wrong. Please try again later.',
+        '#error_box'
+      )
     response.data.data.forEach(item => {
       const { createdAt, question, response, _id, updatedAt } = item
-      if (id === _id) {
-        document.body.insertAdjacentHTML(
-          'afterbegin',
-          dbItem(_id, question, response, createdAt, updatedAt)
+
+      if (id == _id) {
+        const messageHTML = dbItem(
+          _id,
+          question,
+          response,
+          formatDate(createdAt),
+          formatDate(updatedAt)
         )
+        document.body.insertAdjacentHTML('afterbegin', messageHTML)
         document.addEventListener('click', function (event) {
           try {
             let classes = [
@@ -361,6 +405,7 @@ async function deleteDBItem (e) {
             let hasClass = classes.some(className =>
               event.target.classList.contains(className)
             )
+
             if (!hasClass) {
               let targetItm2 = document.getElementById('single_item')
               targetItm2 && targetItm2.remove()
@@ -370,30 +415,20 @@ async function deleteDBItem (e) {
           }
         })
         document.addEventListener('keydown', function (event) {
+          let itemContainer = document.getElementById('single_item')
           try {
-            if (event.key === 'Escape') {
-              let targetItm1 = document.getElementById('single_item')
-              targetItm1 && targetItm1.remove()
-            }
+            if (event.key === 'Escape')
+              return itemContainer && itemContainer.remove()
           } catch (e) {
             console.log(e.message)
           }
         })
-        let current_element = document.querySelector(`#single_item`)
+        // deleting item
         document
           .querySelector('#del_BTN')
           .addEventListener('click', async e => {
             try {
-              let to_remove_main = itemToRemove
-              let to_remove1 = itemToRemove.nextElementSibling
-              let to_remove2 = itemToRemove.previousSibling
-              to_remove_main.remove()
-
-              if (to_remove_main.dataset.id == to_remove1.dataset.id) {
-                to_remove1.remove()
-              } else if (to_remove_main.dataset.id == to_remove2.dataset.id) {
-                to_remove2.remove()
-              }
+              document.querySelector(`#single_item`).remove()
 
               let options = {
                 method: 'delete',
@@ -405,13 +440,12 @@ async function deleteDBItem (e) {
               const response = await axios(options)
               GET_loader(loading_1, false)
               if (response.status === 200) {
+                setTimeout(() => itemToRemove.parentNode.remove(), 600)
                 updateElementText(`Item deleted!`, '#error_box')
                 GET_loader(loading_1, true)
               } else {
-                document.body.insertAdjacentHTML(
-                  'afterbegin',
-                  dbItem(_id, question, response, createdAt, updatedAt)
-                )
+                updateElementText(`Oops Operation failed!`, '#error_box')
+                document.body.insertAdjacentHTML('afterbegin', messageHTML)
               }
             } catch (e) {
               console.log(e.message)
@@ -457,11 +491,7 @@ async function searchDatabase (e) {
       if (!inputValue || questionMatch || responseMatch) {
         rightCont.insertAdjacentHTML(
           'afterbegin',
-          DB_RES_HTML(response, _id, createdAt)
-        )
-        rightCont.insertAdjacentHTML(
-          'afterbegin',
-          DB_QN_HTML(question, _id, createdAt)
+          DB_QN_RES_HTML(question, response, _id, formatDate(createdAt))
         )
         outRightContainer.scrollTo(0, 0)
         GET_loader(loading_1, true)
@@ -493,18 +523,15 @@ async function searchDatabase (e) {
         if (!inputValue || questionMatch || responseMatch) {
           rightCont.insertAdjacentHTML(
             'afterbegin',
-            DB_RES_HTML(response, _id, createdAt)
-          )
-          rightCont.insertAdjacentHTML(
-            'afterbegin',
-            DB_QN_HTML(question, _id, createdAt)
+            DB_QN_RES_HTML(question, response, _id, formatDate(createdAt))
           )
           outRightContainer.scrollTo(0, 0)
           GET_loader(loading_1, true)
         }
       })
     // if input value is empty, reload all data
-    if (!inputValue) {
+    console.log(inputValue.length)
+    if (!inputValue || inputValue.length <= 0) {
       FetchData('-all')
     }
   })
@@ -573,7 +600,6 @@ function handlerMainLoader (isStuffDone) {
 window.addEventListener('DOMContentLoaded', event => {
   handlerMainLoader(true)
 })
-
 // Add event listener for form submission
 form.addEventListener('submit', handleSubmit)
 sendButton.addEventListener('click', handleSubmit)

@@ -1,0 +1,244 @@
+
+Hello there! How can I assist you?
+**********************************
+Santa Claus, also known as Father Christmas, Saint Nicholas, Saint Nick, Kris Kringle, or simply Santa, is a legendary figure who is said to bring gifts to the homes of well-behaved children on Christmas Eve (24 December) night and the early morning hours of Christmas Day (25 December).
+**********************************
+Jesus is a central figure in Christianity and is believed by Christians to be the Son of God. He is described as the savior of humanity and is believed to have died on the cross to take away the sins of the world. He is also believed to have been resurrected from the dead three days later and ascended into Heaven. Jesus’s teachings, which are found in the Bible, form the basis of Christian beliefs, practices, and values.
+**********************************
+A ternary operator is a type of conditional statement that takes three operands and evaluates a Boolean value based on the result of the comparison of the first two operands. It is usually written in the form of a question followed by a colon (:) and then a value for each possible outcome. For example, the ternary operator (condition ? value1 : value2) will return value1 if the condition is true, and value2 if the condition is false.
+**********************************
+
+1. Bugatti Chiron (2016) - $2,998,000 
+2. Koenigsegg Agera RS (2017) - $2,700,000 
+3. Hennessey Venom F5 (2020) - $1,600,000 
+4. McLaren Speedtail (2019) - $2,200,000 
+5. Ferrari LaFerrari Aperta (2017) - $2,400,000 
+6. Lamborghini Veneno (2013) - $4,500,000 
+7. Pininfarina Battista (2020) - $2,500,000 
+8. Porsche 918 Spyder (2015) - $845,000 
+9. Bugatti Veyron Super Sport (2010) - $1,700,000 
+10. Aston Martin Valkyrie (2020) - $3,200,000 
+11. Rimac Concept Two (2020) - $2,000,000 
+12. SSC Ultimate Aero (2006) - $654,500 
+13. Dodge Demon ( 2018) - $84,995 
+14. Saleen S7 Twin Turbo (2005) - $555,000 
+15. Lamborghini Huracan Performante (2018) - $274,390 
+16. Zenvo ST1 (2009) - $1,225,000 
+17. Pagani Huayra BC (2016) - $2,800,000 
+18. McLaren Senna GTR (2020) - $1,400,000 
+19. Ferrari 812 Superfast (2017) - $335,000 
+20. McLaren 720S (2018) - $284,745 
+21. Mercedes-AMG GT R (2017) - $157,000 
+22. Corvette ZR1 (2019) - $123,995 
+23. Ford GT (2017) - $450,000 
+24. Porsche 911 GT2 RS (2018) - $293,200 
+25. McLaren 600LT (2018) - $240,000 
+26. Ferrari F12tdf (2016) - $445,000 
+27. Audi R8 V10 performance (2019) - $196,400 
+28. Lamborghini Aventador SVJ (2019) - $
+**********************************
+The egg is the oldest, as chickens hatch from eggs.
+**********************************
+The answer to this question depends on an individual’s level of experience with programming and their commitment to learning the language. Generally speaking, it takes between one and three months to learn the basics of Python. More experienced programmers may be able to learn the language within a few weeks. However, mastery of the language may take considerably longer, depending on the complexity of the projects the programmer wants to undertake.
+**********************************
+It depends on your current technical ability and how much time you dedicate to learning. Generally, it takes around 6-12 months of studying and practicing to become proficient in PHP.
+**********************************
+
+There is no single answer to this question, as everyone learns differently and at their own pace. Generally, if you dedicate enough time and effort, you can learn the basics of Java in approximately 6 months. However, it may take longer to become proficient in the language, depending on your level of experience and commitment.
+**********************************
+
+It depends on your current level of knowledge and experience. For someone with no prior programming experience, it could take a few weeks to become comfortable with the basics. If you already have coding experience and some knowledge of other programming languages, it might take you as little as a few days to learn Ruby.
+**********************************
+It is currently 7:32am EDT (Eastern Daylight Time).
+**********************************
+// setTimeout(function(){
+//     console.log("Hello World");
+//  }, 3000);
+
+
+//  3 seconds after the code is executed, "Hello World" will be printed in the console.
+**********************************
+Quantum physics is a branch of physics that deals with the behavior and properties of matter and energy on the atomic and subatomic level. It explores the interaction between particles, waves, and other fundamental objects in the universe. Its theories and principles have been used to develop many modern technologies such as lasers, transistors, and computers.
+**********************************
+1. Civilization is best defined as the accumulation of knowledge and culture through collective learning over time.
+
+2. The rise of civilization has been linked to innovations such as agriculture, writing and complex systems of government.
+
+3. Ancient civilizations are often remembered for their ambitious engineering projects, like the great pyramids of Egypt or the Great Wall of China.
+
+4. Many ancient civilizations followed religions systems that shaped their understanding of the world and the afterlife.
+
+5. In many cases, the collision of civilizations has led to conflict, as cultures clash over resources, beliefs and ideologies.
+
+6. Over time, some civilizations have experienced decline due to political instability, disease or other external factors.
+
+7. Today, globalization has led to an increasingly interconnected world in which cultures, ideas and technologies can spread rapidly from one corner of the globe to another.
+**********************************Civilization theories refer to the various theories that have been put forward by scholars to explain the development and advancement of civilization over time. These theories range from Marx's emphasis on material conditions to those of Max Weber, who stressed the role of ideas and culture. There are also theories from anthropologists such as Leslie White, who focused on how the history of technology has shaped societies, and Jared Diamond, whose studies explore how environmental factors have enabled the rise of certain civilizations and hindered the growth of others. Finally, there are more recent theories that draw on a combination of all these approaches, examining social, economic, political, and cultural forces.
+**********************************
+This is impossible to answer as it is a subjective opinion.
+**********************************
+testing 2
+
+testing 3
+**********************************
+Testing 3
+ §§ FILE
+
+testing 4
+ §§ COM
+
+fix
+fix 2
+ §§ --- README.md
+-Testing 3
+ §§ 1003
++Testing 5
+ §§ --- README.md
+-testing 4
+ §§ 1006
++testing 6
+
+********************************** §§ --- src/main/java/com/travix/medusa/busyflights/repository/crazyAirRepository.java
+ §§ 1010
++    //Repo
+
+**********************************
+Science is the study of the natural world through observation, experimentation, and analysis. It seeks to discover how the universe works and how it came about. Science is typically divided into three major branches: physical science, life science, and social science.
+**********************************
+ISST stands for International Student Service Team. It is a student-led organization of the University of Oxford that provides guidance and support for international students who are studying at the University. The team's mission is to help international students make the most of their experience in Oxford by connecting them with opportunities, resources, and networks both on and off campus to ensure they have a positive and successful stay in Oxford.
+**********************************
+The stocks you can invest in will depend on the brokerage firm you are using. There are brokerages that offer access to thousands of stocks from different companies and exchanges around the world. Some of the most common stocks to invest in include Apple, Amazon, Microsoft, Alphabet (Google's parent company), Berkshire Hathaway, and Tesla. You can also look into investing in exchange-traded funds (ETFs) or mutual funds which offer a diversified portfolio of stocks and other investments.
+**********************************
+Data is the basic building blocks of information in the form of facts and figures which is used to create knowledge, analyze, or make decisions. It can refer to numbers, words, images, facts, or observations collected through research, experiments, surveys, etc. Data is often stored, organized, and manipulated using specialized tools and software to create useful information. Data is essential to almost every aspect of modern life, from businesses making decisions based on customer information, to researchers utilizing vast datasets to discover new trends and insights.
+**********************************
+Data is information that is stored, organized and analyzed to draw conclusions and inform decisions. It is often raw facts and figures, including numbers, words, measurements, observations and more. Data can be quantitative (numerical) or qualitative (non-numerical).
+**********************************
+Condensed data is data which has been compressed or summarized so that it takes up less space and is easier to use and analyze. This type of data often consists of aggregated values, such as totals and averages, rather than detailed records.
+**********************************
+1. Denial and isolation
+2. Anger
+3. Bargaining
+4. Depression
+5. Acceptance
+**********************************
+Denial is a defense mechanism in which a person avoids or rejects acknowledging a reality (often uncomfortable or painful) due to unwillingness or inability to accept it. It can also refer to refusal to admit or acknowledge the existence or relevance of something or someone.
+**********************************
+Anger is an emotional state that is characterized by feelings of hostility, grief, or resentment. It can be caused by a variety of circumstances and can manifest in a range of behaviors and emotions including aggression, shouting, and/or withdrawal.
+**********************************
+Anxiety is a feeling of worry, nervousness, or unease, typically about an imminent event or something with an uncertain outcome. It is the mind and body’s reaction to stressful, fearful, or uncomfortable situations.
+**********************************
+Geography is the study of the Earth and its features, as well as human activity on the planet. It looks at the physical characteristics of the Earth, such as mountains and oceans, as well as the environmental and political aspects of different regions. Geographers study how people use the resources found in different locations to form cultural and economic patterns.
+**********************************
+SST stands for Sea Surface Temperature and refers to the temperature of the top layer of the ocean's surface. It is an important factor in the climate system, due to its role in heat exchange and global circulation.
+**********************************
+Chemistry is the scientific study of matter and its properties, structure, composition, and the changes it undergoes during chemical reactions. It involves the study of elements, molecules, and compounds composed of those elements, and their interactions, reactions, and transformations. Chemistry is a fundamental field of science, as it provides a foundation for understanding the physical and biological world.
+**********************************
+Biology is the natural science that studies life and living organisms, including their physical structure, chemical processes, molecular interactions, physiological mechanisms, development and evolution.
+**********************************
+
+FADE IN:
+
+EXT. SPACE - DAY
+
+An eerie calmness hangs in the air as a small space ship drifts through the void of space. Suddenly, a bright light pierces the darkness and an ominous presence emerges from the shadows. 
+
+INT. CONTROL ROOM - DAY
+
+The crew is shaken out of their trance as a voice echoes through the control room. 
+
+VOICE
+You have unleashed ancient evil.
+
+The captain looks around in shock as his crew stands in stunned silence. 
+
+CAPTAIN
+What is it? 
+
+VOICE
+An ancient evil, capable of darkening the stars and consuming those who oppose it.
+
+The captain orders his crew to remain vigilant as they attempt to identify the source of the voice. As they investigate, they see a large, shadowy figure hovering in the corner of the room. 
+
+CAPTAIN
+Who are you?
+
+VOICE
+I am the one who lurks in the shadows. I am the one who will make your life a living hell. 
+
+The captain gives the order to fire upon the figure, but their weapons have no effect as the figure glides through the hallway with little effort. 
+
+The crew frantically attempts to find a way to stop the creature, but their efforts are in vain as the figure continues to evade their attacks. 
+
+Suddenly, a glimmer of hope appears as the crew discovers an ancient relic that reveals the creature’s true form. Armed with this knowledge, the crew must locate and destroy the creature before it can consume them all. 
+
+EXT. SPACE - DAY
+
+The crew races against time as they work together to hunt down and destroy the ancient evil. After a brutal battle, the crew manages to defeat the creature, thus freeing themselves from its grasp. 
+
+As the creature fades away, a wave of relief washes over them. With the ancient evil now vanquished, they can continue their journey safely through the night. 
+
+FADE OUT.
+**********************************
+A cathode is the electrode in an electrical device that is connected to the negative terminal or, more generally, that emits electrons or other negative charges at the end of an electrical circuit. It typically provides the source of electrons that flow through the circuit and complete the electric current. In a chemical cell, the cathode is the site of reduction, while the anode is the site of oxidation.
+**********************************A cathode is the negative electrode in an electrical device such as a battery, cell or diode. It is where electrons enter the device during operation.
+**********************************
+A time stamp is a sequence of characters or encoded information identifying when a certain event occurred, usually giving the date and time of day. It is most often used to identify records in computer databases such as logs and transaction histories.
+**********************************
+General Relativity is a theory of gravitation developed by Albert Einstein in 1915. It explains how gravity works by describing gravitation as a property of space and time, or spacetime, rather than simply as a force between objects. It also predicts that massive objects cause a distortion of spacetime, which is felt as gravity.
+**********************************
+Archimedes' theory is an ancient Greek scientific principle that states: "Any body immersed in a fluid is buoyed up by a force equal to the weight of the displaced fluid." This theory has been used for centuries in engineering and physics. It explains why objects float in water and why ships can stay afloat even when carrying heavy loads. The principle is also used in designing aircraft and spacecraft, as well as in predicting the motion of fluids.
+**********************************
+There is no definitive answer to this question, as it depends on the level of skill and knowledge required to become proficient in Kubernetes. For someone with no previous experience, it could take several weeks to learn the basics, and then months or even years to become an expert in the technology.
+**********************************
+Galaxy sizes can range from dwarfs with as few as ten million stars all the way up to giants with one hundred trillion stars or more. The Milky Way, for example, contains approximately 200–400 billion stars.
+**********************************
+There is no definitive answer to this question, as opinions on the topic vary greatly. Some people may argue that famous figures such as Isaac Newton, Albert Einstein or Stephen Hawking are the smartest humans to have ever existed; while others may believe that historical figures such as Leonardo da Vinci or Aristotle were the smartest. Ultimately, this is largely a subjective matter and it is impossible to make an accurate judgement.
+**********************************
+There is no definitive answer to this question as the “greatest fighter of all time” is highly subjective and opinion based. Some notable contenders for the title include Muhammad Ali, Mike Tyson, Floyd Mayweather Jr., Rocky Marciano, and Sugar Ray Robinson.
+**********************************
+If someone is buried alive, there are no guarantees for survival. However, some steps can be taken to increase the chance of survival until help arrives. 
+
+1. Remain calm. Take deep breaths and try to remain as calm as possible.
+
+2. Conserve oxygen. Try to limit unnecessary movements and conserve oxygen as much as possible.
+
+3. Make noise. Shout, bang on the coffin lid, or use a whistle if you have it. Someone may eventually hear you.
+
+4. Dig. If you have your hands free, you can attempt to dig your way out. 
+
+5. Create an air pocket. If possible, try to create an air pocket by digging into the dirt above your head. This will give you more air to breathe.
+
+6. Call for help. Try to call 911 or another emergency contact if you have a cellphone with you.
+**********************************
+function getKeys(obj) {
+  let keys = [];
+  for (let key in obj) {
+    keys.push(key); 
+  }
+  return keys;
+}
+
+Example: 
+let students = {
+  student1: 'John',
+  student2: 'Alice',
+  student3: 'Bob'
+};
+
+let studentKeys = getKeys(students);
+console.log(studentKeys); // Output: ['student1', 'student2', 'student3']
+**********************************
+const getS3BucketContent = async (bucketName) => {
+  const s3 = new AWS.S3();
+  const params = {
+    Bucket: bucketName,
+   };
+  try {
+    const response = await s3.listObjectsV2(params).promise();
+    return response;
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
+**********************************
