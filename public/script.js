@@ -72,18 +72,23 @@ function DB_QN_RES_HTML (question, response, id, created_at) {
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
     <div id="single_item" data-id="${item_id}"  class="card">
-        <div class="card-header d-flex  justify-content-between">
+        <div class="card-header d-flex  justify-content-between" style="padding: 1.1rem 4.5rem 1.1rem 4.5rem !important;">
             <p class="link-success">${item_id}</p>
             <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>
         </div>
-        <div class="card-body">
-          <p class="card-text">Question:&nbsp;${quetion}</p>
+        <div class="card-body" style="padding: 0 4.5rem 0 4.5rem !important;">
+          <p data-qn="db-qn" class="card-text" style="overflow-y: auto !important; max-height:40%;">Question:&nbsp;${quetion}</p>
           <hr>
-          <p class="card-text">Response:&nbsp;${response}</p>
+          <p data-res="db-res" class="card-text pb-2"  style="overflow-y: auto !important; max-height:40% !important;">Response:&nbsp;${response}</p>
         </div>
-        <div class="d-flex justify-content-between card-footer">
-          <p >Created:&nbsp;${createdAt}</p>
-          <p class="floadt-end">Updated:&nbsp;${updatedAt}</p>
+        <div class="d-flex justify-content-between card-footer" style="padding: 1.1rem 4.5rem 1.1rem 4.5rem !important;">
+          <p data-time="db-createdAt">Created:&nbsp;${createdAt}</p>
+          <p data-time="db-modifiedAt" class="floadt-end">Updated:&nbsp;${updatedAt}</p>
+        </div>
+        <div data-buttons="carocel-btn-container" class="container-fluid d-flex  justify-content-between align-items-center single-carocel-btn" 
+              style="position:fixed;bottom:45%;left:50%;height:2rem;transform:translate(-50%, -50%);z-index:.05;">
+          <span data-check="pre_v" id="prev-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-black float-start prev">&#60;</span>
+          <span data-check="nex_v" id="next-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-black float-end next">&#62;</span>
         </div>
     </div>
     `
@@ -400,7 +405,10 @@ async function deleteDBItem (e) {
               'card-text',
               'card-footer',
               'card-header',
-              'link-danger'
+              'link-danger',
+              'single-carocel-btn',
+              'prev',
+              'next'
             ]
             let hasClass = classes.some(className =>
               event.target.classList.contains(className)

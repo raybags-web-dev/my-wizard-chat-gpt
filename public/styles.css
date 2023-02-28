@@ -244,7 +244,7 @@ button:active {
     width: 85%;
     height: 88%;
     z-index: 2100;
-    overflow-y: auto;
+    overflow: hidden;
     margin-top: 2%;
     opacity: 0;
     transition: all .3s;
@@ -292,7 +292,10 @@ button:active {
     color: #ffffff;
 }
 
-
+#single_item .card-body>p {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
 
 .hide {
     display: none !important;
@@ -488,4 +491,36 @@ button:active {
     to {
         color: rgb(230, 0, 0);
     }
+}
+
+
+.single-carocel-btn>span {
+    text-align: center;
+    padding: .4rem;
+    min-width: 60px;
+    border-radius: .4rem;
+    text-align: center;
+}
+
+.single-carocel-btn span {
+    opacity: .5;
+}
+
+
+.single-carocel-btn span:first-child:hover {
+    opacity: 1;
+}
+
+.single-carocel-btn span:not(:first-child):hover {
+    opacity: 1;
+}
+
+
+
+.single-carocel-btn span:first-child:active {
+    margin-left: -.1rem;
+}
+
+.single-carocel-btn span:not(:first-child):active {
+    margin-right: -.1rem;
 }

@@ -1,0 +1,3 @@
+
+Chat GTP (or Generalized Text Parser) is a web-based natural language processing tool developed by MeaningCloud that allows users to quickly and easily extract structured information from text. It is used to automatically detect and label entities in text, identify their type, and return the data in a ready-to-use format. The tool can be used to extract entities such as named entities, dates and times, locations, money and financial amounts, organizations and people, products, keywords, and more.
+**********************************
