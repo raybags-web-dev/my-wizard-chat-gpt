@@ -58,7 +58,7 @@ function DB_QN_RES_HTML (question, response, id, created_at) {
       </p>
       <p class="db-response response" data-id="${id}">
         ${response}<br>
-        <span class="link" style="opacity:.5" data-id="${id}">${id}</span>
+        <span class="link" style="opacity:0;" data-id="${id}">${id}</span>
         <span class="link float-end" style="opacity:.5">${created_at}</span>
       </p>
     </div>`
@@ -179,7 +179,7 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
           dbQuestionResponseElement.innerHTML = `
             <p class="question" data-id="${_id}">${question}</p>
             <p class="response" data-id="${_id}">${response}</p>
-            <span class="link" style="opacity:.5">${_id}</span>
+            <span class="link" style="opacity:0;">${_id}</span>
             <span class="link float-end" style="opacity:.5">${formatDate(
               createdAt
             )}</span>
@@ -220,6 +220,7 @@ const handleSubmit = async e => {
     let question_text = textArea.value
     if (!question_text || question_text == '') return
     sendButton.innerText = 'Processing...'
+
     await postFetch(question_text)
     sendButton.innerText = 'Submit'
     form.reset()
@@ -338,6 +339,8 @@ async function loadLocal () {
 loadLocal()
 // token handler
 async function getToken () {
+  let auth_btn = document.getElementById('access_btn')
+  auth_btn.textContent = 'AUTHENTICATE'
   const storedToken = localStorage.getItem('token')
   const storedTimestamp = localStorage.getItem('timestamp')
   // If a token is stored and less than 24 hours have elapsed since the last request
@@ -347,21 +350,29 @@ async function getToken () {
     Date.now() - storedTimestamp < 86400000
   ) {
     updateElementText(
-      ' Authenticated for the next ( ' +
+      ' Authenticated for the next ' +
         (24 - (new Date().getHours() % 24)) +
-        ' ) HRS',
+        'hrs',
       '#error_box'
     )
+    auth_btn.innerText = 'AUTHENTICATED'
+
     return storedToken
   }
   // If no token is stored or 24 hours have elapsed
-  const response = await axios.post('/raybags/v1/wizard/auth')
-  const token = response.data.token
-  if (token) updateElementText('Authentication Succesful', '#error_box')
-  // Save the token and the current timestamp to local storage
-  localStorage.setItem('token', token)
-  localStorage.setItem('timestamp', Date.now())
-  return token
+  handlerMainLoader(false)
+  auth_btn.innerText = 'PROCESSING...'
+  setTimeout(async () => {
+    const response = await axios.post('/raybags/v1/wizard/auth')
+    const token = response.data.token
+    if (token) updateElementText('Authentication Succesful', '#error_box')
+    // Save the token and the current timestamp to local storage
+    localStorage.setItem('token', token)
+    localStorage.setItem('timestamp', Date.now())
+    auth_btn.innerText = 'SUCCESS ✅'
+    handlerMainLoader(true)
+    return token
+  }, 1000)
 }
 // delete item from db handler
 async function deleteDBItem (e) {
@@ -583,7 +594,6 @@ async function typingEffect (element, message, typingSpeed = 4) {
   }
   type()
 }
-// handle search
 searchBtn.addEventListener('click', function (e) {
   searchDatabase(e)
 })
