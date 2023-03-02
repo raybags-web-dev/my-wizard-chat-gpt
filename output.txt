@@ -1,3 +1,84 @@
 
 Chat GTP (or Generalized Text Parser) is a web-based natural language processing tool developed by MeaningCloud that allows users to quickly and easily extract structured information from text. It is used to automatically detect and label entities in text, identify their type, and return the data in a ready-to-use format. The tool can be used to extract entities such as named entities, dates and times, locations, money and financial amounts, organizations and people, products, keywords, and more.
 **********************************
+Earth is not flat. The scientific consensus is that the Earth is round, or slightly ellipsoidal in shape. It has a circumference of approximately 24,901 miles (40,075 km).
+**********************************
+The exact lifespan of a virus depends on the type of virus and other factors such as its host, environment, and available resources. Generally, viruses can survive outside of a host organism anywhere from a few seconds to several days, or even months in some cases.
+**********************************
+Bacteria can have a very wide range of lifespans, depending on the species. Generally, they can survive anywhere from a few minutes to several months.
+**********************************
+Unfortunately, you cannot move to Pluto as it is no longer classified as a planet by the International Astronomical Union.
+**********************************
+The biggest and most prestigious soccer game is the FIFA World Cup.
+**********************************
+1. Continue to learn and grow your skillset. Keeping up with the constant changes in technology is key. Take time to research new technologies and explore areas of interest.
+
+2. Work on different projects to build your experience and gain exposure to various technologies.
+
+3. Network and connect with other developers, attend conferences and hackathons, or even take part in open source projects.
+
+4. Mentor junior developers and build a network of contacts.
+
+5. Demonstrate your ability to think through complex problems and show off your problem-solving abilities.
+
+6. Take on increasingly complex tasks and challenge yourself.
+
+7. Be proactive and reach out to more senior developers for advice and guidance.
+**********************************
+When you call the function, you will get a response of an object promise. The value after this simply denotes the message that will resolve or be returned in the promise.
+**********************************
+
+
+ 
+§ Markdown
+
+# Cross-Validation 
+
+Cross validation is a method of splitting your data into t parts, and using one part to fit the model & other parts to test the model.
+
+You may split you data into 2 or 3 parts, but k- Fold Cross Validation is the most commonly used.
+
+K-Fold Cross-Validation:
+1. Divide the dataset in k-parts
+2. Choose one part which is called the validation set, this will be used to calculate the accuracy of the model
+3. The remaining k-1 parts will be used to train the model
+4. Repeat steps 2 & 3 for all k-parts until all the parts are used for validation and training
+5. Once all the parts have been used for validation and training, take an average of the accuracies calculated in all the iterations.
+
+![image.png](attachment:image.png)
+
+Using cross-validation helps us reduce the bias which usually arises when evaluating the performance of a model which is trained on a single dataset.
+
+ 
+§ END OF DOC
+********************************** §§ 1000
+hii mohit
+
+**********************************
+§ Output
+
+> stdout : ['What did you say?\n']
+
+
+§ Code
+
+
+ 
+§ END OF DOC
+********************************** §§ 1030
+
+SELECT items.description, items.price
+FROM items, orders
+WHERE orders.item_id = items.item_id;
+ §§ COM
+Update index.sql
+
+Add a JOIN operator to the SELECT statement
+
+SELECT items.description, items.price
+FROM items
+JOIN orders ON orders.item_id = items.item_id;
+
+**********************************
+Calvin Clain is a Canadian singer, songwriter, and producer. Clain began his career in the late 1990s, and has since released nine studio albums, won numerous awards, and collaborated with some of the biggest names in music. He is best known for his hit singles "My Way," "Feel So Close," and "Summer."
+**********************************

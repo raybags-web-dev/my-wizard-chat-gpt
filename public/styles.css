@@ -65,7 +65,7 @@ button:active {
 
 }
 
-@media screen and (max-width: 590px) {
+@media screen and (max-width: 455px) {
     body {
         -webkit-filter: blur(20px);
         filter: blur(20px) grayscale(100%);
@@ -493,34 +493,43 @@ button:active {
     }
 }
 
+p[data-qn="db-qn"] {
+    max-height: 45% !important;
+}
 
-.single-carocel-btn>span {
+p[data-res="db-res"] {
+    max-height: 48% !important;
+}
+
+.single-carocel-btn>a {
     text-align: center;
     padding: .4rem;
     min-width: 60px;
     border-radius: .4rem;
     text-align: center;
+    text-decoration: none;
+    color: black;
 }
 
-.single-carocel-btn span {
-    opacity: .5;
+.single-carocel-btn a {
+    opacity: .2;
 }
 
 
-.single-carocel-btn span:first-child:hover {
+.single-carocel-btn a:first-child:hover {
     opacity: 1;
 }
 
-.single-carocel-btn span:not(:first-child):hover {
+.single-carocel-btn a:not(:first-child):hover {
     opacity: 1;
 }
 
 
 
-.single-carocel-btn span:first-child:active {
+.single-carocel-btn a:first-child:active {
     margin-left: -.1rem;
 }
 
-.single-carocel-btn span:not(:first-child):active {
+.single-carocel-btn a:not(:first-child):active {
     margin-right: -.1rem;
 }
