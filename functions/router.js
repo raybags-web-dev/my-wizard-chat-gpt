@@ -1,11 +1,15 @@
 const express = require('express')
 const app = express()
+const apicache = require('apicache')
 
 const path = require('path')
 const { ObjectId } = require('mongodb')
 require('dotenv').config()
 const { GPT_5 } = require('../gptEngine/runners')
 const asyncMiddleware = require('../middleware/asyncErros')
+
+// cache
+let cache = apicache.middleware
 
 const { validateJWTToken, generateJWTToken } = require('../middleware/auth')
 const { GPT_RESPONSE } = require('../src/models/responseModel')
@@ -22,6 +26,7 @@ function Authenticate (app) {
     }
   })
 }
+
 function AskGPT (app) {
   app.post(
     '/raybags/v1/wizard/ask-me',
@@ -29,6 +34,17 @@ function AskGPT (app) {
       const isAuth = await validateJWTToken(req.headers.authorisation)
       if (!isAuth) return res.status(403).send('Unauthorized!')
       let question = req.body.data
+      // Check if the question has been asked before
+      const cachedResponse = await GPT_RESPONSE.findOne({ question })
+        .sort({ createdAt: -1 })
+        .exec()
+      if (cachedResponse) {
+        return res
+          .status(200)
+          .json({ status: 'Success', response: cachedResponse.response })
+      }
+
+      // If the question has not been asked before, get the GPT response
       const response = await GPT_5(question)
 
       try {
@@ -42,9 +58,10 @@ function AskGPT (app) {
       } catch (error) {
         if (error.name === 'ValidationError') {
           if (error.errors.question) {
-            return res
-              .status(400)
-              .json({ status: 'Error', message: error.errors.question.message })
+            return res.status(400).json({
+              status: 'Bad request!',
+              message: error.errors.question.message
+            })
           }
           if (error.errors.response) {
             return res
@@ -64,9 +81,11 @@ function AskGPT (app) {
     })
   )
 }
+
 function GetPaginatedResults (app) {
   app.get(
     '/raybags/v1/wizard/data',
+    cache('1 minutes'),
     asyncMiddleware(async (req, res) => {
       try {
         if (req.query.page <= '0') throw new Error(`Page can't be 0`)
@@ -110,6 +129,7 @@ function GetPaginatedResults (app) {
 function GetAll (app) {
   app.get(
     '/raybags/v1/wizard/data-all',
+    cache('1 minutes'),
     asyncMiddleware(async (req, res) => {
       let response = await GPT_RESPONSE.find({}).sort({ createdAt: 1 })
       if (response.length === 0)

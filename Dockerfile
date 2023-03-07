@@ -15,7 +15,7 @@ EXPOSE 4200
 # Create a named volume to store persistent data
 VOLUME [ "/app/data" ]
 # Set an environment variable for the Docker version
-ENV DOCKER_VERSION="01.01.1"
+ENV DOCKER_VERSION="01.01.2"
 # # Print the Docker version
 # RUN sh -c 'echo "Docker version: ${DOCKER_VERSION}" && docker version'
 # Set an argument for the Docker version

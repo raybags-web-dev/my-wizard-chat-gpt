@@ -72,16 +72,14 @@ function dbItem (item_id, quetion, response, createdAt, updatedAt) {
             <span class="DB_Carocel_loader"></span>
         </div>
         <div class="card-body" style="padding: 0 4.5rem 0 4.5rem !important;">
-          <p data-qn="db-qn" class="card-text" style="overflow-y: auto !important; max-height:50%;">Question: ${quetion}</p>
-          <hr>
-          <p data-res="db-res" class="card-text pb-2"  style="overflow-y: auto !important;">Response: ${response}</p>
+          <p id="qn-item" data-qn="db-qn" class="card-text">Question: ${quetion}</p>
+          <p id="ans-item" data-res="db-res" class="card-text pb-2">Response: ${response}</p>
         </div>
         <div class="d-flex justify-content-between card-footer" style="padding: 1.1rem 4.5rem 1.1rem 4.5rem !important;">
           <p data-time="db-createdAt">Created: ${createdAt}</p>
           <p data-time="db-modifiedAt" class="floadt-end">Updated: ${updatedAt}</p>
         </div>
-        <div data-buttons="carocel-btn-container" class="container-fluid d-flex  justify-content-between align-items-center single-carocel-btn" 
-              style="position:fixed;bottom:45%;left:50%;height:2rem;transform:translate(-50%, -50%);z-index:.05;">
+        <div data-buttons="carocel-btn-container" class="container-fluid d-flex  justify-content-between align-items-center single-carocel-btn" style="position:fixed;bottom:45%;left:50%;height:2rem;transform:translate(-50%, -50%);z-index:.01;">
           <a data-check="pre_v" id="prev-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-black float-start prev">&#60;</a>
           <a data-check="nex_v" id="next-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-black float-end next">&#62;</a>
         </div>
@@ -218,7 +216,8 @@ const handleSubmit = async e => {
   try {
     e.preventDefault()
     let question_text = textArea.value
-    if (!question_text || question_text == '') return
+    if (!question_text)
+      return updateElementText(` Type your question below!.`, '#error_box')
     sendButton.innerText = 'Processing...'
 
     await postFetch(question_text)
@@ -236,7 +235,7 @@ textArea.addEventListener('keyup', async e => {
   }
 })
 async function postFetch (question) {
-  if (!question || question == '' || question.length <= 1)
+  if (!question || question == '')
     return updateElementText(`Payload can't be empty message.`, '#error_box')
 
   handlerMainLoader(false)
@@ -484,6 +483,7 @@ async function deleteDBItem (e) {
 // handle delete
 rightCont.addEventListener('click', deleteDBItem)
 
+// Search database
 async function searchDatabase (e) {
   e.preventDefault()
   let inputValue = searchInput.value.trim()

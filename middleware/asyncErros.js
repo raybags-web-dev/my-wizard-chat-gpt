@@ -6,7 +6,7 @@ module.exports = function asyncMiddleware (handler) {
       const statusCode = ex.statusCode || 500
       res.status(statusCode).json({ status: 'failed', message: ex.message })
       if (typeof next === 'function') {
-        next({ error: ex, message: ex.message })
+        next({ error: 'something went wrong!\n', message: ex.message })
       }
     }
   }

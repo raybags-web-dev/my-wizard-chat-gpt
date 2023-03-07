@@ -238,7 +238,7 @@ button:active {
 }
 
 #single_item {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     width: 85%;
@@ -249,7 +249,7 @@ button:active {
     opacity: 0;
     transition: all .3s;
     letter-spacing: 1px;
-    background-color: rgb(255, 255, 255) !important;
+    background-color: #ffffff !important;
     -webkit-backdrop-filter: blur(40px);
     backdrop-filter: blur(40px);
     transform: translate(-50%, -50%);
@@ -493,12 +493,21 @@ button:active {
     }
 }
 
-p[data-qn="db-qn"] {
-    max-height: 45% !important;
+#qn-item {
+    max-height: 30% !important;
+    background: rgb(230, 229, 229, .5);
+    padding: .5rem;
+    margin-top: .3rem;
+    border-radius: .5rem;
+    flex: 1;
+    flex-grow: 1;
 }
 
-p[data-res="db-res"] {
-    max-height: 48% !important;
+#ans-item {
+    max-height: 32% !important;
+    overflow-y: auto !important;
+    flex: 1;
+    flex-grow: 1;
 }
 
 .single-carocel-btn>a {
