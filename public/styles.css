@@ -31,10 +31,13 @@ button:hover {
 }
 
 .btn:active,
-button:active {
+button:active,
+#read_more:active {
     box-shadow: none;
     outline: none;
     transform: scale(0.95);
+    outline: unset;
+    border-color: unset;
 }
 
 .btn {
@@ -132,7 +135,8 @@ button:active {
 }
 
 #submit_button,
-#access_btn {
+#access_btn,
+#read_more {
     background: unset;
     color: black
 }
@@ -397,7 +401,6 @@ button:active {
     border-left: 3px solid #e3e2e2;
 }
 
-/* =================== */
 .foot_bottom {
     background: red !important;
 }
@@ -504,7 +507,7 @@ button:active {
 }
 
 #ans-item {
-    max-height: 32% !important;
+    max-height: 30% !important;
     overflow-y: auto !important;
     flex: 1;
     flex-grow: 1;

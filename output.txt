@@ -246,3 +246,81 @@ Credentials are credentials that identify a user and authenticate their access t
 
 Credentials are a set of identifying information used to verify the identity of a user in order to access a secure system. This typically includes a username and password, but can also include biometric data, one-time codes, or any other form of authentication.
 **********************************
+ §§ --- main.go
+-	"time"
+ §§ 1009
+ §§ --- main.go
+-	// avoid setting timeout
+-	// time.Sleep(time.Second)
+ §§ 1030
+
+**********************************
+		this.timeInLine = function(time){
+			currentTime = time;
+		};
+
+		// CUSTOM LOGIC
+		// Line sorting logic
+		this.sortLine = function(){
+			// Sort the people array by age
+			people.sort(function compare(a,b) {
+			  if (a[1] < b[1])
+			    return -1;
+			  if (a[1] > b[1])
+			    return 1;
+			  return 0;
+			});
+		};
+
+		// End of line
+		this.endOfLine = function(position){
+			// Get the last position in line
+			return people[position-1];
+		};
+
+		// Now serving
+		this.nowServing = function(position){
+			// Get the current position from the front of line
+			return people.shift();
+		};
+
+
+		// Statistics
+		this.averageAge = function(){
+			// Get average age for everyone in line
+			var sumOfAge = 0;
+			for (i=0; i<people.length; i++){
+				sumOfAge += people[i][1];
+			}
+			return (sumOfAge/people.length).toFixed(2);
+		};
+
+		// Number of people in line
+		this.numOfPeople = function(){
+			return people.length;
+		};
+
+		// Time spent in line
+		this.timeSpent = function(person){
+			// Check the time spent in line for the person
+			for (i=0; i<people.length; i++){
+				if (people[i][0] == person){
+					return currentTime - people[i][3];
+				}
+			}
+		};
+		
+	};
+	
+	
+	// Export the constructor so it can be shared
+	module.exports =
+**********************************
++
++this is a test
+
+**********************************
+ §§ 1000
+No content
+
+**********************************

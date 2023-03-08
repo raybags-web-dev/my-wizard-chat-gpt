@@ -44,74 +44,26 @@
             }
         }
 
-
         .DB_Carocel_loader {
-            width: 48px;
-            height: 48px;
-            margin: auto;
+            width: 70px;
+            height: 70px;
+            border: 5px solid;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .DB_Carocel_loader:before {
-            content: '';
-            width: 48px;
-            height: 5px;
-            background: #000;
-            opacity: 0.25;
-            position: absolute;
-            top: 60px;
-            left: 0;
             border-radius: 50%;
-            animation: shadow 0.5s linear infinite;
+            top: 46%;
+            left: 46%;
+            transform: translate(-50%, -50%);
+            border-color: #ff3d0099 transparent;
+            animation: rotation 1s linear infinite;
         }
 
-        .DB_Carocel_loader:after {
-            content: '';
-            width: 100%;
-            height: 100%;
-            background: #6e6d6d;
-            animation: bxSpin 0.5s linear infinite;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-radius: 4px;
-        }
-
-        @keyframes bxSpin {
-            17% {
-                border-bottom-right-radius: 3px;
-            }
-
-            25% {
-                transform: translateY(9px) rotate(22.5deg);
-            }
-
-            50% {
-                transform: translateY(18px) scale(1, .9) rotate(45deg);
-                border-bottom-right-radius: 40px;
-            }
-
-            75% {
-                transform: translateY(9px) rotate(67.5deg);
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
             }
 
             100% {
-                transform: translateY(0) rotate(90deg);
-            }
-        }
-
-        @keyframes shadow {
-
-            0%,
-            100% {
-                transform: scale(1, 1);
-            }
-
-            50% {
-                transform: scale(1.2, 1);
+                transform: rotate(360deg);
             }
         }
     </style>
@@ -129,7 +81,7 @@
                     class="d-inline-block align-text-top"> &nbsp; WIZARD TRACKER
             </a>
             <form id="search_form" class="d-flex">
-                <input id="seachhhh" class="form-control text-black me-2 shadow-lg bg-body rounded"
+                <input id="seachhhh" autocomplete="off" class="form-control text-black me-2 shadow-lg bg-body rounded"
                     style="border-color:transparent;" type="search" placeholder="Search..." aria-label="Search">
                 <button id="searchBTN" class="btn btn-outline-secondary shadow-lg bg-body rounded"
                     type="submit">Send</button>
@@ -137,7 +89,6 @@
             <p id="error_box" class="shadow-none p-2 mt-1 mb-5 bg-light rounded"></p>
         </div>
     </nav>
-
     <div id="main-page-loader" class="d-flex align-items-center justify-content-center"
         style="position:fixed; backdrop-filter:blur(1px); top:0; left:0; right:0; bottom:0;z-index:3000">
         <div class="d-flex">
@@ -150,19 +101,25 @@
 
     <div id="main-container" class="container container-fluid position-relative">
         <form class="submit_form">
-            <input style="border-color:transparent;" name="prompt" id="my_input" type="text" class="form-control mt-1"
-                rows="2" placeholder="Type your question here..."></input>
+            <input style="border-color:transparent;" autocomplete="off" name="prompt" id="my_input" type="text"
+                class="form-control mt-1" rows="2" placeholder="Type your question here..."></input>
         </form>
         <div class="d-flex justify-content-between text-center">
             <button id="submit_button"
-                style="text-transform: uppercase; min-height:3rem;text-align:center;border:5px solid transparent;"
+                style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
                 class="btn btn-secondary shadow-sm p-1   bg-body rounded btn-lg mx-1" type="submit">
-                SUBMIT
+                submit
             </button>
+            <a id="read_more" type="button" class="btn btn-secondary"
+                style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
+                class="btn btn-secondary shadow-sm p-1 bg-body rounded btn-lg mx-1" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                how it works
+            </a>
             <button id="access_btn"
-                style="text-transform: uppercase; min-height:3rem;text-align:center;border:5px solid transparent;"
+                style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
                 class="btn btn-secondary shadow-sm p-1  bg-body rounded btn-lg mx-1" type="button">
-                Authenticate
+                authenticate
             </button>
         </div>
         <div class="container my_text_container">

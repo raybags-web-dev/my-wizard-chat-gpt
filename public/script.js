@@ -12,10 +12,11 @@ const searchBtn = document.getElementById('searchBTN')
 const searchFORM = document.getElementById('search_form')
 const previousButton = document.querySelector('.get-previous')
 const nextButton = document.querySelector('.get-next')
+const modelButton = document.querySelector('#read_more')
 let lastScroll = 0
 const loading_1 = document.getElementById('__db_loader')
-GET_loader(loading_1, true)
 
+GET_loader(loading_1, true)
 function Empty_Element (anchor) {
   let element = document.querySelector(anchor)
   return (element.innerHTML = '')
@@ -66,18 +67,18 @@ function DB_QN_RES_HTML (question, response, id, created_at) {
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
     <div id="single_item" data-id="${item_id}"  class="card">
-        <div class="card-header d-flex  justify-content-between" style="padding: 1.1rem 4.5rem 1.1rem 4.5rem !important;">
+        <div class="card-header d-flex  justify-content-between">
             <p data-itemid="timestamp" class="link-success">${item_id}</p>
             <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>
             <span class="DB_Carocel_loader"></span>
         </div>
-        <div class="card-body" style="padding: 0 4.5rem 0 4.5rem !important;">
+        <div class="card-body">
           <p id="qn-item" data-qn="db-qn" class="card-text">Question: ${quetion}</p>
           <p id="ans-item" data-res="db-res" class="card-text pb-2">Response: ${response}</p>
         </div>
-        <div class="d-flex justify-content-between card-footer" style="padding: 1.1rem 4.5rem 1.1rem 4.5rem !important;">
-          <p data-time="db-createdAt">Created: ${createdAt}</p>
-          <p data-time="db-modifiedAt" class="floadt-end">Updated: ${updatedAt}</p>
+        <div class="d-flex justify-content-between card-footer fixed-bottom" style="z-index:10;backdrop-filter:blur(20px);">
+          <p data-time="db-createdAt" class="created-tm">Created: ${createdAt}</p>
+          <p data-time="db-modifiedAt" class="floadt-end updated-tm">Updated: ${updatedAt}</p>
         </div>
         <div data-buttons="carocel-btn-container" class="container-fluid d-flex  justify-content-between align-items-center single-carocel-btn" style="position:fixed;bottom:45%;left:50%;height:2rem;transform:translate(-50%, -50%);z-index:.01;">
           <a data-check="pre_v" id="prev-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-black float-start prev">&#60;</a>
@@ -216,8 +217,7 @@ const handleSubmit = async e => {
   try {
     e.preventDefault()
     let question_text = textArea.value
-    if (!question_text)
-      return updateElementText(` Type your question below!.`, '#error_box')
+    if (!question_text) return
     sendButton.innerText = 'Processing...'
 
     await postFetch(question_text)
@@ -400,7 +400,6 @@ async function deleteDBItem (e) {
       )
     DBresponse.data.data.forEach(item => {
       const { createdAt, question, response, _id, updatedAt } = item
-
       if (id == _id) {
         const messageHTML = dbItem(
           _id,
@@ -421,7 +420,9 @@ async function deleteDBItem (e) {
               'link-danger',
               'single-carocel-btn',
               'prev',
-              'next'
+              'next',
+              'created-tm',
+              'updated-tm'
             ]
             let hasClass = classes.some(className =>
               event.target.classList.contains(className)
@@ -514,9 +515,24 @@ async function searchDatabase (e) {
         .includes(inputValue.toLowerCase())
 
       if (!inputValue || questionMatch || responseMatch) {
+        // replace matching words with underlined words
+        const underlinedQuestion = question.replace(
+          new RegExp(inputValue, 'gi'),
+          '<u>$&</u>'
+        )
+        const underlinedResponse = response.replace(
+          new RegExp(inputValue, 'gi'),
+          '<u>$&</u>'
+        )
+
         rightCont.insertAdjacentHTML(
           'afterbegin',
-          DB_QN_RES_HTML(question, response, _id, formatDate(createdAt))
+          DB_QN_RES_HTML(
+            underlinedQuestion,
+            underlinedResponse,
+            _id,
+            formatDate(createdAt)
+          )
         )
         outRightContainer.scrollTo(0, 0)
         GET_loader(loading_1, true)
@@ -546,9 +562,24 @@ async function searchDatabase (e) {
           .toLowerCase()
           .includes(inputValue.toLowerCase())
         if (!inputValue || questionMatch || responseMatch) {
+          // replace matching words with underlined words
+          const underlinedQuestion = question.replace(
+            new RegExp(inputValue, 'gi'),
+            '<u>$&</u>'
+          )
+          const underlinedResponse = response.replace(
+            new RegExp(inputValue, 'gi'),
+            '<u>$&</u>'
+          )
+
           rightCont.insertAdjacentHTML(
             'afterbegin',
-            DB_QN_RES_HTML(question, response, _id, formatDate(createdAt))
+            DB_QN_RES_HTML(
+              underlinedQuestion,
+              underlinedResponse,
+              _id,
+              formatDate(createdAt)
+            )
           )
           outRightContainer.scrollTo(0, 0)
           GET_loader(loading_1, true)
@@ -670,26 +701,91 @@ async function handleNextPrev () {
   })
 }
 async function handleNextPrevUI (item) {
+  const nextItemLoader = document.querySelector('.DB_Carocel_loader')
   if (!item || item == undefined) return
-  document.querySelector('.DB_Carocel_loader').style.display = 'block'
-  setTimeout(async () => {
-    const { createdAt, updatedAt, question, response, _id } = await item
-    const container = document.getElementById('single_item')
-    const DB_IDD = document.querySelector('[data-itemid="timestamp"]')
-    const DB_QNN = document.querySelector('[data-qn="db-qn"]')
-    const DB_RESS = document.querySelector('[data-res="db-res"]')
-    const DB_MDTIME = document.querySelector('[data-time="db-modifiedAt"]')
-    const DB_CTIME = document.querySelector('[data-time="db-createdAt"]')
+  nextItemLoader.style.display = 'block'
+  const { createdAt, updatedAt, question, response, _id } = await item
+  const container = document.getElementById('single_item')
+  const DB_IDD = document.querySelector('[data-itemid="timestamp"]')
+  const DB_QNN = document.querySelector('[data-qn="db-qn"]')
+  const DB_RESS = document.querySelector('[data-res="db-res"]')
+  const DB_MDTIME = document.querySelector('[data-time="db-modifiedAt"]')
+  const DB_CTIME = document.querySelector('[data-time="db-createdAt"]')
 
-    container.setAttribute('data-id', `${_id}`)
-    DB_IDD.textContent = _id
-    DB_QNN.textContent = `Question: ${question}`
-    DB_RESS.textContent = `Response: ${response}`
-    DB_MDTIME.textContent = `Updated: ${formatDate(updatedAt)}`
-    DB_CTIME.textContent = `Created: ${formatDate(createdAt)}`
-    document.querySelector('.DB_Carocel_loader').style.display = 'none'
-  }, 500)
+  container.setAttribute('data-id', `${_id}`)
+  DB_IDD.textContent = _id
+  DB_QNN.textContent = `Question: ${question}`
+  DB_RESS.textContent = `Response: ${response}`
+  DB_MDTIME.textContent = `Updated: ${formatDate(updatedAt)}`
+  DB_CTIME.textContent = `Created: ${formatDate(createdAt)}`
+  setTimeout(() => (nextItemLoader.style.display = 'none'), 500)
 }
+// Documentation Model
+function showModal () {
+  const modal = document.createElement('div')
+  modal.classList.add('modal', 'fade')
+  modal.id = 'staticBackdrop'
+  modal.setAttribute('data-bs-backdrop', 'static')
+  modal.setAttribute('data-bs-keyboard', 'false')
+  modal.setAttribute('tabindex', '-1')
+  modal.setAttribute('aria-labelledby', 'staticBackdropLabel')
+  modal.setAttribute('aria-hidden', 'true')
+
+  const modalDialog = document.createElement('div')
+  modalDialog.classList.add('modal-dialog', 'modal-dialog-scrollable')
+  const modalContent = document.createElement('div')
+  modalContent.classList.add('modal-content')
+  const modalHeader = document.createElement('div')
+  modalHeader.classList.add('modal-header')
+  const modalTitle = document.createElement('h5')
+  modalTitle.classList.add('modal-title', 'text-center')
+  modalTitle.id = 'staticBackdropLabel'
+  modalTitle.innerText = 'HOW TO USE THIS APPLICATION'
+  const closeButton = document.createElement('button')
+  closeButton.classList.add('btn-close')
+  closeButton.setAttribute('data-bs-dismiss', 'modal')
+  closeButton.setAttribute('aria-label', 'Close')
+  const modalBody = document.createElement('div')
+  modalBody.classList.add('modal-body')
+  modalBody.innerHTML = `<ul class="lead">
+  <li>The wizard tracker API is a simple API interface that allows you to ask GPT-5 questions and get a response locally in your dev-environment. It is powered by Express.js and uses custom functions that define routes for an Express.js server.</li><br />
+  <li>The API has several endpoints that can be accessed using different HTTP methods. The first endpoint is /api/auth which is a POST request used to generate a JSON web token (JWT) using the authorization header of the request. The second endpoint is /raybags/v1/wizard/ask-me which is a POST request that validates a JWT using the authorization header, calls the GPT_5 function with the question from the request body, saves the result to the GPT_RESPONSE model in MongoDB, and returns the response. The third endpoint is /raybags/v1/wizard/data which is a GET request used to retrieve paginated results from the GPT_RESPONSE model. This endpoint can also retrieve all the results or a single item based on its ID. The fourth endpoint is /raybags/v1/wizard/delete-item/:id which is a DELETE request used to delete a single item from the GPT_RESPONSE model</li> <br />
+  <li>To use the API, you need to clone the repository and install the dependencies using npm install. After that, start the server using npm start and test the endpoints using a tool like Postman or curl.</li> <br />
+  <li>The MY-WIZARD API is built with Express.js, Node.js, Jest, and Mongoose. It also comes with a Dockerfile, so you can easily build a Docker image and run the container.</li> <br />
+  </ul>
+  <h5>Step-by-step guide:</h5>
+  <ol>
+  <li><code>Clone the repository using git clone https://github.com/raybags-web-dev/my-wizard-chat-gpt.git</code></li>
+  <li><code>Install the dependencies using npm install and 
+  Start the server using npm start</code></li>
+  <li><code>The server is now running on http://localhost:4200/</code></li>
+  <li>To generate a JWT token, send a POST request to <code>http://localhost:4200/api/auth </code> with an Authorization header that contains your desired username and password in the format of username:password. The API will return a JWT token in the response body</li>
+  <li>To ask a question to the GPT-5 model, send a POST request to <code>http://localhost:4200/raybags/v1/wizard/ask-me</code> with the JWT token in the Authorization header and the question in the request body as JSON. The API will return a response containing the answer generated by the GPT-5 model.</li>
+  <li>To get paginated results from the historical data, send a GET request to <code>http://localhost:4200/raybags/v1/wizard/data?page=<page-number></code>. Replace <page-number> with the page number you want to retrieve.</li>
+  <li>To get all the historical data, send a GET request to <code>http://localhost:4200/raybags/v1/wizard/data-all</code></li>
+  <li>To get a specific item from the historical data, send a <code>GET</code> request to <code>http://localhost:4200/raybags/v1/wizard/item/<id></code>. Replace <id> with the ID of the item you want to retrieve.</li>
+  <li>To delete a specific item from the historical data, send a DELETE request to <code>http://localhost:4200/raybags/v1/wizard/delete-item/<id></code>. Replace <code><id></code>with the ID of the item you want to delete.</li>
+  <li>That's it! You can use a tool like Postman or cURL to test the API endpoints.</li>
+  </ol>`
+  const modalFooter = document.createElement('div')
+  modalFooter.classList.add('modal-footer')
+  const closeButton2 = document.createElement('button')
+  closeButton2.classList.add('btn', 'btn-secondary')
+  closeButton2.setAttribute('data-bs-dismiss', 'modal')
+  closeButton2.innerText = 'Understood'
+  // add components to the modal
+  modalHeader.appendChild(modalTitle)
+  modalHeader.appendChild(closeButton)
+  modalFooter.appendChild(closeButton2)
+  modalContent.appendChild(modalHeader)
+  modalContent.appendChild(modalBody)
+  modalContent.appendChild(modalFooter)
+  modalDialog.appendChild(modalContent)
+  modal.appendChild(modalDialog)
+  document.body.appendChild(modal)
+}
+showModal()
+
 window.addEventListener('DOMContentLoaded', event => {
   handlerMainLoader(true)
 })
