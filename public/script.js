@@ -109,7 +109,7 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
     )
     totalItems = responseData.length
     if (totalItems === 0) {
-      updateElementText('Nothing found in database', '#error_box')
+      showNotification('Not found', 'Nothing found in database', '#nav_barrr')
     }
     // Display the initial data for the first page
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
@@ -129,15 +129,16 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
       updatePaginationButtons()
       // Alert user if last page has been reached
       if (currentPage === Math.ceil(totalItems / ITEMS_PER_PAGE)) {
-        updateElementText(
-          ` This is the last page: ${currentPage}`,
-          '#error_box'
+        showNotification(
+          'End of the road',
+          `This is the last page: ${currentPage}`,
+          '#nav_barrr'
         )
       }
     })
     // Add click event listener to "previous" button
     previousButton.addEventListener('click', async () => {
-      let element = document.querySelector('#error_box')
+      let element = document.querySelector('#nav_barrr')
       currentPage -= 1
       const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
       const endIndex = startIndex + ITEMS_PER_PAGE
@@ -146,7 +147,7 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
       displayData(dataToDisplay)
       // Update pagination buttons based on current page and total number of items
       updatePaginationButtons()
-      if (element) return Empty_Element('#error_box')
+      if (element) return Empty_Element('#nav_barrr')
     })
     // Update pagination buttons based on current page and total number of items
     function updatePaginationButtons () {
@@ -206,7 +207,7 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
       localStorage.removeItem('question')
       localStorage.removeItem('response')
       leftContainer.innerHTML = ''
-      updateElementText('Database empty!', '#error_box')
+      showNotification('Database empty!', 'Lets save some stuff!', '#nav_barrr')
       return
     }
   }
@@ -217,14 +218,24 @@ const handleSubmit = async e => {
   try {
     e.preventDefault()
     let question_text = textArea.value
-    if (!question_text) return
-    sendButton.innerText = 'Processing...'
+    if (!question_text)
+      return showNotification(
+        'Oops missing input!',
+        `You forgot to type your question.`,
+        '#nav_barrr'
+      )
 
+    sendButton.innerText = 'Processing...'
     await postFetch(question_text)
     sendButton.innerText = 'Submit'
     form.reset()
   } catch (e) {
     console.log('An error occurred:', e.message)
+    showNotification(
+      'Error',
+      `Something went wrong:\n ${e.message} `,
+      '#nav_barrr'
+    )
   }
 }
 textArea.addEventListener('keyup', async e => {
@@ -236,7 +247,11 @@ textArea.addEventListener('keyup', async e => {
 })
 async function postFetch (question) {
   if (!question || question == '')
-    return updateElementText(`Payload can't be empty message.`, '#error_box')
+    return showNotification(
+      'Error!',
+      `Payload can't be empty message.`,
+      '#nav_barrr'
+    )
 
   handlerMainLoader(false)
   let myToken = localStorage.getItem('token')
@@ -269,7 +284,7 @@ async function postFetch (question) {
       QA_HTML((data.quetion && data.question) || QN, data.response, time_stamp)
     )
 
-    updateElementText(data.status, '#error_box')
+    showNotification('Status:', data.status, '#nav_barrr')
     await FetchData('?page=1')
   } catch (e) {
     const { message, status: statusText } = await e.response.data
@@ -280,7 +295,7 @@ async function postFetch (question) {
         setTimeout(() => authButton.classList.remove('flashBTN'), 1200)
       }
       handlerMainLoader(true)
-      updateElementText(`You must authenticate!`, '#error_box')
+      showNotification('Unauthorized!', 'You must authenticate!', '#nav_barrr')
     }
   }
 }
@@ -297,7 +312,11 @@ async function FetchData (query) {
     let responseData = await response.data.data
     if (!responseData.length) {
       outRightContainer.classList.toggle('hide')
-      return updateElementText('Nothing found!', '#error_box')
+      return showNotification(
+        'Warning, nothing found!',
+        'Please try again letter',
+        '#nav_barrr'
+      )
     }
 
     responseData
@@ -313,6 +332,7 @@ async function FetchData (query) {
       })
   } catch (e) {
     console.warn(e.message)
+    showNotification('Error', `Something went wrong:\n ${e} `, '#nav_barrr')
   }
 }
 // bring in data
@@ -333,6 +353,7 @@ async function loadLocal () {
     GET_loader(loading_1, false)
   } catch (e) {
     console.log(e.message)
+    showNotification('Error', `Something went wrong:\n ${e} `, '#nav_barrr')
   }
 }
 loadLocal()
@@ -348,11 +369,10 @@ async function getToken () {
     storedTimestamp &&
     Date.now() - storedTimestamp < 86400000
   ) {
-    updateElementText(
-      ' Authenticated for the next ' +
-        (24 - (new Date().getHours() % 24)) +
-        'hrs',
-      '#error_box'
+    showNotification(
+      'Success',
+      `Authenticated for the next ${24 - (new Date().getHours() % 24)} hrs`,
+      '#nav_barrr'
     )
     auth_btn.innerText = 'AUTHENTICATED'
 
@@ -364,7 +384,12 @@ async function getToken () {
   setTimeout(async () => {
     const response = await axios.post('/raybags/v1/wizard/auth')
     const token = response.data.token
-    if (token) updateElementText('Authentication Succesful', '#error_box')
+    if (token)
+      showNotification(
+        'Authorised ✅',
+        'Authentication Succesful',
+        '#nav_barrr'
+      )
     // Save the token and the current timestamp to local storage
     localStorage.setItem('token', token)
     localStorage.setItem('timestamp', Date.now())
@@ -381,9 +406,10 @@ async function deleteDBItem (e) {
 
   if (!myToken) {
     GET_loader(loading_1, true)
-    return updateElementText(
-      ` Not authorized. Please authenticate`,
-      '#error_box'
+    return showNotification(
+      `Warning! Not authorized.`,
+      'Please authenticate. You can click the button below on your right!',
+      '#nav_barrr'
     )
   }
   const OPTIONS = {
@@ -394,9 +420,10 @@ async function deleteDBItem (e) {
   try {
     const DBresponse = await axios(OPTIONS)
     if (!DBresponse.data.data.length)
-      return updateElementText(
-        'something went wrong. Please try again later.',
-        '#error_box'
+      return showNotification(
+        'Error',
+        'Something went wrong Please try again later.',
+        '#nav_barrr'
       )
     DBresponse.data.data.forEach(item => {
       const { createdAt, question, response, _id, updatedAt } = item
@@ -434,6 +461,11 @@ async function deleteDBItem (e) {
             }
           } catch (e) {
             console.log(e.message)
+            showNotification(
+              'Error',
+              `Something went wrong:\n ${e.message} `,
+              '#nav_barrr'
+            )
           }
         })
         handleNextPrev(DBresponse.data.data)
@@ -445,6 +477,11 @@ async function deleteDBItem (e) {
               return itemContainer && itemContainer.remove()
           } catch (e) {
             console.log(e.message)
+            showNotification(
+              'Error',
+              `Something went wrong:\n ${e.message} `,
+              '#nav_barrr'
+            )
           }
         })
         // deleting item
@@ -465,14 +502,23 @@ async function deleteDBItem (e) {
               GET_loader(loading_1, false)
               if (response.status === 200) {
                 setTimeout(() => itemToRemove.parentNode.remove(), 600)
-                updateElementText(`Item deleted!`, '#error_box')
+                showNotification(`Item deleted!`, 'Success', '#nav_barrr')
                 GET_loader(loading_1, true)
               } else {
-                updateElementText(`Oops Operation failed!`, '#error_box')
+                showNotification(
+                  'Warning',
+                  `Oops Operation failed!`,
+                  '#nav_barrr'
+                )
                 document.body.insertAdjacentHTML('afterbegin', messageHTML)
               }
             } catch (e) {
               console.log(e.message)
+              showNotification(
+                'Error',
+                `Something went wrong:\n ${e.message} `,
+                '#nav_barrr'
+              )
             }
           })
       }
@@ -483,12 +529,13 @@ async function deleteDBItem (e) {
 }
 // handle delete
 rightCont.addEventListener('click', deleteDBItem)
-
 // Search database
 async function searchDatabase (e) {
   e.preventDefault()
   let inputValue = searchInput.value.trim()
-  if (!inputValue) return
+  if (!inputValue)
+    return showNotification('Error', 'Input required!', '#nav_barrr')
+
   let myToken = localStorage.getItem('token')
   const OPTIONS = {
     method: 'get',
@@ -497,124 +544,150 @@ async function searchDatabase (e) {
   }
   const response = await axios(OPTIONS)
   const responseData = response.data.data
+
   if (!responseData.length) {
     outRightContainer.classList.toggle('hide')
-    return updateElementText('Oops nothing found!', '#error_box')
+    return showNotification('Warning.', 'Oops nothing found!', '#nav_barrr')
   }
+
   let count = 0
   rightCont.innerHTML = '' // clear existing elements in container
-  responseData
-    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-    .forEach(item => {
-      const { createdAt, question, response, _id } = item
-      const questionMatch = question
-        .toLowerCase()
-        .includes(inputValue.toLowerCase())
-      const responseMatch = response
-        .toLowerCase()
-        .includes(inputValue.toLowerCase())
 
-      if (!inputValue || questionMatch || responseMatch) {
-        // replace matching words with underlined words
-        const underlinedQuestion = question.replace(
-          new RegExp(inputValue, 'gi'),
-          '<u>$&</u>'
-        )
-        const underlinedResponse = response.replace(
-          new RegExp(inputValue, 'gi'),
-          '<u>$&</u>'
-        )
+  responseData.forEach(item => {
+    const { createdAt, question, response, _id } = item
+    const questionMatch = question
+      .toLowerCase()
+      .includes(inputValue.toLowerCase())
+    const responseMatch = response
+      .toLowerCase()
+      .includes(inputValue.toLowerCase())
 
-        rightCont.insertAdjacentHTML(
-          'afterbegin',
-          DB_QN_RES_HTML(
-            underlinedQuestion,
-            underlinedResponse,
-            _id,
-            formatDate(createdAt)
-          )
-        )
-        outRightContainer.scrollTo(0, 0)
-        GET_loader(loading_1, true)
-        count++
-      }
-    })
-  if (count <= 0) {
-    updateElementText(
-      `I couldn't find what you were looking for!`,
-      '#error_box'
-    )
-  } else {
-    updateElementText(`${count} found!`, '#error_box')
-  }
-  // add event listener for input change
-  searchInput.addEventListener('input', function () {
-    inputValue = this.value.trim()
-    rightCont.innerHTML = '' // clear existing elements in container
-    responseData
-      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-      .forEach(item => {
-        const { createdAt, question, response, _id } = item
-        const questionMatch = question
-          .toLowerCase()
-          .includes(inputValue.toLowerCase())
-        const responseMatch = response
-          .toLowerCase()
-          .includes(inputValue.toLowerCase())
-        if (!inputValue || questionMatch || responseMatch) {
-          // replace matching words with underlined words
-          const underlinedQuestion = question.replace(
-            new RegExp(inputValue, 'gi'),
-            '<u>$&</u>'
-          )
-          const underlinedResponse = response.replace(
-            new RegExp(inputValue, 'gi'),
-            '<u>$&</u>'
-          )
+    if (!inputValue || questionMatch || responseMatch) {
+      // replace matching words with underlined words
+      const underlinedQuestion = question.replace(
+        new RegExp(inputValue, 'gi'),
+        '<u>$&</u>'
+      )
+      const underlinedResponse = response.replace(
+        new RegExp(inputValue, 'gi'),
+        '<u>$&</u>'
+      )
 
-          rightCont.insertAdjacentHTML(
-            'afterbegin',
-            DB_QN_RES_HTML(
-              underlinedQuestion,
-              underlinedResponse,
-              _id,
-              formatDate(createdAt)
-            )
-          )
-          outRightContainer.scrollTo(0, 0)
-          GET_loader(loading_1, true)
-        }
-      })
-    // if input value is empty, reload all data
-    if (!inputValue || inputValue.length <= 0) {
-      FetchData('-all')
+      rightCont.insertAdjacentHTML(
+        'afterbegin',
+        DB_QN_RES_HTML(
+          underlinedQuestion,
+          underlinedResponse,
+          _id,
+          formatDate(createdAt)
+        )
+      )
+      outRightContainer.scrollTo(0, 0)
+      GET_loader(loading_1, true)
+      count++
     }
   })
+
+  if (count <= 0) {
+    showNotification(
+      'Error',
+      `I couldn't find what you were looking for!`,
+      '#nav_barrr'
+    )
+  } else {
+    showNotification('Success', `${count} found!`, '#nav_barrr')
+  }
 }
 // logger
-function updateElementText (message, element_tag) {
-  let element = document.querySelector(`${element_tag}`)
-  if (!message || !element) return
-  let timeoutId
-  if (document.querySelector('#error_box').innerText !== '') {
-    clearInnerText()
+async function showNotification (title, body, anchorrr) {
+  // remove previous notification element, if it exists
+  const prevNotificationDiv = document.querySelector('#notifications')
+  if (prevNotificationDiv) {
+    prevNotificationDiv.remove()
   }
-  typingEffect('#error_box', message)
-  document.addEventListener('click', clearInnerText)
-  document.addEventListener('keydown', clearInnerText)
-  timeoutId = setTimeout(clearInnerText, 4000)
+  const notificationsDiv = document.createElement('div')
+  notificationsDiv.id = 'notifications'
 
-  function clearInnerText () {
-    document.querySelector('#error_box').innerText = ''
-    element.innerText = ''
-    document.removeEventListener('click', clearInnerText)
-    document.removeEventListener('keydown', clearInnerText)
-    clearTimeout(timeoutId)
+  // Add different classes based on the title text
+  if (
+    title.includes('Success') ||
+    title.includes('End of') ||
+    title.includes('Authorised')
+  ) {
+    notificationsDiv.classList.add('alert', 'alert-success')
+  } else if (
+    title.includes('Warning') ||
+    title.includes('Not found') ||
+    title.includes('Oops')
+  ) {
+    notificationsDiv.classList.add('alert', 'alert-warning')
+  } else if (title.includes('Error')) {
+    notificationsDiv.classList.add('alert', 'alert-danger')
+  } else if (title.includes('Database empty') || title.includes('Status')) {
+    notificationsDiv.classList.add('alert', 'alert-info')
+  } else {
+    notificationsDiv.classList.add('alert', 'alert-secondary')
   }
+
+  notificationsDiv.classList.add(
+    'alert-dismissible',
+    'fade',
+    'show',
+    'shadow-lg',
+    'rounded'
+  )
+  notificationsDiv.style.cssText = 'width:fit-content;backdrop-filter:blur(3px)'
+  const titleElement = document.createElement('h6')
+  titleElement.classList.add('alert-heading')
+  titleElement.classList.add('lead')
+  titleElement.textContent = title
+  titleElement.style.cssText = 'font-size: 18px;'
+
+  const bodyElement = document.createElement('p')
+  bodyElement.classList.add('alert-body')
+  bodyElement.textContent = body //===============
+  bodyElement.style.cssText = 'font-size: 15px;'
+
+  const hrElement2 = document.createElement('hr')
+
+  const timestampElement = document.createElement('p')
+  timestampElement.classList.add('mb-0', 'float-start')
+  timestampElement.textContent = new Date().toISOString()
+  timestampElement.style.cssText = 'font-size: 13px; color:gray;'
+
+  const buttonElement = document.createElement('button')
+  buttonElement.type = 'button'
+  buttonElement.style.cssText =
+    'font-size: 13px; color:red; width:20px;height:20px;border-radius:50%;padding:.3rem;'
+  buttonElement.classList.add('btn-close', 'float-end')
+  buttonElement.setAttribute('data-bs-dismiss', 'alert')
+  buttonElement.setAttribute('aria-label', 'Close')
+
+  notificationsDiv.append(
+    titleElement,
+    bodyElement,
+    hrElement2,
+    timestampElement,
+    buttonElement
+  )
+  const container = document.querySelector(`${anchorrr}`)
+  container.appendChild(notificationsDiv)
+
+  // remove notification element after 5 seconds
+  setTimeout(() => {
+    notificationsDiv.classList.remove('show')
+    notificationsDiv.classList.add('fade', 'upwards')
+    setTimeout(() => {
+      notificationsDiv.remove()
+    }, 1000) // wait for the animation to complete before removing the element
+  }, 5000)
+
+  return notificationsDiv
 }
 //typing handler with elemnet
 async function typingEffect (element, message, typingSpeed = 4) {
   let ELEMENT = document.querySelector(`${element}`)
+  ELEMENT.innerHTML = ''
   let index = 0
   function type () {
     if (index < message.length) {
@@ -625,11 +698,13 @@ async function typingEffect (element, message, typingSpeed = 4) {
   }
   type()
 }
-searchBtn.addEventListener('click', function (e) {
-  searchDatabase(e)
+searchBtn.addEventListener('click', function (event) {
+  event.preventDefault()
+  searchDatabase(event)
 })
-searchFORM.addEventListener('submit', function (e) {
-  searchDatabase(e)
+searchFORM.addEventListener('submit', function (event) {
+  event.preventDefault()
+  searchDatabase(event)
 })
 // bg for pagination buttons
 outRightContainer.addEventListener('scroll', function () {
@@ -723,6 +798,7 @@ async function handleNextPrevUI (item) {
 // Documentation Model
 function showModal () {
   const modal = document.createElement('div')
+  modal.style.scrollBehavior = 'smooth'
   modal.classList.add('modal', 'fade')
   modal.id = 'staticBackdrop'
   modal.setAttribute('data-bs-backdrop', 'static')
@@ -785,6 +861,69 @@ function showModal () {
   document.body.appendChild(modal)
 }
 showModal()
+
+// visited
+function checkVisited () {
+  if (localStorage.getItem('visited') === null) {
+    const loginFormContainer = document.createElement('div')
+    loginFormContainer.id = 'login_page'
+    loginFormContainer.className = 'container'
+
+    loginFormContainer.innerHTML = `
+    <form>
+      <h4 class="text-center text-muted">Login required for great user experience.</h4>
+      <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" autocomplete="off" aria-describedby="emailHelp" required>
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" autocomplete="off" id="exampleInputPassword1" required>
+      </div>
+      <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" autocomplete="off" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Purge my credentials after this session</label>
+      </div>
+      <div class="d-grid gap-2">
+          <button id="loginFORM" class="btn " type="submit" disabled>Login</button>
+      </div>
+    </form>`
+
+    const emailInput = loginFormContainer.querySelector('#exampleInputEmail1')
+    const passwordInput = loginFormContainer.querySelector(
+      '#exampleInputPassword1'
+    )
+    const submitButton = loginFormContainer.querySelector('#loginFORM')
+
+    const validateInputs = () => {
+      if (emailInput.checkValidity() && passwordInput.checkValidity()) {
+        submitButton.removeAttribute('disabled')
+      } else {
+        submitButton.setAttribute('disabled', true)
+      }
+    }
+
+    emailInput.addEventListener('input', validateInputs)
+    passwordInput.addEventListener('input', validateInputs)
+
+    loginFormContainer.querySelector('form').addEventListener('submit', e => {
+      e.preventDefault()
+      const email = emailInput.value
+      const password = passwordInput.value
+      localStorage.setItem('userEmail', email)
+      localStorage.setItem('userPassword', password)
+      loginFormContainer.remove()
+      setTimeout(() => localStorage.setItem('visited', true), 2000)
+      document.getElementById('read_more').click()
+    })
+
+    document.body.appendChild(loginFormContainer)
+  } else {
+    console.log('Welcome back!')
+  }
+}
+checkVisited()
 
 window.addEventListener('DOMContentLoaded', event => {
   handlerMainLoader(true)

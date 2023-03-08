@@ -14,6 +14,10 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- custom css -->
     <style>
+        .modal-body {
+            scroll-behavior: smooth !important;
+        }
+
         .loader {
             position: relative;
             width: 180px;
@@ -66,6 +70,45 @@
                 transform: rotate(360deg);
             }
         }
+
+        #notifications {
+            position: fixed !important;
+            top: 1% !important;
+            left: 50% !important;
+            transform: translate(-50%, 1%) !important;
+            z-index: 2000 !important;
+            min-width: 60%;
+        }
+
+        #login_page {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            z-index: 2001 !important;
+            backdrop-filter: blur(7px);
+            min-width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            background: rgb(255, 255, 255, .1) !important;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #login_page form {
+            position: absolute;
+            top: 50% !important;
+            left: 50% !important;
+            padding: 1rem;
+            min-width: 65%;
+            min-height: 50%;
+            border-radius: .4rem;
+            backdrop-filter: blur(10px);
+            background: rgb(255, 255, 255, .3) !important;
+            transform: translate(-50%, -50%) !important;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+        }
     </style>
     <link rel="stylesheet" href="./styles.css">
     <script src="./script.js" defer></script>
@@ -73,7 +116,7 @@
 
 <body>
     <nav class="navbar navbar-light bg-light">
-        <div class="container">
+        <div id="nav_barrr" class="container">
             <a class="navbar-brand" href="#">
                 <img src="https://github.com/raybags-web-dev/image_base/blob/master/images/logo/logo9_5_21257.jpeg?raw=true"
                     alt="" width=40" height="40"
@@ -86,7 +129,6 @@
                 <button id="searchBTN" class="btn btn-outline-secondary shadow-lg bg-body rounded"
                     type="submit">Send</button>
             </form>
-            <p id="error_box" class="shadow-none p-2 mt-1 mb-5 bg-light rounded"></p>
         </div>
     </nav>
     <div id="main-page-loader" class="d-flex align-items-center justify-content-center"
@@ -100,25 +142,25 @@
     </div>
 
     <div id="main-container" class="container container-fluid position-relative">
-        <form class="submit_form">
+        <form class="submit_form mb-2">
             <input style="border-color:transparent;" autocomplete="off" name="prompt" id="my_input" type="text"
                 class="form-control mt-1" rows="2" placeholder="Type your question here..."></input>
         </form>
         <div class="d-flex justify-content-between text-center">
             <button id="submit_button"
                 style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
-                class="btn btn-secondary shadow-sm p-1   bg-body rounded btn-lg mx-1" type="submit">
-                submit
+                class="btn btn-secondary p-1   bg-body rounded btn-lg mx-1" type="submit">
+                submit Question
             </button>
-            <a id="read_more" type="button" class="btn btn-secondary"
+            <a id="read_more" type="button" class="btn btn-secondary lead"
                 style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
-                class="btn btn-secondary shadow-sm p-1 bg-body rounded btn-lg mx-1" data-bs-toggle="modal"
+                class="btn btn-secondary p-1 bg-body rounded btn-lg mx-1" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop">
                 how it works
             </a>
             <button id="access_btn"
                 style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
-                class="btn btn-secondary shadow-sm p-1  bg-body rounded btn-lg mx-1" type="button">
+                class="btn btn-secondary p-1  bg-body rounded btn-lg mx-1" type="button">
                 authenticate
             </button>
         </div>

@@ -56,6 +56,20 @@ button:active,
     padding-top: 1rem;
 }
 
+#submit_form {
+    margin-bottom: 1rem;
+}
+
+#read_more,
+#access_btn,
+#submit_button,
+#loginFORM {
+    box-shadow: 1px 1px 13px black;
+    border-radius: .3rem;
+    font-size: 1rem !important;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+
 @media screen and (max-width: 1183px) {
     #main-container {
         min-width: 100vw !important;
@@ -139,28 +153,6 @@ button:active,
 #read_more {
     background: unset;
     color: black
-}
-
-#error_box {
-    position: absolute;
-    top: 2%;
-    padding: .3rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    left: 50%;
-    max-height: 50vw;
-    font-size: 15px;
-    border-radius: .3rem;
-    z-index: 2000;
-    overflow-y: auto !important;
-    -webkit-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
-    transition: all ease-in .3s;
-    transform: translate(-50%, 0);
-}
-
-#error_box::-webkit-scrollbar {
-    width: 5px;
 }
 
 #submit_button:focus-within,

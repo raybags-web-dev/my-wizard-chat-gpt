@@ -323,4 +323,185 @@ Credentials are a set of identifying information used to verify the identity of 
  §§ 1000
 No content
 
+**********************************jlkjl
+
+**********************************
+
+asdflkjasdlkfj
+**********************************
+
+Nice to meet you.
+**********************************
+
+Hi there! How can I help you today?
+**********************************.T) {
+	fs := flag.NewFlagSet("test", 0)
+	fs.Parse([]string{"-logtostderr", "true", "-v=2"})
+
+	config := basic_config.NewConfig("")
+	config.AddFlags(fs)
+	assert.Equal(t, true, config.LogToStderr, "unexpected LogToStderr value")
+	assert.Equal(t, 2, int(config.VLevel), "unexpected VLevel value")
+}
+**********************************.T) {
+	input := int32(129)
+	expectedResult := int32(68)
+	result := jumpingOnClouds([]int32{0, 0, 1, 0, 0, 1, 0}, input)
+
+	if expectedResult != result {
+		t.Errorf("Result %v does not match expected result %v", result, expectedResult)
+	}
+}
+
+func TestJumpingOnCloudsCase1(t *testing.T) {
+	input := int32(7)
+	expectedResult := int32(3)
+	result := jumpingOnClouds([]int32{0, 0, 1, 0, 0, 1, 0}, input)
+
+	if expectedResult != result {
+		t.Errorf("Result %v does not match expected result %v", result, expectedResult)
+	}
+}
+
+func TestJumpingOnCloudsCase2(t *testing.T) {
+	input := int32(6)
+	expectedResult := int32(2)
+	result := jumpingOnClouds([]int32{0, 0, 0, 0, 1, 0}, input)
+
+	if expectedResult != result {
+		t.Errorf("Result %v does not match expected result %v", result, expectedResult)
+	}
+}
+**********************************​
+
+State responsibility is a legal concept under international law which holds a state accountable for any wrongful acts within or outside its boundaries committed by a state or people acting on behalf of the state. A state may be held responsible for violations of international law, human rights abuses, occupation of foreign territories, genocides, use of force against another state, or non-compliance with treaty obligations. States may also be held liable in tort law and civil suits, where they are obligated to compensate individuals or other states for damages caused by their actions.
+********************************** for the performance of the activities in
+
+question. (b) Each federal agency shall promptly notify users
+
+of any non-federal facility with which the agency proposes to
+
+enter into an agreement for the performance of activities and
+
+shall provide an opportunity for public comment thereon. The
+
+agency shall take into account such comments before entering
+
+into such an agreement.
+
+2.13 Assignment of responsibility. Each Federal agency shall
+
+assign responsibility for the performance of each activity or
+
+subactivity performed by a non-federal facility to an
+
+appropriately qualified Federal officer or employee and shall
+
+ensure that adequate supervision is provided by such officer or
+
+employee.
+
+2.14 Facility audit. (a) Each Federal agency shall, at least
+
+annually, review and audit the performance of each non-federal
+
+facility to which it has assigned responsibility for any
+
+activity or subactivity. Such review and audit shall include
+
+inspection of the facility and relevant records; verification of
+
+conformance to applicable laws, regulations, standards, and
+
+other requirements relating to the performance of the activity
+
+or subactivity, including the timely delivery of services; and
+
+verification of other matters as appropriate. (b) Each Federal
+
+agency shall take corrective action where necessary in the event
+
+of any deficiency found in connection with such review and
+
+audit.
+
+2.15 Inspection of non-federal facilities. Each Federal agency
+
+shall carry out inspections of non-federal facilities from time
+
+to time as appropriate in order to ensure compliance with all
+
+applicable laws, regulations, standards, and other requirements
+
+relating to the performance of activities or subactivities.
+
+2.16 Unauthorized use or disclosure of information or material.
+
+(a) A Federal agency shall take appropriate steps to ensure that
+
+all information or material obtained by a non-federal facility
+
+in the course of performing activities or subactivities under an
+
+agreement between the agency and the facility is not used or
+
+disclosed in any manner contrary to applicable laws and
+
+regulations. (b) If a Federal agency determines that any
+
+unauthorized use or disclosure of information or material
+
+obtained by a non-federal facility has occurred, the agency
+
+
+**********************************
+
+In the morning sky so bright,
+The sun looks down and casts its light.
+It's warmth and beauty make us smile,
+This glorious star is truly divine.
+
+And in the darkness of the night,
+We can still feel its gentle light.
+Its calming energy is a gift,
+That helps us through life's moments adrift.
+
+The sun is so beautiful and true,
+It brings us joy when we are blue.
+Its power we can never ignore,
+For it gives our world so much more.
+**********************************
+
+Oh sweet sun, how you shine so bright;
+Your golden rays make everything bright;
+You lift our spirits and nourish our souls,
+As if to warm us where we stand.
+
+Your life-giving energy sustains us all,
+It's like a magical, life-force ball.
+
+Your light never fades or dims,
+Your presence creates hope for those within.
+
+When the darkness of night slowly fades away,
+You appear in the sky and start a brand new day.
+
+Oh precious sun, your beauty is unrivaled and true,
+We celebrate you and all that you do!
+**********************************
+
+Moon so bright night and day, 
+Shining its light across the way. 
+Each night it rises so high, 
+Illuminating the darkened sky. 
+
+It brings forth a peaceful calm, 
+Gleaming against its silver palm. 
+Reflecting the stars in its glow, 
+The sky will forever show. 
+
+The Moon's waxing and waning each month, 
+With a beauty that sounds like a myth. 
+A symbol of hope, pure and bright, 
+Lighting our world both dark and light.
 **********************************
