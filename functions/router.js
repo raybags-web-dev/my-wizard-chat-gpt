@@ -85,7 +85,6 @@ function AskGPT (app) {
 function GetPaginatedResults (app) {
   app.get(
     '/raybags/v1/wizard/data',
-    cache('1 minutes'),
     asyncMiddleware(async (req, res) => {
       try {
         if (req.query.page <= '0') throw new Error(`Page can't be 0`)
@@ -129,7 +128,6 @@ function GetPaginatedResults (app) {
 function GetAll (app) {
   app.get(
     '/raybags/v1/wizard/data-all',
-    cache('1 minutes'),
     asyncMiddleware(async (req, res) => {
       let response = await GPT_RESPONSE.find({}).sort({ createdAt: 1 })
       if (response.length === 0)

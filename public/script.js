@@ -238,13 +238,6 @@ const handleSubmit = async e => {
     )
   }
 }
-textArea.addEventListener('keyup', async e => {
-  try {
-    if (e.key === 'Enter') handleSubmit(e)
-  } catch (error) {
-    console.info(`Error: ${error.message}`)
-  }
-})
 async function postFetch (question) {
   if (!question || question == '')
     return showNotification(
@@ -612,7 +605,8 @@ async function showNotification (title, body, anchorrr) {
   if (
     title.includes('Success') ||
     title.includes('End of') ||
-    title.includes('Authorised')
+    title.includes('Authorised') ||
+    title.includes('Item deleted')
   ) {
     notificationsDiv.classList.add('alert', 'alert-success')
   } else if (
@@ -634,7 +628,8 @@ async function showNotification (title, body, anchorrr) {
     'fade',
     'show',
     'shadow-lg',
-    'rounded'
+    'rounded',
+    'pl-1'
   )
   notificationsDiv.style.cssText = 'width:fit-content;backdrop-filter:blur(3px)'
   const titleElement = document.createElement('h6')
@@ -645,15 +640,16 @@ async function showNotification (title, body, anchorrr) {
 
   const bodyElement = document.createElement('p')
   bodyElement.classList.add('alert-body')
-  bodyElement.textContent = body //===============
+  bodyElement.textContent = body
   bodyElement.style.cssText = 'font-size: 15px;'
 
-  const hrElement2 = document.createElement('hr')
+  // const timestamp = new Date().getTime()
+  // const numericTimestamp = timestamp.toString().replace(/\D/g, '')
 
-  const timestampElement = document.createElement('p')
-  timestampElement.classList.add('mb-0', 'float-start')
-  timestampElement.textContent = new Date().toISOString()
-  timestampElement.style.cssText = 'font-size: 13px; color:gray;'
+  // const timestampElement = document.createElement('p')
+  // timestampElement.classList.add('mb-0', 'float-end')
+  // timestampElement.textContent = `[${numericTimestamp}]`
+  // timestampElement.style.cssText = 'font-size: 13px; color:gray;'
 
   const buttonElement = document.createElement('button')
   buttonElement.type = 'button'
@@ -666,8 +662,7 @@ async function showNotification (title, body, anchorrr) {
   notificationsDiv.append(
     titleElement,
     bodyElement,
-    hrElement2,
-    timestampElement,
+    // timestampElement,
     buttonElement
   )
   const container = document.querySelector(`${anchorrr}`)
@@ -914,8 +909,17 @@ function checkVisited () {
       localStorage.setItem('userEmail', email)
       localStorage.setItem('userPassword', password)
       loginFormContainer.remove()
-      setTimeout(() => localStorage.setItem('visited', true), 2000)
-      document.getElementById('read_more').click()
+      handlerMainLoader(false)
+
+      setTimeout(async () => {
+        localStorage.setItem('visited', true)
+        handlerMainLoader(true)
+        showNotification('Success', `Login Successful`, '#nav_barrr')
+      }, 2500)
+
+      setTimeout(async () => {
+        document.getElementById('read_more').click()
+      }, 8000)
     })
 
     document.body.appendChild(loginFormContainer)

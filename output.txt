@@ -505,3 +505,59 @@ With a beauty that sounds like a myth.
 A symbol of hope, pure and bright, 
 Lighting our world both dark and light.
 **********************************
+
+Amoeba is a single-celled organism belonging to the family Amoebidae. It is one type of protozoa and has no fixed shape; instead, its body constantly changes as it moves by extending and retracting its pseudopods, or temporary projections of its cytoplasm. The amoeba feeds by engulfing food particles in its surrounding environment.
+**********************************
+
+An amoeba is a single-celled organism. It is a type of protist, which is an organism that is not a plant, animal, or fungus but has some characteristics of all three. Amoebas are found in aquatic environments and are often studied in science classes and laboratories. They move around by extending temporary projections called pseudopods and use them to capture food and engulf it.
+**********************************
+
+Fluxed is a term used to describe the process of combining two metals by heating them together so that they melt and form a new alloy. This is usually done when materials need to be welded or soldered together.
+**********************************
+
+Fluxed is a term used in welding and metal fabrication that refers to the process of melting down, or fluxing, metal or metal alloys in order to join them together. The flux, usually an acid or flux paste, helps to clean the surfaces that are to be joined and can also act as a liquid barrier between them, allowing them to form a strong bond.
+**********************************
+
+Assimilation is the process by which a minority group or culture slowly adopts the customs, language, and beliefs of the majority or dominant culture in a particular society. It can be viewed as either a positive or negative process, depending on the individual or group's perspective.
+**********************************
+
+Assimilation is the process by which a minority group gradually adopts the customs and attitudes of the dominant culture, modifying its own beliefs and practices to fit in with the majority. Generally, it occurs when members of a minority group adopt the language, values, norms, and behavior of the dominant culture, often at the expense of their own cultural heritage.
+**********************************
+
+A pandemic is an outbreak of a disease that spreads across multiple countries or continents, affecting a large number of people. It is different from an epidemic, which is an outbreak of a disease that affects a smaller region or population.
+**********************************
+
+A pandemic is a global health event in which a new disease spreads quickly and affects a large number of people across many countries. Pandemics can have devastating consequences as they spread quickly, potentially infecting millions of people and disrupting economies and social activity.
+**********************************
+
+A pandemic is a global epidemic of an infectious disease that spreads over multiple countries or continents and affects an exceptionally large number of people.
+**********************************
+
+A pandemic is an outbreak of a disease that affects a large number of people across multiple countries and continents, usually spreading very rapidly. A pandemic can cause significant numbers of illnesses and deaths for an extended period of time.
+**********************************
+
+James Gunn is an American filmmaker, actor, and writer. He is best known for writing and directing the Marvel Cinematic Universe films Guardians of the Galaxy (2014) and Guardians of the Galaxy Vol. 2 (2017), and The Suicide Squad (2021). He has also written several other films, including Super (2010), Slither (2006) and Dawn of the Dead (2004).
+**********************************
+
+Marvel is a media franchise created by Marvel Entertainment. It is best known for its comic books and films featuring iconic characters such as Spider-Man, Iron Man, Captain America and the Avengers. Marvel has also created video games, television shows, toys and clothing. Its stories span various genres such as science fiction, fantasy, horror, crime and action.
+**********************************
+
+Marvel is a brand name associated with comics, movies, video games, apparel and other entertainment media featuring characters and stories owned by Marvel Entertainment, LLC. Marvel characters and stories have been beloved by generations of fans since the company first started in 1939. Marvel has produced some of the most iconic superheroes and supervillains of all time, such as Iron Man, Captain America, Spider-Man, The Incredible Hulk, Doctor Strange, Black Panther, Thor, and many more.
+**********************************
+Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy, and HTTP cache. It is one of the most popular web servers in the world and is responsible for hosting some of the largest and highest-traffic sites on the Internet. It is open source software, released under the terms of a BSD-like license.
+**********************************
+
+AWS CodeBuild is a fully managed build service in the cloud. It compiles source code, runs tests, and produces packages that are ready for deployment. CodeBuild eliminates the need to set up complex build environments, allowing developers to focus on their code and quickly produce software packages of any size. CodeBuild scales automatically to meet the build needs of your project and integrates with popular source control services such as AWS CodeCommit, GitHub, and BitBucket.
+**********************************?
+
+Amazon EKS (Elastic Kubernetes Service) is a managed service that makes it easy to deploy, manage, and scale containerized applications using Kubernetes on AWS. Amazon EKS runs the Kubernetes management infrastructure for you across multiple AWS availability zones to eliminate a single point of failure. Amazon EKS is certified Kubernetes conformant, so existing applications running on upstream Kubernetes are compatible with Amazon EKS.
+**********************************
+
+EKS (Elastic Kubernetes Service) is a managed service of the open-source container orchestration system Kubernetes. It automates the deployment, scaling, and management of applications in a Kubernetes cluster, making it easier to run applications on the AWS cloud platform. As a result, users need not worry about the complexities of managing Kubernetes clusters, such as installation, configuration, or upgrades. With EKS, customers can quickly deploy and manage containers in an existing AWS environment.
+**********************************
+
+It really depends on the situation. If you are trying to store data in which the order of the elements is not important, then a Set is usually a better choice since the elements in a Set are stored in an unordered fashion. However, if you need to access objects based on their unique identifiers, a Map can be a better option.
+**********************************
+
+Wokeness is a term used to describe awareness and understanding of social, racial and economic injustice. It is an attitude that encourages people to speak out against such injustice, as well as strive toward greater social justice and equity in all aspects of life.
+**********************************

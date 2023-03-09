@@ -73,11 +73,23 @@
 
         #notifications {
             position: fixed !important;
-            top: 1% !important;
+            top: 0% !important;
             left: 50% !important;
             transform: translate(-50%, 1%) !important;
             z-index: 2000 !important;
-            min-width: 60%;
+            min-width: 30%;
+            margin-top: -10%;
+            padding-bottom: 0% !important;
+            padding-top: .5rem !important;
+            transition: all .2s;
+            animation: snimate_notific 1 forwards ease-out .2s;
+        }
+
+        @keyframes snimate_notific {
+            to {
+                margin-top: 0%;
+                opacity: 1 !important;
+            }
         }
 
         #login_page {
@@ -172,9 +184,9 @@
 
             <div class="right-container overflow-auto position-relative">
                 <span id="__db_loader" class="loader_2 position-sticky sticky-sm-top"></span>
-                <div id="BTN1" class="d-grid position-sticky sticky-lg-top gap-3 d-md-flex justify-content-md-center">
-                    <button type="button" class="btn  btn-sm get-previous hide">Previous page</button>
-                    <button type="button" class="btn  btn-sm get-next hide">Next page</button>
+                <div id="BTN1" class="d-grid position-sticky sticky-lg-top gap-3 d-md-flex justify-content-md-around">
+                    <button type="button" class="btn  btn-sm get-previous hide float-start">Previous page</button>
+                    <button type="button" class="btn  btn-sm get-next hide float-end">Next page</button>
                 </div>
                 <div class="alert alert-secondary inner_right_container shadow-lg  mb-0 bg-body rounded">
                 </div>
