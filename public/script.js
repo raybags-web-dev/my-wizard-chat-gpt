@@ -400,7 +400,7 @@ async function deleteDBItem (e) {
   if (!myToken) {
     GET_loader(loading_1, true)
     return showNotification(
-      `Warning! Not authorized.`,
+      `Warning! Not authenticated.`,
       'Please authenticate. You can click the button below on your right!',
       '#nav_barrr'
     )
@@ -540,7 +540,7 @@ async function searchDatabase (e) {
 
   if (!responseData.length) {
     outRightContainer.classList.toggle('hide')
-    return showNotification('Warning.', 'Oops nothing found!', '#nav_barrr')
+    return showNotification('Warning.', 'Nothing found!', '#nav_barrr')
   }
 
   let count = 0
@@ -615,7 +615,7 @@ async function showNotification (title, body, anchorrr) {
     title.includes('Oops')
   ) {
     notificationsDiv.classList.add('alert', 'alert-warning')
-  } else if (title.includes('Error')) {
+  } else if (title.includes('Error') || title.includes('Unauthorized')) {
     notificationsDiv.classList.add('alert', 'alert-danger')
   } else if (title.includes('Database empty') || title.includes('Status')) {
     notificationsDiv.classList.add('alert', 'alert-info')

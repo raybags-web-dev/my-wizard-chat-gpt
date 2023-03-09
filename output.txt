@@ -561,3 +561,6 @@ It really depends on the situation. If you are trying to store data in which the
 
 Wokeness is a term used to describe awareness and understanding of social, racial and economic injustice. It is an attitude that encourages people to speak out against such injustice, as well as strive toward greater social justice and equity in all aspects of life.
 **********************************
+
+Singularity is a concept in physics, philosophy, and technology that refers to a state or point at which certain physical or temporal properties become infinite or indeterminate. It can also refer to a hypothetical event in which a universe or a civilization undergoes a drastic and irreversible change. In the technological sense, singularity often refers to the development of artificial general intelligence -- when machines surpass humans in intelligence and other capabilities.
+**********************************
