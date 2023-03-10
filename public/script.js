@@ -888,7 +888,7 @@ function checkVisited () {
           <label class="form-check-label" for="exampleCheck1">Purge my credentials after this session</label>
       </div>
       <div class="d-grid gap-2">
-          <button id="loginFORM" class="btn text-white" type="submit" disabled>Login</button>
+          <button id="loginFORM" class="btn text-white visitor_login" type="submit" disabled>Login</button>
       </div>
     </form>`
 
