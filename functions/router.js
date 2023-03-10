@@ -125,18 +125,19 @@ function GetPaginatedResults (app) {
     })
   )
 }
+
 function GetAll (app) {
   app.get(
     '/raybags/v1/wizard/data-all',
     asyncMiddleware(async (req, res) => {
-      let response = await GPT_RESPONSE.find({}).sort({ createdAt: 1 })
+      let response = await GPT_RESPONSE.find({}, { token: 0 }).sort({
+        createdAt: 1
+      })
       if (response.length === 0)
         return res.status(404).json('Sorry I have nothing for you!')
-
       let page = parseInt(req.query.page) || 1
       let perPage = parseInt(req.query.perPage) || 10
       let totalPages = Math.ceil(response.length / perPage)
-
       res.status(200).json({
         totalPages: totalPages,
         totalCount: response.length,
@@ -146,6 +147,7 @@ function GetAll (app) {
     })
   )
 }
+
 function FindOneItem (app) {
   app.get(
     '/raybags/v1/wizard/item/:id',

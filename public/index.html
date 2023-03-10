@@ -127,7 +127,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-transparent">
         <div id="nav_barrr" class="container">
             <a class="navbar-brand" href="#">
                 <img src="https://github.com/raybags-web-dev/image_base/blob/master/images/logo/logo9_5_21257.jpeg?raw=true"
@@ -146,8 +146,9 @@
     <div id="main-page-loader" class="d-flex align-items-center justify-content-center"
         style="position:fixed; backdrop-filter:blur(1px); top:0; left:0; right:0; bottom:0;z-index:3000">
         <div class="d-flex">
-            <h3 id="my_text" style="position:absolute;top:50%;opacity:.7;left:50%;transform:translate(-50%, -50%);">
-                Loading
+            <h3 class="fs-4" id="my_text"
+                style="position:absolute;top:50%;opacity:.7;left:50%;transform:translate(-50%, -50%);">
+                Processing...
             </h3>
             <span class="loader" style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);"></span>
         </div>
@@ -184,9 +185,11 @@
 
             <div class="right-container overflow-auto position-relative">
                 <span id="__db_loader" class="loader_2 position-sticky sticky-sm-top"></span>
-                <div id="BTN1" class="d-grid position-sticky sticky-lg-top gap-3 d-md-flex justify-content-md-around">
-                    <button type="button" class="btn  btn-sm get-previous hide float-start">Previous page</button>
-                    <button type="button" class="btn  btn-sm get-next hide float-end">Next page</button>
+                <div id="BTN1"
+                    class="d-grid position-sticky sticky-lg-top p-1 gap-3 d-md-flex justify-content-md-around">
+                    <button type="button" class="btn btn-lg get-previous float-start ">Previous
+                        page</button>
+                    <button type="button" class="btn  btn-lg get-next float-end">Next page</button>
                 </div>
                 <div class="alert alert-secondary inner_right_container shadow-lg  mb-0 bg-body rounded">
                 </div>

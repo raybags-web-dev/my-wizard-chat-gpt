@@ -564,3 +564,9 @@ Wokeness is a term used to describe awareness and understanding of social, racia
 
 Singularity is a concept in physics, philosophy, and technology that refers to a state or point at which certain physical or temporal properties become infinite or indeterminate. It can also refer to a hypothetical event in which a universe or a civilization undergoes a drastic and irreversible change. In the technological sense, singularity often refers to the development of artificial general intelligence -- when machines surpass humans in intelligence and other capabilities.
 **********************************
+
+Factory functions are functions that return objects which can then be used to create new instances of the object. They are different from other types of functions in that they don't just return a value, but an object that can be used to create more objects.
+**********************************. 
+
+function GetAll (app) {   app.get(     '/raybags/v1/wizard/data-all',     asyncMiddleware(async (req, res) => {       let response = await GPT_RESPONSE.find({}, {token: 0}) .sort({ createdAt: 1 })       if (response.length === 0)         return res.status(404).json('Sorry I have nothing for you!')        let page = parseInt(req.query.page) || 1       let perPage = parseInt(req.query.perPage) || 10       let totalPages = Math.ceil(response.length / perPage)        res.status(200).json({         totalPages: totalPages,         totalCount: response.length,         data: response       })       return response     })   ) }
+**********************************

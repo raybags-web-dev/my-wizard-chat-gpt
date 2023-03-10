@@ -304,7 +304,6 @@ button:active,
 #BTN1 {
     min-height: 5%;
     position: relative;
-    background-color: rgb(255, 255, 255, .7);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 

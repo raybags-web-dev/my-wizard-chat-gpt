@@ -152,10 +152,10 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
     // Update pagination buttons based on current page and total number of items
     function updatePaginationButtons () {
       const maxPage = Math.ceil(totalItems / ITEMS_PER_PAGE)
-      previousButton.classList.toggle('hide', currentPage === 1)
-      nextButton.classList.toggle('hide', currentPage === maxPage)
+      previousButton.classList.toggle('disabled', currentPage === 1)
+      nextButton.classList.toggle('disabled', currentPage === maxPage)
       previousButton.classList.toggle(
-        'hide_partial',
+        'disabled',
         currentPage === 1 || totalItems <= ITEMS_PER_PAGE
       )
     }
@@ -193,12 +193,12 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
         })
     }
     // Hide "previous" button on initial page
-    previousButton.classList.add('hide')
+    previousButton.classList.add('disabled')
     // Show/hide pagination buttons based on total number of items
     if (totalItems <= ITEMS_PER_PAGE) {
-      nextButton.classList.add('hide')
+      nextButton.classList.add('disabled')
     } else {
-      nextButton.classList.remove('hide')
+      nextButton.classList.remove('disabled')
     }
     // Update pagination buttons based on initial state
     updatePaginationButtons()
@@ -721,6 +721,7 @@ function handlerMainLoader (isStuffDone) {
     mainLoaderRing.classList.remove('hide')
   }
 }
+
 async function handleNextPrev () {
   const myToken = localStorage.getItem('token')
   const options = {
@@ -739,7 +740,7 @@ async function handleNextPrev () {
   handleNextPrevUI(responseData[currentItemIndex])
   // Disable prev button when showing first item
   if (currentItemIndex === 0) {
-    CarucelPrevButton.disabled = true
+    CarucelPrevButton.classList.add('disabled')
   }
   CarucelNextButton.addEventListener('click', async () => {
     if (currentItemIndex < responseData.length - 1) {
@@ -747,11 +748,11 @@ async function handleNextPrev () {
       await handleNextPrevUI(responseData[currentItemIndex])
       // Enable prev button when moving away from first item
       if (currentItemIndex === 1) {
-        CarucelPrevButton.disabled = false
+        CarucelPrevButton.classList.remove('disabled')
       }
       // Hide next button when showing last item
       if (currentItemIndex === responseData.length - 1) {
-        CarucelNextButton.style.display = 'none'
+        CarucelNextButton.classList.add('disabled')
       }
     }
   })
@@ -761,11 +762,11 @@ async function handleNextPrev () {
       await handleNextPrevUI(responseData[currentItemIndex])
       // Enable next button when moving away from last item
       if (currentItemIndex === responseData.length - 2) {
-        CarucelNextButton.style.display = 'block'
+        CarucelNextButton.classList.remove('disabled')
       }
       // Hide prev button when showing first item
       if (currentItemIndex === 0) {
-        CarucelPrevButton.disabled = true
+        CarucelPrevButton.classList.add('disabled')
       }
     }
   })
