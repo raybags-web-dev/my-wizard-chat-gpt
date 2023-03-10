@@ -570,3 +570,122 @@ Factory functions are functions that return objects which can then be used to cr
 
 function GetAll (app) {   app.get(     '/raybags/v1/wizard/data-all',     asyncMiddleware(async (req, res) => {       let response = await GPT_RESPONSE.find({}, {token: 0}) .sort({ createdAt: 1 })       if (response.length === 0)         return res.status(404).json('Sorry I have nothing for you!')        let page = parseInt(req.query.page) || 1       let perPage = parseInt(req.query.perPage) || 10       let totalPages = Math.ceil(response.length / perPage)        res.status(200).json({         totalPages: totalPages,         totalCount: response.length,         data: response       })       return response     })   ) }
 **********************************
+
+1. Avatar (2009)
+2. Avengers: Endgame (2019)
+3. Titanic (1997)
+4. Star Wars: The Force Awakens (2015)
+5. Avengers: Infinity War (2018)
+6. Jurassic World (2015)
+7. The Lion King (2019)
+8. Furious 7 (2015)
+9. Harry Potter and the Deathly Hallows – Part 2 (2011)
+10. Black Panther (2018)
+**********************************
+
+Super Mario 3D World + Bowser's Fury is currently scheduled to be released on February 12, 2021 for Nintendo Switch.
+**********************************
+
+Mythology is a collection of traditional stories or beliefs that are related to a particular group of people, such as an ethnic group or nation. These stories can include creation stories, tales of heroic adventures, explanations of natural phenomena, and descriptions of the lives and customs of a people.
+**********************************
+
+There are 195 countries in the world, according to the United Nations. However, some sources list more, depending on how they define a country.
+**********************************
+
+The United States of Africa is not a current political entity, but rather an idea to create a unified African union. There are proposals for the creation of a Union of African States, similar to the European Union, with a common currency, military, and immigration policies. The idea has been around since the 1950s and has been discussed by African leaders and advocacy groups.
+**********************************
+
+Dexter is an American television drama series starring Michael C. Hall as Dexter Morgan. The show revolves around Dexter (Hall), a Miami-based blood-spatter analyst for the Miami PD who leads a secret double life as a vigilante serial killer.
+
+The highest rated episode of Dexter is "The Getaway" which aired in Season 8 and earned 9.4 stars out of 10 on IMDb.
+**********************************
+
+FADE IN:
+
+EXT. ANTARCTICA -- DAY
+
+A vast expanse of snow and ice stretches out to the horizon. A
+
+small plane is flying overhead in the crisp blue sky.
+
+INT. PLANE CABIN -- DAY
+
+A group of scientists and researchers sit quietly, looking out
+
+the window at the stunning landscape below. They look tense and
+
+excited.
+
+EXT. ANTARCTICA -- DAY
+
+The plane zooms past a mountain range and descends, coming in
+
+for a landing at a heliport.
+
+EXT. HELIPORT -- DAY
+
+The plane lands, and the passengers disembark. They're met by a
+
+group of military personnel, who lead them towards a large
+
+helicopter.
+
+INT. HELICOPTER -- DAY
+
+The passengers are now in the helicopter, which takes off,
+
+heading away from the heliport. The occupants look out the
+
+window nervously.
+
+EXT. JUNGLE - DAY
+
+The helicopter flies low over the jungle, heading for its
+
+destination.
+
+EXT. ANCIENT RUINS -- DAY
+
+The helicopter lands in the middle of an ancient ruin. The
+
+passengers disembark, looking around with awe and mixed emotions.
+
+The military personnel unload a large crate from the helicopter
+
+and set it down carefully near the ruins.
+
+EXT. RUINS -- DAY
+
+The crate is opened, revealing a mysterious alien object. Everyone
+
+gathers around to study it.
+
+Suddenly, a loud roar echoes across the ruins. Everyone looks up,
+
+scanning the sky. A spaceship appears, hovering above them.
+
+EXT. SPACESHIP - DAY
+
+The spaceship opens up, revealing two alien hunters: an Alien and
+
+a Predator. The Aliens and Predators start to fight, tearing each
+
+other apart in an epic battle.
+
+EXT. RUINS - DAY
+
+The humans watch in terror as the two aliens fight. Eventually,
+
+the Alien defeats the Predator and turns its attention to the
+
+humans.
+
+EXT. JUNGLE -- DAY
+
+The alien chases the humans through the jungle, killing any that
+
+it catches. The survivors escape into a cave, but the alien follows
+**********************************
+
+Weiland is an American rock singer, songwriter and musician best known as the lead singer of the hard rock band Stone Temple Pilots.
+**********************************

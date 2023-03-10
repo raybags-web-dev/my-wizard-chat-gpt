@@ -102,7 +102,7 @@
             min-width: 100vw;
             min-height: 100vh;
             display: flex;
-            background: rgb(255, 255, 255, .1) !important;
+            background: rgba(0, 0, 0, 0.2) !important;
             justify-content: center;
             align-items: center;
         }
@@ -116,10 +116,58 @@
             min-height: 50%;
             border-radius: .4rem;
             backdrop-filter: blur(10px);
-            background: rgb(255, 255, 255, .3) !important;
             transform: translate(-50%, -50%) !important;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        }
 
+        #login_page h4 {
+            opacity: .5;
+            text-transform: capitalize;
+            font-style: oblique;
+            font-weight: 300;
+        }
+
+        #login_page form .mb-3 input {
+            border: 2px solid transparent;
+            border-bottom-color: gray;
+            color: white;
+        }
+
+        #login_page form .mb-3 input:focus {
+            border-bottom-color: green;
+        }
+
+        .main-background {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .main-background::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-image: linear-gradient(70deg, #29323c 0%, rgb(72, 85, 99, .2) 100%);
+        }
+
+        .main-background img {
+            object-fit: cover;
+            min-width: 100% !important;
+            height: 100% !important;
+            filter: blur(4px);
+        }
+
+        #notifications {
+            background-color: rgb(255, 255, 255, .3);
         }
     </style>
     <link rel="stylesheet" href="./styles.css">
@@ -127,53 +175,55 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-transparent">
+    <div class="main-background">
+        <img src="./maiin_bg.jpeg" alt="...">
+    </div>
+    <nav class="navbar navbar-light bg-transparent position-sticky sticky-lg-top">
         <div id="nav_barrr" class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand text-white fst-italic" href="#">
                 <img src="https://github.com/raybags-web-dev/image_base/blob/master/images/logo/logo9_5_21257.jpeg?raw=true"
                     alt="" width=40" height="40"
                     style="border-radius: 50%; border: 2px solid rgb(183, 183, 183); padding: .2rem"
                     class="d-inline-block align-text-top"> &nbsp; WIZARD TRACKER
             </a>
             <form id="search_form" class="d-flex">
-                <input id="seachhhh" autocomplete="off" class="form-control text-black me-2 shadow-lg bg-body rounded"
+                <input id="seachhhh" autocomplete="off"
+                    class="form-control me-2 text-white shadow-lg bg-transparent rounded"
                     style="border-color:transparent;" type="search" placeholder="Search..." aria-label="Search">
-                <button id="searchBTN" class="btn btn-outline-secondary shadow-lg bg-body rounded"
+                <button id="searchBTN" class="btn btn-outline-secondary text-white shadow-lg bg-transparent rounded"
                     type="submit">Send</button>
             </form>
         </div>
     </nav>
-    <div id="main-page-loader" class="d-flex align-items-center justify-content-center"
+    <div id="main-page-loader" class="d-flex align-items-center text-white justify-content-center"
         style="position:fixed; backdrop-filter:blur(1px); top:0; left:0; right:0; bottom:0;z-index:3000">
         <div class="d-flex">
             <h3 class="fs-4" id="my_text"
                 style="position:absolute;top:50%;opacity:.7;left:50%;transform:translate(-50%, -50%);">
                 Processing...
             </h3>
-            <span class="loader" style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);"></span>
+            <span class="loader text-white"
+                style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);"></span>
         </div>
     </div>
 
     <div id="main-container" class="container container-fluid position-relative">
         <form class="submit_form mb-2">
             <input style="border-color:transparent;" autocomplete="off" name="prompt" id="my_input" type="text"
-                class="form-control mt-1" rows="2" placeholder="Type your question here..."></input>
+                class="form-control mt-1 text-white" rows="2" placeholder="Type your question here..."></input>
         </form>
         <div class="d-flex justify-content-between text-center">
-            <button id="submit_button"
-                style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
-                class="btn btn-secondary p-1   bg-body rounded btn-lg mx-1" type="submit">
+            <button id="submit_button" style="text-transform:uppercase;min-height:3rem;text-align:center;"
+                class="btn p-1 bg-transparent rounded btn-lg mx-1 text-white" type="submit">
                 submit Question
             </button>
-            <a id="read_more" type="button" class="btn btn-secondary lead"
-                style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
-                class="btn btn-secondary p-1 bg-body rounded btn-lg mx-1" data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop">
+            <button id="read_more" type="button" style="text-transform:uppercase;min-height:3rem;text-align:center;"
+                class="btn btn-secondary p-1 text-white text-center bg-transparent rounded btn-lg mx-1"
+                data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 how it works
-            </a>
-            <button id="access_btn"
-                style="text-transform: uppercase; min-height:3rem;text-align:center;border:4px solid transparent;"
-                class="btn btn-secondary p-1  bg-body rounded btn-lg mx-1" type="button">
+            </button>
+            <button id="access_btn" style="text-transform: uppercase; min-height:3rem;text-align:center;"
+                class="btn p-1  bg-trasparent rounded btn-lg mx-1 text-white" type="button">
                 authenticate
             </button>
         </div>
@@ -185,13 +235,12 @@
 
             <div class="right-container overflow-auto position-relative">
                 <span id="__db_loader" class="loader_2 position-sticky sticky-sm-top"></span>
-                <div id="BTN1"
-                    class="d-grid position-sticky sticky-lg-top p-1 gap-3 d-md-flex justify-content-md-around">
+                <div id="BTN1" class="d-grid position-sticky sticky-lg-top gap-3 d-md-flex justify-content-md-around">
                     <button type="button" class="btn btn-lg get-previous float-start ">Previous
                         page</button>
                     <button type="button" class="btn  btn-lg get-next float-end">Next page</button>
                 </div>
-                <div class="alert alert-secondary inner_right_container shadow-lg  mb-0 bg-body rounded">
+                <div class="alert inner_right_container shadow-lg">
                 </div>
             </div>
         </div>

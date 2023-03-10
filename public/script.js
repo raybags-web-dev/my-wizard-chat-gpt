@@ -36,14 +36,14 @@ function formatDate (timestamp) {
 }
 function QA_HTML (QB, RESPONSE, id) {
   return `
-    <div data-id="${id}" class="init-question-response shadow-lg p-2 mb-1 bg-body rounded">
+    <div data-id="${id}" class="init-question-response shadow-lg p-2 mb-1 bg-transparent rounded">
       <p class="init-question" style="position:relative;">
-      <img src="./images/face_1.png" style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem; border:2px solid transparent;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" alt="">
+      <img src="./images/face_1.png" style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem; border:2px solid transparent" alt="">
         ${QB}<br>
         <span class="link fs-6" style="opacity:0">${id}</span>
       </p>
-      <p class="init-response">
-      <img src="./images/bot.webp" style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem; border:2px solid transparent;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" alt="">
+      <p class="init-response text-white">
+      <img src="./images/bot.webp" style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem; border:2px solid transparent;" alt="">
         ${RESPONSE}<br>
         <span class="link" style="opacity:.5">${id}</span>
       </p>
@@ -51,7 +51,7 @@ function QA_HTML (QB, RESPONSE, id) {
 }
 function DB_QN_RES_HTML (question, response, id, created_at) {
   return `
-    <div data-id="${id}" class="db-question-response shadow-lg p-2 mb-1 bg-body rounded">
+    <div data-id="${id}" class="db-question-response shadow-lg p-2 mb-1 bg-transparent rounded">
       <p class="db-question qustion" data-id="${id}">
         ${question}<br>
         <span class="link fs-6" style="opacity:0">${id}</span>
@@ -66,7 +66,7 @@ function DB_QN_RES_HTML (question, response, id, created_at) {
 }
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
-    <div id="single_item" data-id="${item_id}"  class="card">
+    <div id="single_item" data-id="${item_id}"  class="card bg-transparent">
         <div class="card-header d-flex  justify-content-between">
             <p data-itemid="timestamp" class="link-success">${item_id}</p>
             <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>
@@ -81,8 +81,8 @@ function dbItem (item_id, quetion, response, createdAt, updatedAt) {
           <p data-time="db-modifiedAt" class="floadt-end updated-tm">Updated: ${updatedAt}</p>
         </div>
         <div data-buttons="carocel-btn-container" class="container-fluid d-flex  justify-content-between align-items-center single-carocel-btn" style="position:fixed;bottom:45%;left:50%;height:2rem;transform:translate(-50%, -50%);z-index:.01;">
-          <a data-check="pre_v" id="prev-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-black float-start prev">&#60;</a>
-          <a data-check="nex_v" id="next-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-black float-end next">&#62;</a>
+          <a data-check="pre_v" id="prev-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-white float-start prev">&#60;</a>
+          <a data-check="nex_v" id="next-btn" style="z-index:1000;font-size:4rem;cursor:pointer;" class="text-white float-end next">&#62;</a>
         </div>
     </div>
     `
@@ -173,7 +173,8 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
             'shadow-lg',
             'p-2',
             'mb-1',
-            'bg-body',
+            'bg-transparent',
+            'text-white',
             'rounded'
           )
           dbQuestionResponseElement.innerHTML = `
@@ -227,7 +228,7 @@ const handleSubmit = async e => {
 
     sendButton.innerText = 'Processing...'
     await postFetch(question_text)
-    sendButton.innerText = 'Submit'
+    sendButton.innerText = 'submit question'
     form.reset()
   } catch (e) {
     console.log('An error occurred:', e.message)
@@ -643,14 +644,6 @@ async function showNotification (title, body, anchorrr) {
   bodyElement.textContent = body
   bodyElement.style.cssText = 'font-size: 15px;'
 
-  // const timestamp = new Date().getTime()
-  // const numericTimestamp = timestamp.toString().replace(/\D/g, '')
-
-  // const timestampElement = document.createElement('p')
-  // timestampElement.classList.add('mb-0', 'float-end')
-  // timestampElement.textContent = `[${numericTimestamp}]`
-  // timestampElement.style.cssText = 'font-size: 13px; color:gray;'
-
   const buttonElement = document.createElement('button')
   buttonElement.type = 'button'
   buttonElement.style.cssText =
@@ -795,7 +788,7 @@ async function handleNextPrevUI (item) {
 function showModal () {
   const modal = document.createElement('div')
   modal.style.scrollBehavior = 'smooth'
-  modal.classList.add('modal', 'fade')
+  modal.classList.add('modal', 'fade', 'bg-transparent', 'text-white')
   modal.id = 'staticBackdrop'
   modal.setAttribute('data-bs-backdrop', 'static')
   modal.setAttribute('data-bs-keyboard', 'false')
@@ -804,9 +797,13 @@ function showModal () {
   modal.setAttribute('aria-hidden', 'true')
 
   const modalDialog = document.createElement('div')
-  modalDialog.classList.add('modal-dialog', 'modal-dialog-scrollable')
+  modalDialog.classList.add(
+    'modal-dialog',
+    'modal-dialog-scrollable',
+    'bg-transparent'
+  )
   const modalContent = document.createElement('div')
-  modalContent.classList.add('modal-content')
+  modalContent.classList.add('modal-content', 'bg-transparent', 'dialog-styles')
   const modalHeader = document.createElement('div')
   modalHeader.classList.add('modal-header')
   const modalTitle = document.createElement('h5')
@@ -817,9 +814,10 @@ function showModal () {
   closeButton.classList.add('btn-close')
   closeButton.setAttribute('data-bs-dismiss', 'modal')
   closeButton.setAttribute('aria-label', 'Close')
+  closeButton.style.cssText = 'background-color:white !important;'
   const modalBody = document.createElement('div')
   modalBody.classList.add('modal-body')
-  modalBody.innerHTML = `<ul class="lead">
+  modalBody.innerHTML = `<ul class="lead bg-transparent">
   <li>The wizard tracker API is a simple API interface that allows you to ask GPT-5 questions and get a response locally in your dev-environment. It is powered by Express.js and uses custom functions that define routes for an Express.js server.</li><br />
   <li>The API has several endpoints that can be accessed using different HTTP methods. The first endpoint is /api/auth which is a POST request used to generate a JSON web token (JWT) using the authorization header of the request. The second endpoint is /raybags/v1/wizard/ask-me which is a POST request that validates a JWT using the authorization header, calls the GPT_5 function with the question from the request body, saves the result to the GPT_RESPONSE model in MongoDB, and returns the response. The third endpoint is /raybags/v1/wizard/data which is a GET request used to retrieve paginated results from the GPT_RESPONSE model. This endpoint can also retrieve all the results or a single item based on its ID. The fourth endpoint is /raybags/v1/wizard/delete-item/:id which is a DELETE request used to delete a single item from the GPT_RESPONSE model</li> <br />
   <li>To use the API, you need to clone the repository and install the dependencies using npm install. After that, start the server using npm start and test the endpoints using a tool like Postman or curl.</li> <br />
@@ -840,10 +838,17 @@ function showModal () {
   <li>That's it! You can use a tool like Postman or cURL to test the API endpoints.</li>
   </ol>`
   const modalFooter = document.createElement('div')
-  modalFooter.classList.add('modal-footer')
+  modalFooter.classList.add('modal-footer', 'bg-trasparent', 'text-white')
   const closeButton2 = document.createElement('button')
-  closeButton2.classList.add('btn', 'btn-secondary')
+  closeButton2.classList.add(
+    'btn',
+    'btn-transparent',
+    'text-white',
+    'border',
+    'border-secondary'
+  )
   closeButton2.setAttribute('data-bs-dismiss', 'modal')
+  closeButton2.style.cssText = 'opacity:.7'
   closeButton2.innerText = 'Understood'
   // add components to the modal
   modalHeader.appendChild(modalTitle)
@@ -864,14 +869,15 @@ function checkVisited () {
     const loginFormContainer = document.createElement('div')
     loginFormContainer.id = 'login_page'
     loginFormContainer.className = 'container'
+    loginFormContainer.classList.add('bg-transparent', 'text-white')
 
     loginFormContainer.innerHTML = `
     <form>
-      <h4 class="text-center text-muted">Login required for great user experience.</h4>
+      <h4 class="text-center text-muted text-white" style="color:white !important">Login required for great user experience.</h4>
       <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" autocomplete="off" aria-describedby="emailHelp" required>
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          <div id="emailHelp" class="form-text text-white">We'll never share your email with anyone else.</div>
       </div>
       <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -882,7 +888,7 @@ function checkVisited () {
           <label class="form-check-label" for="exampleCheck1">Purge my credentials after this session</label>
       </div>
       <div class="d-grid gap-2">
-          <button id="loginFORM" class="btn " type="submit" disabled>Login</button>
+          <button id="loginFORM" class="btn text-white" type="submit" disabled>Login</button>
       </div>
     </form>`
 
@@ -929,7 +935,6 @@ function checkVisited () {
   }
 }
 checkVisited()
-
 window.addEventListener('DOMContentLoaded', event => {
   handlerMainLoader(true)
 })

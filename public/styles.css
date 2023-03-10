@@ -1,3 +1,13 @@
+:root {
+    --glassy1: blur(10px);
+    --glassy2: blur(5px);
+    --itemBorder: 2px solid #eae9e91a;
+    --border-2: 4px solid #e3e2e2;
+    --item-background: #e8e8e880;
+    --text-shadow: .5px .5px .5px #474747;
+    --bg-carucel-bg: #00000033 !important;
+}
+
 *,
 *::before,
 *::after {
@@ -15,7 +25,9 @@ input:active,
 textarea:focus,
 input:focus,
 label:focus,
-.btn.active {
+.btn.active,
+#exampleInputEmail1,
+#exampleInputPassword1 {
     outline: 0px !important;
     box-shadow: none !important;
     background: transparent !important;
@@ -60,15 +72,7 @@ button:active,
     margin-bottom: 1rem;
 }
 
-#read_more,
-#access_btn,
-#submit_button,
-#loginFORM {
-    box-shadow: 1px 1px 13px black;
-    border-radius: .3rem;
-    font-size: 1rem !important;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
-}
+
 
 @media screen and (max-width: 1183px) {
     #main-container {
@@ -84,21 +88,10 @@ button:active,
 
 @media screen and (max-width: 455px) {
     body {
-        -webkit-filter: blur(20px);
-        filter: blur(20px) grayscale(100%);
+        -webkit-filter: var(--glassy1) grayscale(100%);
+        filter: var(--glassy1) grayscale(100%);
         background-color: #03001e;
-        background: linear-gradient(to right, #fdeff9, #000000, #000000, #03001e);
 
-    }
-
-    #main-container,
-    .d-flex,
-    .container,
-    .navbar,
-    .right-container,
-    left-container {
-        background: #03001e !important;
-        background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e) !important;
     }
 }
 
@@ -106,6 +99,7 @@ button:active,
     padding: unset;
     height: 80vh;
     display: flex;
+    color: white;
     justify-content: space-between;
 }
 
@@ -124,6 +118,8 @@ button:active,
     overflow-x: hidden !important;
     max-height: 75vh;
     min-width: 50%;
+    -webkit-backdrop-filter: var(--glassy1);
+    backdrop-filter: var(--glassy1);
 }
 
 .left-container {
@@ -141,18 +137,90 @@ button:active,
     font-size: 17px;
     overflow-x: auto;
     width: 100%;
-    background: rgb(243, 243, 243);
+    background: rgba(31, 31, 31, 0.3);
 }
 
-#my_input:focus {
+#my_input:hover,
+#seachhhh:hover {
+    background: rgba(36, 36, 36, 0.4) !important;
+}
+
+#my_input:focus-within,
+#seachhhh:focus-within {
+    background: rgba(36, 36, 36, 0.4) !important;
+}
+
+#my_input:focus,
+#seachhhh:focus,
+#exampleInputEmail1:focus,
+#exampleInputPassword1:focus {
     outline: none !important;
+    color: white;
+}
+
+/* ================================= */
+/* ================================= */
+
+/* #my_input::-webkit-input-placeholder,
+#seachhhh::-webkit-input-placeholder {
+    color: white;
+}
+
+#my_input::-moz-placeholder,
+#seachhhh::-moz-placeholder {
+    color: white;
+}
+
+#my_input:-ms-input-placeholder,
+#seachhhh:-ms-input-placeholder {
+    color: white;
+}
+
+#my_input::-ms-input-placeholder,
+#seachhhh::-ms-input-placeholder {
+    color: white;
+}
+
+#my_input::placeholder,
+#seachhhh::placeholder {
+    color: white;
+}*/
+
+/* ================================= */
+/* ================================= */
+#read_more,
+#access_btn,
+#submit_button,
+#loginFORM {
+    border-radius: .3rem;
+    font-size: 1rem;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 #submit_button,
 #access_btn,
 #read_more {
+    position: relative;
     background: unset;
-    color: black
+    color: white;
+    -webkit-backdrop-filter: var(--glassy1);
+    backdrop-filter: var(--glassy1);
+    border: var(--itemBorder);
+    font-size: .8rem !important;
+    box-shadow: inset rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.dialog-styles {
+    -webkit-backdrop-filter: var(--glassy1);
+    backdrop-filter: var(--glassy1);
+    border: var(--itemBorder);
+    color: rgb(255, 255, 255, .7) !important;
+}
+
+#submit_button:hover,
+#access_btn:hover,
+#read_more:hover {
+    color: #ffffff99 !important;
 }
 
 #submit_button:focus-within,
@@ -182,6 +250,8 @@ button:active,
 .inner_right_container {
     padding: .5rem;
     overflow-x: hidden !important;
+    -webkit-backdrop-filter: var(--glassy1);
+    backdrop-filter: var(--glassy1);
 }
 
 
@@ -238,16 +308,17 @@ button:active,
     top: 50%;
     left: 50%;
     width: 85%;
-    height: 88%;
+    height: 90%;
     z-index: 2100;
     overflow: hidden;
     margin-top: 2%;
     opacity: 0;
+    color: white !important;
     transition: all .3s;
     letter-spacing: 1px;
-    background-color: #ffffff !important;
-    -webkit-backdrop-filter: blur(40px);
-    backdrop-filter: blur(40px);
+    background: var(--bg-carucel-bg);
+    -webkit-backdrop-filter: var(--glassy1);
+    backdrop-filter: var(--glassy1);
     transform: translate(-50%, -50%);
     -webkit-animation: from-down infinite forwards ease-in .3s;
     animation: from-down 1 forwards ease-in .3s;
@@ -291,6 +362,7 @@ button:active,
 #single_item .card-body>p {
     overflow-y: auto;
     scroll-behavior: smooth;
+    color: white;
 }
 
 .hide {
@@ -309,8 +381,8 @@ button:active,
 
 
 ._ANIME_ {
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: var(--glassy1);
+    backdrop-filter: var(--glassy1);
     border-radius: .3rem;
 }
 
@@ -318,10 +390,6 @@ button:active,
     border: 0 solid transparent;
     font-size: unset;
     box-shadow: none !important
-}
-
-#BTN1>button:hover {
-    background: rgb(234, 232, 232)
 }
 
 .alert_lable {
@@ -332,17 +400,19 @@ button:active,
     animation: remove_elemnet infinite forwards ease-in 0.5s 2s;
 }
 
-/* =================== */
 .db-question-response {
     cursor: pointer;
+
 }
 
 .db-question-response,
 .init-question-response {
-    border: 1px solid #eae9e9;
+    border: var(--itemBorder);
     border-radius: 8px;
     padding: 10px;
     margin-bottom: 20px;
+    background: var(--bg-carucel-bg);
+
 }
 
 .db-question-response p,
@@ -350,14 +420,18 @@ button:active,
     margin-bottom: 0;
     padding: .3rem;
     border-radius: .3rem;
-
+    opacity: .8;
+    text-shadow: var(--text-shadow)
 }
 
 .db-question-response p:first-child,
 .init-question-response p:first-child {
-    background: rgb(234, 233, 233);
     padding-bottom: 1rem;
-    border-left: 5px solid #c8c8c8;
+    border-left: var(--border-2);
+    border-right: var(--border-2);
+    background: var(--item-background);
+    font-style: italic;
+    text-shadow: var(--text-shadow)
 }
 
 
@@ -366,7 +440,7 @@ button:active,
     font-size: 14px;
     padding: .1rem;
     opacity: 0.5;
-    background-color: rgb(233, 231, 231);
+    /* background-color: rgb(233, 231, 231); */
     border-radius: .3rem;
 }
 
@@ -378,20 +452,18 @@ button:active,
 
 
 .db-question-response p:not(:first-child) {
-    border-left: 5px solid rgb(0, 128, 0, .2);
     padding-bottom: 1rem;
 }
 
 .db-question-response p:first-child {
-    background: rgb(234, 233, 233);
     padding-bottom: 1rem;
     border-left: 5px solid #c8c8c8;
 }
 
 .init-question-response p:first-child {
-    background: rgb(247, 247, 247);
     padding-bottom: .5rem;
-    border-left: 3px solid #e3e2e2;
+    border-left: 4px solid #e3e2e2;
+    border-right: 4px solid #e3e2e2;
 }
 
 .foot_bottom {
@@ -427,7 +499,7 @@ button:active,
     content: '';
     width: 192px;
     height: 4.8px;
-    background: #FFF;
+    /* background: #FFF; */
     position: absolute;
     top: 0;
     left: 0;
@@ -471,21 +543,19 @@ button:active,
 
 
 .flashBTN {
-    color: black;
-    background-color: rgb(246, 245, 245) !important;
     -webkit-animation: flash-btn infinite forwards ease-in .08s;
     animation: flash-btn infinite alternate-reverse ease-in .08s;
 }
 
 @-webkit-keyframes flash-btn {
     to {
-        color: rgb(230, 0, 0);
+        color: white;
     }
 }
 
 @keyframes flash-btn {
     to {
-        color: rgb(230, 0, 0);
+        color: white;
     }
 }
 
@@ -533,6 +603,10 @@ button:active,
 
 .single-carocel-btn a:first-child:active {
     margin-left: -.1rem;
+}
+
+.single-carocel-btn a:not(:first-child):active {
+    margin-right: -.1rem;
 }
 
 .single-carocel-btn a:not(:first-child):active {
