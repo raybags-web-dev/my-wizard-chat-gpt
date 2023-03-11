@@ -156,7 +156,6 @@
             color: black;
         }
 
-
         .main-background {
             box-sizing: border-box;
             margin: 0;
@@ -213,6 +212,23 @@
             color: #d7d7d7;
             border-color: #3c3c3c;
         }
+
+        .db-question-response {
+            transition: .3s;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .showItem {
+            animation: bring-incard 1 ease-in forwards .4s;
+        }
+
+        @keyframes bring-incard {
+            to {
+                opacity: 1;
+                transition: .3s;
+            }
+        }
     </style>
     <link rel="stylesheet" href="./styles.css">
     <script src="./script.js" defer></script>
@@ -259,16 +275,16 @@
         <div class="d-flex justify-content-between text-center">
             <button id="submit_button" style="text-transform:uppercase;min-height:3rem;text-align:center;"
                 class="btn p-1 bg-transparent rounded btn-lg mx-1 text-white" type="submit">
-                submit Question
+                Submit Question
             </button>
             <button id="read_more" type="button" style="text-transform:uppercase;min-height:3rem;text-align:center;"
                 class="btn btn-secondary p-1 text-white text-center bg-transparent rounded btn-lg mx-1"
                 data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                how it works
+                How It Works
             </button>
             <button id="access_btn" style="text-transform: uppercase; min-height:3rem;text-align:center;"
                 class="btn p-1  bg-trasparent rounded btn-lg mx-1 text-white" type="button">
-                authenticate
+                Authenticate
             </button>
         </div>
         <div class="container my_text_container">
@@ -278,14 +294,13 @@
             </div>
 
             <div class="right-container overflow-auto position-relative">
-                <span id="__db_loader" class="loader_2 position-sticky sticky-sm-top"></span>
-                <div id="BTN1" class="d-grid position-sticky sticky-lg-top gap-3 d-md-flex justify-content-md-around">
-                    <button type="button" class="btn btn-lg get-previous float-start ">Previous
-                        page</button>
-                    <button type="button" class="btn  btn-lg get-next float-end">Next page</button>
+                <div id="BTN1" class="d-grid position-sticky sticky-sm-top  d-md-flex justify-content-md-between">
+                    <a type="button" class="btn btn-lg get-previous float-start pagina__nating">&#60;</a>
+                    <a type="button" class="btn  btn-lg get-next float-end pagina__nating">&#62;</a>
                 </div>
                 <div class="alert inner_right_container shadow-lg">
                 </div>
+                <span id="__db_loader" class="loader_2 position-sticky sticky-sm-top"></span>
             </div>
         </div>
     </div>

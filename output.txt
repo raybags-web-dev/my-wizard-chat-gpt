@@ -712,3 +712,105 @@ The alimentary canal, also known as the digestive tract, is a long and continuou
 
 No, Git Actions and Ansible do not do the same thing. While both are powerful automation tools, they are used for different tasks and purposes. Learning one instead of the other would not necessarily make you more marketable, but it could depend on the type of job you are applying for.
 **********************************
+
+1. root: The Element or region to which the intersection is measured relative to the viewport. 
+2. rootMargin: A margin around the root element. Can be specified in pixels or percentages of the root element’s size.
+3. threshold: An array of values for each level at which an intersection may be detected. 
+4. trackVisibility: Will create a synthetic scroll/resize event that notifies the observer when the target is visible inside the viewport. 
+5. delay: A delay in milliseconds before the observer will start listening for changes. 
+6. initialCheck: A boolean value that specifies whether the observer should execute right away, without waiting for an intersection. 
+7. observeAll: Specify if the observer should intercept any changes on the page, regardless of what the target element does.
+**********************************-library/react";
+import { MemoryRouter } from "react-router-dom";
+import MovieCard from "./MovieCard";
+
+describe("MoviewCard", () => {
+  const match = {
+    params: {
+      id: 1,
+    },
+  };
+
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = mount(
+      <MemoryRouter>
+        <MovieCard match={match} />
+      </MemoryRouter>
+    );
+  });
+  it("should render MovieCard component", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+});
+**********************************
+
+You can use the IntersectionObserver API and the setInterval API to achieve this. For example:
+
+
+// Define observer 
+let observer = new IntersectionObserver(entries => { 
+// Find the element that intersected 
+let entry = entries[0] 
+// If intersectionRatio is greater than 0 
+if(entry.intersectionRatio > 0) { 
+      // Get the index of the entry in the entries array 
+      let index = entries.indexOf(entry) 
+      // Use setInterval with the index as the delay 
+      setInterval(() => { 
+        // Toggle the class on the entry 
+        entry.target.classList.toggle('yourClassName') 
+      }, index * 1000) 
+    } 
+}); 
+
+// Pass elements you want observed to observer 
+observer.observe(element1); 
+observer.observe(element2); 
+// ... and so on
+**********************************
+
+King Julian is a character from the Madagascar animated film franchise. He is an eccentric, outrageous, and comical lemur who is the self-proclaimed king of the lemurs.
+**********************************
+
+Clover is a website and mobile app that provides personal finance and investing services. It allows users to manage their finances and investments, track transactions, set up automated payments and investments, and more.
+**********************************sey
+
+Morrissey is an English singer, songwriter, and author. He rose to prominence in the 1980s as the lyricist and vocalist of the band The Smiths. As a solo artist, he has released ten studio albums and three live albums. His music and style have been influential in the development of indie rock and Britpop.
+**********************************
+
+State management is the process of managing state, or data, within the application and maintaining its consistency across various components or views. It is especially critical for applications with complex user interfaces that require multiple states across different views. State management also helps to ensure that any changes to the application state are made in a consistent, efficient and scalable manner.
+**********************************
+
+Stomy Daniels is an American porn star and cam model. She is known for her exotic looks and performs in a variety of genres, including BDSM, fetish, gonzo, lesbian, and interracial. Daniels has been a part of the adult entertainment industry since 2014.
+**********************************
+
+Lazy loading is a programming practice that defers the initialization of an object until it is actually needed. This delays the resource consumption and speeds up the application's overall performance by only loading objects when necessary.
+**********************************
+
+There is no specific number of observers in JavaScript, as it depends on the implementation of the observer pattern.
+**********************************
+
+Nuclear fusion is a reaction in which two or more atomic nuclei come together to form a single, heavier nucleus. This is the opposite of nuclear fission, which is the splitting of an atom into two or more smaller atoms. During nuclear fusion, energy is released as the particles combine, resulting in a huge amount of energy being released in an incredibly small amount of time.
+**********************************
+
+Lake Baikal in Russia is the deepest lake in the world at 5,387 feet (1,642 meters).
+**********************************
+
+Cloe Sullivan is a fictional character from the British television show Hollyoaks, portrayed by actress Kara-Leah Fernandes. Cloe is the daughter of established characters Myra McQueen and Dirk Savage. She first appeared on 25 February 2009.
+**********************************
+
+1. The Social Network (2010) 
+2. The King's Speech (2010) 
+3. Bridesmaids (2011) 
+4. The Avengers (2012) 
+5. Skyfall (2012) 
+6. The Great Gatsby (2013) 
+7. The Fault in Our Stars (2014) 
+8. Jurassic World (2015) 
+9. Captain America: Civil War (2016) 
+10. Beauty and the Beast (2017) 
+11. Black Panther (2018) 
+12. Avengers: Endgame (2019)
+**********************************

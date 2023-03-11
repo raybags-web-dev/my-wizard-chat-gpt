@@ -16,7 +16,7 @@ const modelButton = document.querySelector('#read_more')
 let lastScroll = 0
 const loading_1 = document.getElementById('__db_loader')
 
-GET_loader(loading_1, true)
+GET_loader(loading_1, false)
 function Empty_Element (anchor) {
   let element = document.querySelector(anchor)
   return (element.innerHTML = '')
@@ -49,20 +49,38 @@ function QA_HTML (QB, RESPONSE, id) {
       </p>
     </div>  `
 }
-function DB_QN_RES_HTML (question, response, id, created_at) {
-  return `
-    <div data-id="${id}" class="db-question-response shadow-lg p-2 mb-1 bg-transparent rounded">
-      <p class="db-question qustion" data-id="${id}">
-        ${question}<br>
-        <span class="link fs-6" style="opacity:0">${id}</span>
-        <span class="link float-end fs-6" style="opacity:.5">${created_at}</span>
-      </p>
-      <p class="db-response response" data-id="${id}">
-        ${response}<br>
-        <span class="link" style="opacity:0;" data-id="${id}">${id}</span>
-        <span class="link float-end" style="opacity:.5">${created_at}</span>
-      </p>
-    </div>`
+function DB_QN_RES_HTML (question, response, id, created_at, addClass = false) {
+  const div = document.createElement('div')
+  div.dataset.id = id
+  div.classList.add(
+    'db-question-response',
+    'shadow-lg',
+    'p-2',
+    'mb-1',
+    'bg-transparent',
+    'rounded'
+  )
+  const questionParagraph = document.createElement('p')
+  questionParagraph.classList.add('db-question', 'qustion')
+  questionParagraph.dataset.id = id
+  questionParagraph.innerHTML = `${question}<br>
+    <span class="link fs-6" style="opacity:0">${id}</span>
+    <span class="link float-end fs-6" style="opacity:.5">${created_at}</span>`
+  div.appendChild(questionParagraph)
+
+  const responseParagraph = document.createElement('p')
+  responseParagraph.classList.add('db-response', 'response')
+  responseParagraph.dataset.id = id
+  responseParagraph.innerHTML = `${response}<br>
+    <span class="link" style="opacity:0;" data-id="${id}">${id}</span>
+    <span class="link float-end" style="opacity:.5">${created_at}</span>`
+  div.appendChild(responseParagraph)
+
+  if (addClass) {
+    div.classList.add('rsearched_item')
+  }
+
+  return div.outerHTML
 }
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
@@ -192,6 +210,8 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
           outRightContainer.scrollTo(0, 0)
           GET_loader(loading_1, true)
         })
+      // run oberser
+      runObserver('.db-question-response')
     }
     // Hide "previous" button on initial page
     previousButton.classList.add('disabled')
@@ -324,6 +344,7 @@ async function FetchData (query) {
         outRightContainer.scrollTo(0, 0)
         GET_loader(loading_1, true)
       })
+    runObserver('.db-question-response')
   } catch (e) {
     console.warn(e.message)
     showNotification('Error', `Something went wrong:\n ${e} `, '#nav_barrr')
@@ -402,7 +423,7 @@ async function deleteDBItem (e) {
     GET_loader(loading_1, true)
     return showNotification(
       `Warning! Not authenticated.`,
-      'Please authenticate. You can click the button below on your right!',
+      'You can click the button bellow on your right!',
       '#nav_barrr'
     )
   }
@@ -416,7 +437,7 @@ async function deleteDBItem (e) {
     if (!DBresponse.data.data.length)
       return showNotification(
         'Error',
-        'Something went wrong Please try again later.',
+        'Something went wrong. Try again later.',
         '#nav_barrr'
       )
     DBresponse.data.data.forEach(item => {
@@ -457,7 +478,7 @@ async function deleteDBItem (e) {
             console.log(e.message)
             showNotification(
               'Error',
-              `Something went wrong:\n ${e.message} `,
+              `Something went wrong:\n ${e} `,
               '#nav_barrr'
             )
           }
@@ -507,7 +528,6 @@ async function deleteDBItem (e) {
                 document.body.insertAdjacentHTML('afterbegin', messageHTML)
               }
             } catch (e) {
-              console.log(e.message)
               showNotification(
                 'Error',
                 `Something went wrong:\n ${e.message} `,
@@ -527,8 +547,15 @@ rightCont.addEventListener('click', deleteDBItem)
 async function searchDatabase (e) {
   e.preventDefault()
   let inputValue = searchInput.value.trim()
-  if (!inputValue)
-    return showNotification('Error', 'Input required!', '#nav_barrr')
+
+  if (!inputValue) {
+    let itemFromDB = document
+      .querySelector('.db-question-response')
+      ?.classList.contains('rsearched_item')
+    if (itemFromDB) FetchData('?page=1')
+    showNotification('Error', 'Input required!', '#nav_barrr')
+    return
+  }
 
   let myToken = localStorage.getItem('token')
   const OPTIONS = {
@@ -545,7 +572,7 @@ async function searchDatabase (e) {
   }
 
   let count = 0
-  rightCont.innerHTML = '' // clear existing elements in container
+  rightCont.innerHTML = ''
 
   responseData.forEach(item => {
     const { createdAt, question, response, _id } = item
@@ -573,13 +600,16 @@ async function searchDatabase (e) {
           underlinedQuestion,
           underlinedResponse,
           _id,
-          formatDate(createdAt)
+          formatDate(createdAt),
+          true
         )
       )
       outRightContainer.scrollTo(0, 0)
       GET_loader(loading_1, true)
       count++
     }
+    // run oberser
+    runObserver('.db-question-response')
   })
 
   if (count <= 0) {
@@ -696,12 +726,16 @@ searchFORM.addEventListener('submit', function (event) {
 })
 // bg for pagination buttons
 outRightContainer.addEventListener('scroll', function () {
-  let container = document.querySelector('#BTN1')
+  let container_buttons = document.querySelectorAll('.pagina__nating')
   let currentScroll = this.scrollTop
-  if (currentScroll < lastScroll) {
-    container.classList.remove('_ANIME_')
+  if (currentScroll > lastScroll) {
+    container_buttons.forEach(btn => {
+      btn.classList.toggle('change_btn_color', true)
+    })
   } else {
-    container.classList.add('_ANIME_')
+    container_buttons.forEach(btn => {
+      btn.classList.toggle('change_btn_color', false)
+    })
   }
   lastScroll = currentScroll
 })
@@ -714,7 +748,6 @@ function handlerMainLoader (isStuffDone) {
     mainLoaderRing.classList.remove('hide')
   }
 }
-
 async function handleNextPrev () {
   const myToken = localStorage.getItem('token')
   const options = {
@@ -862,7 +895,6 @@ function showModal () {
   document.body.appendChild(modal)
 }
 showModal()
-
 // visited
 function checkVisited () {
   if (localStorage.getItem('visited') === null) {
@@ -938,6 +970,32 @@ function checkVisited () {
   }
 }
 checkVisited()
+// obserer
+function animateItems (items) {
+  // main container to be observed
+  let main__container = document.querySelector('right-container')
+  if (items.length == null || !items.length) return
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('showItem', entry.isIntersecting)
+        // if (entry.isIntersecting) observer.unobserve(entry.target)
+      })
+    },
+    { root: main__container, threshold: 0.3, rootMargin: '-50px' }
+  )
+  items.forEach(item => {
+    observer.observe(item)
+  })
+}
+async function runObserver (anchor) {
+  try {
+    let items = document.querySelectorAll(`${anchor}`)
+    await animateItems(items)
+  } catch (e) {
+    console.log(e.message)
+  }
+}
 window.addEventListener('DOMContentLoaded', event => {
   handlerMainLoader(true)
 })

@@ -1,6 +1,7 @@
 :root {
     --glassy1: blur(10px);
     --glassy2: blur(5px);
+    --glassy3: blur(40px);
     --itemBorder: 2px solid #eae9e91a;
     --border-2: 4px solid #e3e2e2;
     --item-background: #e8e8e880;
@@ -160,7 +161,7 @@ button:active,
 
 /* ================================= */
 /* ================================= */
-#my_input::-webkit-input-placeholder, #seachhhh::-webkit-input-placeholder {
+/* #my_input::-webkit-input-placeholder, #seachhhh::-webkit-input-placeholder {
     color: rgb(112, 175, 142);
 }
 #my_input::-moz-placeholder, #seachhhh::-moz-placeholder {
@@ -175,7 +176,7 @@ button:active,
 #my_input::placeholder,
 #seachhhh::placeholder {
     color: rgb(112, 175, 142);
-}
+} */
 
 /* ================================= */
 /* ================================= */
@@ -364,23 +365,38 @@ button:active,
     opacity: 0 !important;
 }
 
+
 #BTN1 {
-    min-height: 5%;
-    position: relative;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    padding: .2rem 0 .2rem 0;
 }
 
-
-._ANIME_ {
-    -webkit-backdrop-filter: var(--glassy1);
-    backdrop-filter: var(--glassy1);
-    border-radius: .3rem;
-}
-
-#BTN1>button {
+#BTN1>a {
     border: 0 solid transparent;
-    font-size: unset;
-    box-shadow: none !important
+    box-shadow: none !important;
+    font-size: 1.5rem;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-content: center;
+    align-items: center;
+    text-align: center;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(50px) !important;
+    backdrop-filter: blur(50px) !important;
+    border: 1px solid rgba(106, 105, 105, 0.4);
+
+}
+
+#BTN1>a:hover {
+    background: transparent !important;
+    border: 1px solid red;
+}
+
+.change_btn_color {
+    border: 1px solid rgba(106, 105, 105, 0.8) !important;
+    background-color: black !important;
 }
 
 .alert_lable {
@@ -477,61 +493,45 @@ button:active,
 
 /* =======DB loader====== */
 .loader_2 {
-    width: 100%;
-    height: 4.8px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     display: inline-block;
-    position: -webkit-sticky;
-    position: absolute;
-    background: transparent;
-    overflow: hidden;
+    position: fixed;
+    border: 4px solid transparent;
+    top: 40%;
+    left: 43%;
+    z-index: 1000;
+    transform: translate(-50%, -50%);
+
 }
 
-.con_loader::after {
-    content: '';
-    width: 192px;
-    height: 4.8px;
-    /* background: #FFF; */
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
+.con_loader {
+    border-color: red transparent white transparent !important;
     box-sizing: border-box;
-    -webkit-animation: animloader_2 2s linear infinite;
-    animation: animloader_2 2s linear infinite;
+    -webkit-animation: rotation 1s linear infinite;
+    animation: rotation 1s linear infinite;
 }
 
-@-webkit-keyframes animloader_2 {
+@-webkit-keyframes rotation {
     0% {
-        left: 0;
-        background: rgb(133, 133, 133);
-        opacity: 0.5;
-        transform: translateX(-100%);
+        transform: rotate(0deg)
     }
 
     100% {
-        left: 100%;
-        opacity: 1;
-        background: rgb(0, 255, 76, .5);
-        transform: translateX(0%);
+        transform: rotate(360deg)
     }
 }
 
-@keyframes animloader_2 {
+@keyframes rotation {
     0% {
-        left: 0;
-        background: rgb(233, 0, 0, .5);
-        opacity: 0.5;
-        transform: translateX(-100%);
+        transform: rotate(0deg)
     }
 
     100% {
-        left: 100%;
-        opacity: 1;
-        background: rgb(0, 255, 76);
-        transform: translateX(0%);
+        transform: rotate(360deg)
     }
 }
-
 
 .flashBTN {
     -webkit-animation: flash-btn infinite forwards ease-in .08s;
@@ -581,7 +581,6 @@ button:active,
     opacity: .2;
 }
 
-
 .single-carocel-btn a:first-child:hover {
     opacity: 1;
 }
@@ -589,8 +588,6 @@ button:active,
 .single-carocel-btn a:not(:first-child):hover {
     opacity: 1;
 }
-
-
 
 .single-carocel-btn a:first-child:active {
     margin-left: -.1rem;
