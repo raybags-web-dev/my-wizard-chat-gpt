@@ -647,7 +647,7 @@ async function showNotification (title, body, anchorrr) {
   const buttonElement = document.createElement('button')
   buttonElement.type = 'button'
   buttonElement.style.cssText =
-    'font-size: 13px; color:red; width:20px;height:20px;border-radius:50%;padding:.3rem;'
+    'font-size:13px;color:red;width:20px;height:20px;border-radius:50%;padding:.3rem;'
   buttonElement.classList.add('btn-close', 'float-end')
   buttonElement.setAttribute('data-bs-dismiss', 'alert')
   buttonElement.setAttribute('aria-label', 'Close')
@@ -866,28 +866,31 @@ showModal()
 // visited
 function checkVisited () {
   if (localStorage.getItem('visited') === null) {
+    let main_containerrr = document.querySelector('#main-container')
+    main_containerrr.style.display = 'none'
+
     const loginFormContainer = document.createElement('div')
     loginFormContainer.id = 'login_page'
     loginFormContainer.className = 'container'
     loginFormContainer.classList.add('bg-transparent', 'text-white')
 
     loginFormContainer.innerHTML = `
+    <h4 class="text-center text-white" style="color:white !important; opacity:unset;">Login Required</h4>
     <form>
-      <h4 class="text-center text-muted text-white" style="color:white !important">Login required for great user experience.</h4>
       <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
           <input type="email" class="form-control" id="exampleInputEmail1" autocomplete="off" aria-describedby="emailHelp" required>
-          <div id="emailHelp" class="form-text text-white">We'll never share your email with anyone else.</div>
+          <div id="emailHelp" class="form-text text-muted text-white">We'll never share your email with anyone else.</div>
       </div>
       <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
           <input type="password" class="form-control" autocomplete="off" id="exampleInputPassword1" required>
       </div>
-      <div class="mb-3 form-check">
+      <div class="mb-3 form-check delete_me">
           <input type="checkbox" class="form-check-input" autocomplete="off" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Purge my credentials after this session</label>
+          <label class="form-check-label text-muted" for="exampleCheck1">Purge my credentials after this session</label>
       </div>
-      <div class="d-grid gap-2">
+      <div  class="d-grid gap-2">
           <button id="loginFORM" class="btn text-white visitor_login" type="submit" disabled>Login</button>
       </div>
     </form>`
@@ -922,13 +925,13 @@ function checkVisited () {
         localStorage.setItem('visited', true)
         handlerMainLoader(true)
         showNotification('Success', `Login Successful`, '#nav_barrr')
+        main_containerrr.style.display = 'block'
       }, 2500)
 
       setTimeout(async () => {
         document.getElementById('read_more').click()
       }, 8000)
     })
-
     document.body.appendChild(loginFormContainer)
   } else {
     console.log('Welcome back!')

@@ -689,3 +689,26 @@ it catches. The survivors escape into a cave, but the alien follows
 
 Weiland is an American rock singer, songwriter and musician best known as the lead singer of the hard rock band Stone Temple Pilots.
 **********************************
+
+The alimentary canal, also known as the digestive tract, is a long and continuous tube in the body that starts with the mouth and ends with the anus. It functions to digest food by breaking it down into smaller particles and absorbing the nutrients. Along the way, the food passes through several organs, including the esophagus, stomach, small intestine, and large intestine. As the food passes through each organ, different enzymes and acids break the food down further until it is small enough to be absorbed. Different materials are added to the food in each organ, such as bile and mucus, which help to break the food down even further. The end result is a nutrient-rich mixture that can then be used by the body.
+**********************************
++
++asdda
+
+********************************** to run from a jenkins server?
+
+1. Install the Jenkins Ansible plugin on the Jenkins server by going to Manage Jenkins > Manage Plugins. 
+
+2. Install Ansible on the Jenkins server.
+
+3. Configure your Ansible environment, including setting up an inventory file, configuring any necessary roles, and setting up necessary keys.
+
+4. Create a new Jenkins job for your Ansible playbook and add it to the build queue. 
+
+5. Configure the job to run the Ansible playbook with any necessary variables.
+
+6. Run the job and check the results.
+**********************************
+
+No, Git Actions and Ansible do not do the same thing. While both are powerful automation tools, they are used for different tasks and purposes. Learning one instead of the other would not necessarily make you more marketable, but it could depend on the type of job you are applying for.
+**********************************

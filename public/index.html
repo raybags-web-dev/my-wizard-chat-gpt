@@ -102,7 +102,7 @@
             min-width: 100vw;
             min-height: 100vh;
             display: flex;
-            background: rgba(0, 0, 0, 0.2) !important;
+            background: rgba(0, 0, 0, 0.4) !important;
             justify-content: center;
             align-items: center;
         }
@@ -111,7 +111,8 @@
             position: absolute;
             top: 50% !important;
             left: 50% !important;
-            padding: 1rem;
+            padding: 3rem;
+            border: 6rem solid rgb(169, 168, 168, .1);
             min-width: 65%;
             min-height: 50%;
             border-radius: .4rem;
@@ -125,10 +126,14 @@
         }
 
         #login_page h4 {
-            opacity: .7;
-            text-transform: capitalize;
-            font-style: oblique;
-            font-weight: 300;
+            opacity: .7 !important;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transition: all .3s;
+            letter-spacing: .3rem;
+            transform: translate(-50%, -50%);
+            text-transform: uppercase;
         }
 
         #login_page form .mb-3 input {
@@ -140,6 +145,17 @@
         #login_page form .mb-3 input:focus {
             border-bottom-color: green;
         }
+
+        #exampleCheck1:hover {
+            background: white !important;
+            cursor: pointer;
+        }
+
+        #exampleCheck1:focus-within {
+            background: white !important;
+            color: black;
+        }
+
 
         .main-background {
             box-sizing: border-box;
@@ -171,7 +187,31 @@
         }
 
         #notifications {
-            background-color: rgb(255, 255, 255, .3);
+            background-color: transparent;
+        }
+
+        .alert-warning {
+            color: rgb(187, 186, 186);
+        }
+
+        .alert-danger {
+            color: #f78383;
+            border-color: #f78383;
+        }
+
+        .alert-success {
+            color: #5df9ae;
+            border-color: #bcffd5;
+        }
+
+        .alert-info {
+            color: #9ddffb;
+            border-color: #7dd8ff;
+        }
+
+        .alert-secondary {
+            color: #d7d7d7;
+            border-color: #3c3c3c;
         }
     </style>
     <link rel="stylesheet" href="./styles.css">
