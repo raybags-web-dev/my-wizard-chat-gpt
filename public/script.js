@@ -90,7 +90,7 @@ function dbItem (item_id, quetion, response, createdAt, updatedAt) {
             <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>
             <span class="DB_Carocel_loader"></span>
         </div>
-        <div class="card-body">
+        <div class="card-body big_item_db__body">
           <p id="qn-item" data-qn="db-qn" class="card-text">Question: ${quetion}</p>
           <p id="ans-item" data-res="db-res" class="card-text pb-2">Response: ${response}</p>
         </div>
