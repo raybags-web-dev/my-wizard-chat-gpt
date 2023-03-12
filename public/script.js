@@ -374,6 +374,7 @@ async function loadLocal () {
 loadLocal()
 // token handler
 async function getToken () {
+  checkVisited()
   let auth_btn = document.getElementById('access_btn')
   auth_btn.textContent = 'AUTHENTICATE'
   const storedToken = localStorage.getItem('token')
