@@ -162,22 +162,31 @@ button:active,
 
 /* ================================= */
 /* ================================= */
-/* #my_input::-webkit-input-placeholder, #seachhhh::-webkit-input-placeholder {
+
+#my_input::-webkit-input-placeholder,
+#seachhhh::-webkit-input-placeholder {
     color: rgb(112, 175, 142);
 }
-#my_input::-moz-placeholder, #seachhhh::-moz-placeholder {
+
+#my_input::-moz-placeholder,
+#seachhhh::-moz-placeholder {
     color: rgb(112, 175, 142);
 }
-#my_input:-ms-input-placeholder, #seachhhh:-ms-input-placeholder {
+
+#my_input:-ms-input-placeholder,
+#seachhhh:-ms-input-placeholder {
     color: rgb(112, 175, 142);
 }
-#my_input::-ms-input-placeholder, #seachhhh::-ms-input-placeholder {
+
+#my_input::-ms-input-placeholder,
+#seachhhh::-ms-input-placeholder {
     color: rgb(112, 175, 142);
 }
+
 #my_input::placeholder,
 #seachhhh::placeholder {
     color: rgb(112, 175, 142);
-} */
+}
 
 /* ================================= */
 /* ================================= */
