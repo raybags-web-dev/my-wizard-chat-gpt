@@ -875,4 +875,159 @@ ANGELA (CONT'D):
 Growing up, baking was my escape. I'd be in there for hours, getting lost in the process.
 
 
+**********************************, then we are okay
+        var params = {
+          chartData
+       };
+
+        // Create a route that updates the chart data
+        router.post('/api/:chartId', (req, res) => {
+            const id = req.params.chartId;
+            let updatedChart;
+
+            for (let i = 0; i < params.chartData.length; i++) {
+                if (id == params.chartData[i]._id) {
+                    params.chartData[i].name = req.body.name;
+                    params.chartData[i].data = req.body.data;
+                    updatedChart = params.chartData[i];
+                }
+            }
+
+            res.status(200).send(updatedChart);
+        });
+**********************************.
+
+function createNodeProjectUsingEKS {
+  // Step 1: Logging into Amazon Web Services using IAM Credentials
+  const aws = require('aws-sdk');
+
+  aws.config.update({
+    accessKeyId: <access-key-id>,
+    secretAccessKey: <secret-access-key>
+  });
+
+  // Step 2: Create a Security Group and assign permissions to allow CodeBuild, CodeCommit 
+  const ec2 = new aws.EC2();
+
+  var params = {
+    Description: 'Security group for Node project',
+    GroupName: 'Node Security Group'
+  };
+
+  ec2.createSecurityGroup(params, (err, data) => {
+    if (err) console.log(err);
+    else {
+        var params_sg = {
+            GroupId: data.GroupId,
+            IpPermissions: [
+                {
+                    FromPort: 80,
+                    IpProtocol: 'tcp',
+                    IpRanges: [
+                        {
+                            CidrIp: '0.0.0.0/0',
+                        },
+                    ],
+                    ToPort: 80,
+                },
+                {
+                    FromPort: 443,
+                    IpProtocol: 'tcp',
+                    IpRanges: [
+                        {
+                            CidrIp: '0.0.0.0/0',
+                        },
+                    ],
+                    ToPort: 443, 
+                }, 
+                {
+                    FromPort: 22,
+                    IpProtocol: 'tcp',
+                    IpRanges: [
+                        {
+                            CidrIp: '0.0.0.0/0',
+                        },
+                    ],
+                    ToPort: 22,  
+                }, 
+                {
+                    FromPort: 8888,
+                    IpProtocol: 'tcp',
+                    IpRanges: [
+                        {
+                            CidrIp: '0.0.0.0/0',
+                        },
+                    ],
+                    ToPort: 8888, 
+                }, 
+            ]
+        };
+
+        ec2.authorizeSecurityGroup
+**********************************.
+
+Function LogIntoAwsAndRunEKSNodeContainer(IAM-credentials, Security-Group-Permissions, Docker-Image, Load-Balancer-Params) 
+ 
+{
+    //Log into AWS using IAM credentials
+    LoginToAWSUsingIAMCredentials(IAM-credentials);
+    
+    //Create a security group with the necessary permissions
+    CreateSecurityGroupWithPermissions(Security-Group-Permissions);
+    
+    //Build a node project from the docker image supplied as a parameter
+    BuildNodeProjectFromDockerImage(Docker-Image);
+    
+    //Run the image in a container with EKS and a load balancer
+    RunImageInECSContainerWithEKSAndLoadBalancer(Load-Balancer-Params);
+    
+    //Return a list of ports in the running containers 
+    List<Integer> ports = GetListOfPortsInRunningContainers();
+    return ports;
+}
+**********************************.
+
+function LoginAwsAndCreateSecuritygroup(AWSAccessKeyID, AWSSecretKey, CodeBuild, CodeCommit, DockerImage, EKS, LoadBalancer){
+
+	// Login to AWS
+	AWS.config.update({accessKeyId: AWSAccessKeyID, secretAccessKey: AWSSecretKey});
+
+	// Create security group
+	var params = {
+		Description: 'Allow codeBuild and other functions to run', 
+		GroupName: 'CodeBuildSecurityGroup'
+	};
+	ec2.createSecurityGroup(params, function(err, data) {
+		if (err) {
+			console.log(err, err.stack); // an error occurred
+		} else {
+			console.log(data);           // successful response
+			
+			// Configure security group
+			var params = {
+				GroupName: 'CodeBuildSecurityGroup', 
+				IpPermissions:[
+					{
+						IpProtocol: 'tcp', 
+						FromPort: 8080, 
+						ToPort: 8081, 
+						IpRanges: [
+							{
+								CidrIp: '0.0.0.0/0'
+							}
+						]
+					}
+				]
+			};
+			ec2.authorizeSecurityGroupIngress(params, function(err, data) {
+				if (err) {
+					console.log(err, err.stack); // an error occurred
+				} else {
+					console.log(data);           // successful response
+					
+					// Build Node Project
+					codeBuild.startBuild({
+						projectName: 'NodeProject',
+						sourceVersion: CodeCommit,
+		
 **********************************

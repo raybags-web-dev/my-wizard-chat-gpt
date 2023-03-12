@@ -7,7 +7,8 @@
     --item-background: #e8e8e880;
     --text-shadow: .5px .5px .5px #474747;
     --bg-carucel-bg: #00000033 !important;
-    --item_bg: #3c3c3c80;
+    --item_bg: #5d5d5d80;
+    --bs-font-sans-serif: unset;
 }
 
 *,
@@ -18,6 +19,7 @@
 
 body {
     overflow: hidden;
+    font-family: var(--bs-font-sans-serif);
 }
 
 textarea:hover,
@@ -137,7 +139,7 @@ button:active,
 #my_input {
     min-height: 8vh !important;
     font-size: 17px;
-    overflow-x: auto;
+    overflow: auto;
     width: 100%;
     background: rgba(31, 31, 31, 0.3);
 }
@@ -161,34 +163,14 @@ button:active,
 }
 
 /* ================================= */
-/* ================================= */
-
-#my_input::-webkit-input-placeholder,
-#seachhhh::-webkit-input-placeholder {
-    color: rgb(112, 175, 142);
-}
-
-#my_input::-moz-placeholder,
-#seachhhh::-moz-placeholder {
-    color: rgb(112, 175, 142);
-}
-
-#my_input:-ms-input-placeholder,
-#seachhhh:-ms-input-placeholder {
-    color: rgb(112, 175, 142);
-}
-
-#my_input::-ms-input-placeholder,
-#seachhhh::-ms-input-placeholder {
-    color: rgb(112, 175, 142);
-}
+/* =================================
 
 #my_input::placeholder,
 #seachhhh::placeholder {
     color: rgb(112, 175, 142);
 }
 
-/* ================================= */
+ ================================= */
 /* ================================= */
 #read_more,
 #access_btn,
@@ -426,12 +408,26 @@ button:active,
 }
 
 .db-question-response p,
-.init-question-response p {
+.init-question-response p,
+#qn-item,
+#ans-item {
     margin-bottom: 0;
     padding: .3rem;
     border-radius: .3rem;
     opacity: .8;
+    font-size: 1.2rem;
     text-shadow: var(--text-shadow);
+}
+
+.db-question-response p::first-letter,
+.init-question-response p::first-letter,
+#qn-item::first-letter,
+#ans-item::first-letter {
+    text-transform: uppercase;
+    color: rgb(252, 252, 252);
+    font-weight: 900;
+    font-size: 1.6rem;
+    text-decoration: underline;
 }
 
 .db-question-response p:first-child,
@@ -441,10 +437,13 @@ button:active,
     border-right: var(--border-2);
     background: var(--item_bg);
     font-style: italic;
-    opacity: .7;
+    color: rgb(80, 231, 245);
     text-shadow: var(--text-shadow)
 }
 
+#qn-item {
+    color: rgb(80, 231, 245) !important;
+}
 
 .db-question-response .link,
 .init-question-response .link {

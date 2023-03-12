@@ -47,7 +47,8 @@ function QA_HTML (QB, RESPONSE, id) {
         ${RESPONSE}<br>
         <span class="link" style="opacity:.5">${id}</span>
       </p>
-    </div>  `
+    </div>
+  `
 }
 function DB_QN_RES_HTML (question, response, id, created_at, addClass = false) {
   const div = document.createElement('div')
@@ -79,9 +80,9 @@ function DB_QN_RES_HTML (question, response, id, created_at, addClass = false) {
   if (addClass) {
     div.classList.add('rsearched_item')
   }
-
   return div.outerHTML
 }
+
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
     <div id="single_item" data-id="${item_id}"  class="card bg-transparent">
@@ -156,7 +157,6 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
     })
     // Add click event listener to "previous" button
     previousButton.addEventListener('click', async () => {
-      let element = document.querySelector('#nav_barrr')
       currentPage -= 1
       const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
       const endIndex = startIndex + ITEMS_PER_PAGE
@@ -165,7 +165,6 @@ async function fetchDataAndPaginate (previousButton, nextButton) {
       displayData(dataToDisplay)
       // Update pagination buttons based on current page and total number of items
       updatePaginationButtons()
-      if (element) return Empty_Element('#nav_barrr')
     })
     // Update pagination buttons based on current page and total number of items
     function updatePaginationButtons () {
@@ -997,6 +996,18 @@ async function runObserver (anchor) {
     console.log(e.message)
   }
 }
+function highlightCode (inputString) {
+  const highlighted = hljs.highlightAuto(inputString)
+  const highlightedWithTheme = hljs.highlight(
+    'javascript',
+    inputString,
+    true,
+    undefined,
+    'vs2015'
+  )
+  return `<pre class="hljs ${highlighted.language}" style="background-color: #2d2d2d; color: #d4d4d4;">${highlightedWithTheme.value}</pre>`
+}
+
 window.addEventListener('DOMContentLoaded', event => {
   handlerMainLoader(true)
 })
