@@ -6,7 +6,7 @@
     --item-background: #e8e8e880;
     --text-shadow: .5px .5px .5px #474747;
     --bg-carucel-bg: #00000033 !important;
-    --item_bg: #5d5d5d80;
+    --item_bg: #24262e80;
     --bs-font-sans-serif: unset;
 }
 
@@ -19,6 +19,8 @@
 body {
     overflow: hidden;
     font-family: var(--bs-font-sans-serif);
+    background: black !important;
+
 }
 
 textarea:hover,
@@ -42,7 +44,11 @@ button:hover {
 }
 
 #searchBTN:hover {
-    color: black;
+    color: rgb(199, 0, 0) !important;
+}
+
+#searchBTN {
+    border: 2px solid rgba(51, 51, 51, 0.8);
 }
 
 .btn:active,
@@ -74,8 +80,6 @@ button:active,
 #submit_form {
     margin-bottom: 1rem;
 }
-
-
 
 @media screen and (max-width: 1183px) {
     #main-container {
@@ -140,17 +144,21 @@ button:active,
     font-size: 17px;
     overflow: auto;
     width: 100%;
-    background: rgba(31, 31, 31, 0.3);
+    background: rgba(37, 36, 51, 0.7) !important;
+}
+
+#seachhhh {
+    background: rgba(37, 36, 51, 0.8) !important;
 }
 
 #my_input:hover,
 #seachhhh:hover {
-    background: rgba(36, 36, 36, 0.4) !important;
+    background: rgba(37, 36, 51, 0.8) !important;
 }
 
 #my_input:focus-within,
 #seachhhh:focus-within {
-    background: rgba(36, 36, 36, 0.4) !important;
+    background: rgba(37, 36, 51, 0.9) !important;
 }
 
 #my_input:focus,
@@ -162,33 +170,12 @@ button:active,
 }
 
 /* ================================= */
-/* =================================*/
-#my_input::-webkit-input-placeholder,
-#seachhhh::-webkit-input-placeholder {
-    color: rgb(112, 175, 142);
-}
-
-#my_input::-moz-placeholder,
-#seachhhh::-moz-placeholder {
-    color: rgb(112, 175, 142);
-}
-
-#my_input:-ms-input-placeholder,
-#seachhhh:-ms-input-placeholder {
-    color: rgb(112, 175, 142);
-}
-
-#my_input::-ms-input-placeholder,
-#seachhhh::-ms-input-placeholder {
-    color: rgb(112, 175, 142);
-}
-
+/* =================================
 #my_input::placeholder,
 #seachhhh::placeholder {
     color: rgb(112, 175, 142);
 }
-
-/*================================ */
+================================ */
 /* ================================= */
 #read_more,
 #access_btn,
@@ -401,7 +388,8 @@ button:active,
 
 .change_btn_color {
     color: red !important;
-    text-shadow: var(--text-shadow)
+    text-shadow: var(--text-shadow);
+    opacity: .3 !important;
 }
 
 .alert_lable {
@@ -432,9 +420,11 @@ button:active,
     margin-bottom: 0;
     padding: .3rem;
     border-radius: .3rem;
-    opacity: .8;
+    opacity: .6;
     font-size: 1.2rem;
     text-shadow: var(--text-shadow);
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(40px);
 }
 
 .db-question-response p::first-letter,

@@ -43,13 +43,14 @@ function QA_HTML (QB, RESPONSE, id) {
         <span class="link fs-6" style="opacity:0">${id}</span>
       </p>
       <p class="init-response text-white">
-      <img src="./images/bot.webp" style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem; border:2px solid transparent;" alt="">
+      <img src="./images/bot.png" style="width:40px;height:40px;position:absolute;bottom:0;right:0;border-radius:50%;padding:.2rem; border:2px solid transparent;" alt="">
         ${RESPONSE}<br>
         <span class="link" style="opacity:.5">${id}</span>
       </p>
     </div>
   `
 }
+
 function DB_QN_RES_HTML (question, response, id, created_at, addClass = false) {
   const div = document.createElement('div')
   div.dataset.id = id
@@ -86,6 +87,9 @@ function DB_QN_RES_HTML (question, response, id, created_at, addClass = false) {
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
     <div id="single_item" data-id="${item_id}"  class="card bg-transparent">
+    <div class="carucel-bg">
+    <img src="./images/model-img.jpeg" alt="" width=100%" height="100%" style="top:50%;left:50%;object-fit:cover;transform:translate(-50%,-50%)" class="d-fixed">
+    </div>
         <div class="card-header d-flex  justify-content-between">
             <p data-itemid="timestamp" class="link-success">${item_id}</p>
             <a id="del_BTN" href="#" class="btn btn-danger">DELETE ITEM</a>

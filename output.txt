@@ -1031,3 +1031,17 @@ function LoginAwsAndCreateSecuritygroup(AWSAccessKeyID, AWSSecretKey, CodeBuild,
 						sourceVersion: CodeCommit,
 		
 **********************************
+
+The theory of general relativity is Albert Einstein's theory of gravitation, which describes the force of gravity as a geometric property of space and time. In this theory, mass and energy cause a distortion or curvature in the structure of space-time. This distortion is what we perceive as the force of gravity. The theory of general relativity not only explains the force of gravity, but also provides a framework for understanding the evolution of our universe.
+**********************************
+
+Answer: Nuclear fusion is a process in which two or more atomic nuclei collide at a very high speed and join to form a new type of nucleus. This process releases large amounts of energy, much more than when atoms are combined through chemical reactions.
+**********************************
+
+Answer: Nuclear fusion is the process by which two or more atomic nuclei join together, or “fuse,” to form a single heavier nucleus. This is the source of the energy released in stars and is the process responsible for creating heavier elements from hydrogen.
+**********************************
+
+**********************************
+
+Syndrom is a term used to describe a set of signs and symptoms that occur together and characterize a particular condition or disorder. In medical diagnosis, a syndrome is a collection of signs, symptoms, and medical issues (or their possible effects) that often occur together and which may be indicative of an underlying disease or disorder.
+**********************************
