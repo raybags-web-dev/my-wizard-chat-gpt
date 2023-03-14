@@ -10,20 +10,13 @@ const mainLoaderRing = document.querySelector('#main-page-loader')
 const searchInput = document.getElementById('seachhhh')
 const searchBtn = document.getElementById('searchBTN')
 const searchFORM = document.getElementById('search_form')
-const previousButton = document.querySelector('.get-previous')
-const nextButton = document.querySelector('.get-next')
 const modelButton = document.querySelector('#read_more')
 let lastScroll = 0
 const loading_1 = document.getElementById('__db_loader')
 
-GET_loader(loading_1, false)
-function Empty_Element (anchor) {
-  let element = document.querySelector(anchor)
-  return (element.innerHTML = '')
-}
 function GET_loader (element, isFinished) {
-  if (!isFinished) return element.classList.add('con_loader')
-  setTimeout(() => element.classList.remove('con_loader'), 200)
+  if (!isFinished) return element.classList.remove('hide')
+  setTimeout(() => element.classList.add('hide'), 200)
 }
 function formatDate (timestamp) {
   const date = new Date(timestamp)
@@ -50,7 +43,6 @@ function QA_HTML (QB, RESPONSE, id) {
     </div>
   `
 }
-
 function DB_QN_RES_HTML (question, response, id, created_at, addClass = false) {
   const div = document.createElement('div')
   div.dataset.id = id
@@ -83,7 +75,6 @@ function DB_QN_RES_HTML (question, response, id, created_at, addClass = false) {
   }
   return div.outerHTML
 }
-
 function dbItem (item_id, quetion, response, createdAt, updatedAt) {
   return `
     <div id="single_item" data-id="${item_id}"  class="card bg-transparent">
@@ -111,133 +102,6 @@ function dbItem (item_id, quetion, response, createdAt, updatedAt) {
     `
 }
 // Query pagination
-async function fetchDataAndPaginate (previousButton, nextButton) {
-  GET_loader(loading_1, false)
-  try {
-    let myToken = localStorage.getItem('token')
-    const ITEMS_PER_PAGE = 10
-    let currentPage = 1
-    let totalItems = 0
-    let responseData = []
-    // Make initial API call to get total number of items
-    const OPTIONS = {
-      method: 'get',
-      url: `/raybags/v1/wizard/data-all`,
-      headers: { Authorization: myToken }
-    }
-    const response = await axios(OPTIONS)
-    // if (response.data) return
-    responseData = await response.data.data.sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    )
-    totalItems = responseData.length
-    if (totalItems === 0) {
-      showNotification('Not found', 'Nothing found in database', '#nav_barrr')
-    }
-    // Display the initial data for the first page
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-    const endIndex = startIndex + ITEMS_PER_PAGE
-    const dataToDisplay = responseData.slice(startIndex, endIndex)
-    displayData(dataToDisplay)
-
-    // Add click event listener to "next" button
-    nextButton.addEventListener('click', async () => {
-      currentPage += 1
-      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-      const endIndex = startIndex + ITEMS_PER_PAGE
-      const dataToDisplay = responseData.slice(startIndex, endIndex)
-      // Update UI with data for current page
-      displayData(dataToDisplay)
-      // Update pagination buttons based on current page and total number of items
-      updatePaginationButtons()
-      // Alert user if last page has been reached
-      if (currentPage === Math.ceil(totalItems / ITEMS_PER_PAGE)) {
-        showNotification(
-          'End of the road',
-          `This is the last page: ${currentPage}`,
-          '#nav_barrr'
-        )
-      }
-    })
-    // Add click event listener to "previous" button
-    previousButton.addEventListener('click', async () => {
-      currentPage -= 1
-      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE
-      const endIndex = startIndex + ITEMS_PER_PAGE
-      const dataToDisplay = responseData.slice(startIndex, endIndex)
-      // Update UI with data for current page
-      displayData(dataToDisplay)
-      // Update pagination buttons based on current page and total number of items
-      updatePaginationButtons()
-    })
-    // Update pagination buttons based on current page and total number of items
-    function updatePaginationButtons () {
-      const maxPage = Math.ceil(totalItems / ITEMS_PER_PAGE)
-      previousButton.classList.toggle('disabled', currentPage === 1)
-      nextButton.classList.toggle('disabled', currentPage === maxPage)
-      previousButton.classList.toggle(
-        'disabled',
-        currentPage === 1 || totalItems <= ITEMS_PER_PAGE
-      )
-    }
-    function displayData (data) {
-      if (!data) return
-      rightCont.innerHTML = ''
-      data
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-        .forEach(item => {
-          const { createdAt, question, response, _id } = item
-          const dbQuestionResponseElement = document.createElement('div')
-          dbQuestionResponseElement.dataset.id = _id
-          dbQuestionResponseElement.classList.add(
-            'db-question-response',
-            'shadow-lg',
-            'p-2',
-            'mb-1',
-            'bg-transparent',
-            'text-white',
-            'rounded'
-          )
-          dbQuestionResponseElement.innerHTML = `
-            <p class="question" data-id="${_id}">${question}</p>
-            <p class="response" data-id="${_id}">${response}</p>
-            <span class="link" style="opacity:0;">${_id}</span>
-            <span class="link float-end" style="opacity:.5">${formatDate(
-              createdAt
-            )}</span>
-          `
-          rightCont.insertAdjacentElement(
-            'afterbegin',
-            dbQuestionResponseElement
-          )
-          outRightContainer.scrollTo(0, 0)
-          GET_loader(loading_1, true)
-        })
-      // run oberser
-      runObserver('.db-question-response')
-    }
-    // Hide "previous" button on initial page
-    previousButton.classList.add('disabled')
-    // Show/hide pagination buttons based on total number of items
-    if (totalItems <= ITEMS_PER_PAGE) {
-      nextButton.classList.add('disabled')
-    } else {
-      nextButton.classList.remove('disabled')
-    }
-    // Update pagination buttons based on initial state
-    updatePaginationButtons()
-  } catch (e) {
-    if ((e.name = 'AxiosError')) {
-      localStorage.removeItem('question')
-      localStorage.removeItem('response')
-      leftContainer.innerHTML = ''
-      showNotification('Database empty!', 'Lets save some stuff!', '#nav_barrr')
-      return
-    }
-  }
-}
-fetchDataAndPaginate(previousButton, nextButton)
-
 const handleSubmit = async e => {
   try {
     e.preventDefault()
@@ -316,6 +180,126 @@ async function postFetch (question) {
     }
   }
 }
+// ======================================
+// ======================================
+// ======================================
+async function FetchPaginatedData (scrollableContainer, innerContainer) {
+  try {
+    let page = 1
+    let myToken = localStorage.getItem('token')
+    const OPTIONS = {
+      method: 'get',
+      url: `/raybags/v1/wizard/data?page=${page}`,
+      headers: { Authorisation: myToken }
+    }
+    GET_loader(loading_1, false)
+    // wait for 1 second
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
+    const response = await axios(OPTIONS)
+    let responseData = await response.data.data
+    GET_loader(loading_1, true)
+    loadLocal(responseData)
+
+    if (!responseData.length) {
+      outRightContainer.classList.toggle('hide')
+      return showNotification(
+        'Warning, nothing found!',
+        'Please try again letter',
+        '#nav_barrr'
+      )
+    }
+    responseData
+      .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+      .slice(0, 10)
+      .forEach(item => {
+        const { createdAt, question, response, _id } = item
+        innerContainer.insertAdjacentHTML(
+          'beforeend',
+          DB_QN_RES_HTML(question, response, _id, formatDate(createdAt))
+        )
+        runObserver('.db-question-response')
+        showNotification('Success', `Page number : ${page} `, '#nav_barrr', 800)
+      })
+
+    page++
+
+    if (responseData.length < 10) {
+      scrollableContainer.removeEventListener('scroll', onScroll)
+      return showNotification(
+        'End of the road!',
+        `No more items from the database`,
+        '#nav_barrr'
+      )
+    }
+
+    const onScroll = async () => {
+      const { scrollTop, scrollHeight, clientHeight } = scrollableContainer
+      if (scrollTop + clientHeight >= scrollHeight * 0.95) {
+        scrollableContainer.removeEventListener('scroll', onScroll)
+        const nextPage = page
+        // loading from database
+        GET_loader(loading_1, false)
+        await new Promise(resolve => setTimeout(resolve, 1000))
+
+        const nextResponse = await axios({
+          method: 'get',
+          url: `/raybags/v1/wizard/data?page=${nextPage}`,
+          headers: { Authorisation: myToken }
+        })
+        const nextData = await nextResponse.data.data
+        GET_loader(loading_1, true)
+
+        if (!nextData.length) {
+          innerContainer.classList.add('hide')
+          return showNotification(
+            'Warning, nothing found!',
+            'Please try again later',
+            '#nav_barrr'
+          )
+        }
+        nextData
+          .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+          .slice(0, 10)
+          .forEach(item => {
+            const { createdAt, question, response, _id } = item
+            innerContainer.insertAdjacentHTML(
+              'beforeend',
+              DB_QN_RES_HTML(question, response, _id, formatDate(createdAt))
+            )
+            runObserver('.db-question-response')
+            showNotification(
+              'Success',
+              `Page number : ${page} `,
+              '#nav_barrr',
+              800
+            )
+          })
+        // loading completed
+        page++
+        if (nextData.length < 10) {
+          scrollableContainer.removeEventListener('scroll', onScroll)
+          showNotification(
+            'End of the road!',
+            `No more items from the database`,
+            '#nav_barrr'
+          )
+        } else {
+          scrollableContainer.addEventListener('scroll', onScroll)
+        }
+      }
+    }
+
+    scrollableContainer.addEventListener('scroll', onScroll)
+  } catch (e) {
+    console.warn(e.message)
+    showNotification('Error', `Something went wrong:\n ${e} `, '#nav_barrr')
+  }
+}
+FetchPaginatedData(outRightContainer, rightCont)
+// ======================================
+// ======================================
+// ======================================
 async function FetchData (query) {
   try {
     if (query == undefined) query == '?page=1'
@@ -354,27 +338,36 @@ async function FetchData (query) {
   }
 }
 // bring in data
-async function loadLocal () {
+async function loadLocal (dataObject) {
   try {
     const QN = JSON.parse(localStorage.getItem('question'))
     let item = localStorage.getItem('response')
     let timestamp = localStorage.getItem('timestamp')
 
-    if (!item) return
+    if (!item && !QN) {
+      await dataObject
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+        .slice(0, 3)
+        .forEach(item => {
+          const { createdAt, question, response } = item
+          leftContainer.insertAdjacentHTML(
+            'beforeend',
+            QA_HTML(question, response, formatDate(createdAt))
+          )
+        })
+      return
+    }
     const { data } = JSON.parse(item)
-
     leftContainer.insertAdjacentHTML(
       'afterbegin',
       QA_HTML(QN, data.response, timestamp)
     )
-
     GET_loader(loading_1, false)
   } catch (e) {
     console.log(e.message)
     showNotification('Error', `Something went wrong:\n ${e} `, '#nav_barrr')
   }
 }
-loadLocal()
 // token handler
 async function getToken () {
   checkVisited()
@@ -417,7 +410,7 @@ async function getToken () {
     return token
   }, 1000)
 }
-// delete item from db handler
+//delete item from db handler
 async function deleteDBItem (e) {
   let id = e.target.dataset.id
   let itemToRemove = e.target
@@ -627,7 +620,7 @@ async function searchDatabase (e) {
   }
 }
 // logger
-async function showNotification (title, body, anchorrr) {
+async function showNotification (title, body, anchorrr, delay = 5000) {
   // remove previous notification element, if it exists
   const prevNotificationDiv = document.querySelector('#notifications')
   if (prevNotificationDiv) {
@@ -702,7 +695,7 @@ async function showNotification (title, body, anchorrr) {
     setTimeout(() => {
       notificationsDiv.remove()
     }, 1000) // wait for the animation to complete before removing the element
-  }, 5000)
+  }, delay)
 
   return notificationsDiv
 }
@@ -728,21 +721,6 @@ searchFORM.addEventListener('submit', function (event) {
   event.preventDefault()
   searchDatabase(event)
 })
-// bg for pagination buttons
-outRightContainer.addEventListener('scroll', function () {
-  let container_buttons = document.querySelectorAll('.pagina__nating')
-  let currentScroll = this.scrollTop
-  if (currentScroll > lastScroll) {
-    container_buttons.forEach(btn => {
-      btn.classList.toggle('change_btn_color', true)
-    })
-  } else {
-    container_buttons.forEach(btn => {
-      btn.classList.toggle('change_btn_color', false)
-    })
-  }
-  lastScroll = currentScroll
-})
 function handlerMainLoader (isStuffDone) {
   const mainLoaderRing = document.querySelector('#main-page-loader')
   mainLoaderRing.classList.remove('hide')
@@ -752,6 +730,7 @@ function handlerMainLoader (isStuffDone) {
     mainLoaderRing.classList.remove('hide')
   }
 }
+// Big carucel container NEXT functionality
 async function handleNextPrev () {
   const myToken = localStorage.getItem('token')
   const options = {
@@ -801,6 +780,7 @@ async function handleNextPrev () {
     }
   })
 }
+// Big carucel container NEXT/PREV functionality
 async function handleNextPrevUI (item) {
   const nextItemLoader = document.querySelector('.DB_Carocel_loader')
   if (!item || item == undefined) return
@@ -903,7 +883,9 @@ showModal()
 function checkVisited () {
   if (localStorage.getItem('visited') === null) {
     let main_containerrr = document.querySelector('#main-container')
+    let NAV = document.querySelector('#navBAR')
     main_containerrr.style.display = 'none'
+    NAV.style.display = 'none'
 
     const loginFormContainer = document.createElement('div')
     loginFormContainer.id = 'login_page'
@@ -962,6 +944,7 @@ function checkVisited () {
         handlerMainLoader(true)
         showNotification('Success', `Login Successful`, '#nav_barrr')
         main_containerrr.style.display = 'block'
+        NAV.style.display = 'block'
       }, 2500)
 
       setTimeout(async () => {
@@ -1011,7 +994,6 @@ function highlightCode (inputString) {
   )
   return `<pre class="hljs ${highlighted.language}" style="background-color: #2d2d2d; color: #d4d4d4;">${highlightedWithTheme.value}</pre>`
 }
-
 window.addEventListener('DOMContentLoaded', event => {
   handlerMainLoader(true)
 })

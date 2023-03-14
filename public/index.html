@@ -78,6 +78,8 @@
             transform: translate(-50%, 1%) !important;
             z-index: 2000 !important;
             min-width: 30%;
+            border-color: transparent !important;
+            height: 7%;
             margin-top: -10%;
             padding-bottom: 0% !important;
             padding-top: .5rem !important;
@@ -102,7 +104,7 @@
             min-width: 100vw;
             min-height: 100vh;
             display: flex;
-            background: rgba(0, 0, 0, 0.4) !important;
+            background: rgba(10, 29, 107, 0.3) !important;
             justify-content: center;
             align-items: center;
         }
@@ -117,7 +119,7 @@
             border-radius: .4rem;
             backdrop-filter: blur(10px);
             transform: translate(-50%, -50%) !important;
-            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            box-shadow: rgba(0, 0, 247, 0.25) 0px 50px 100px -20px, rgba(2, 120, 146, 0.569) 0px 30px 60px -30px;
         }
 
         .visitor_login {
@@ -169,19 +171,58 @@
         .main-background::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
+            top: 50%;
+            left: 90%;
+            width: 200vw;
+            height: 200vw;
+            max-width: 200vh;
+            max-height: 200vh;
             z-index: 1;
-            top: 0;
-            left: 0;
-            background: rgb(0, 0, 0, .6);
+            opacity: .9;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: 5s;
+            z-index: 5;
+            filter: blur(100px) grayscale(100%);
+            animation: move-circle1 infinite alternate-reverse ease-in 100s;
+            background-color: rgb(0, 0, 0);
         }
+
+        .main-background::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 2%;
+            width: 200vw;
+            height: 200vw;
+            max-width: 200vh;
+            max-height: 200vh;
+            z-index: 1;
+            opacity: .8;
+            transition: 5s;
+            border-radius: 50%;
+            filter: blur(100px);
+            transform: translate(-50%, -50%);
+            animation: move-circle2 infinite alternate-reverse ease-in 100s;
+            background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+        }
+
+        /*@keyframes move-circle1 {
+            to {
+                left: 100%;
+            }
+        }
+
+        @keyframes move-circle2 {
+            to {
+                left: 0%;
+            }
+        }*/
 
         .main-background img {
             object-fit: cover;
             min-width: 100% !important;
             height: 100% !important;
-            filter: blur(1px) grayscale(70%);
         }
 
         #notifications {
@@ -245,7 +286,7 @@
             object-fit: cover;
             width: 100%;
             height: 100%;
-            opacity: .3;
+            opacity: .7;
         }
     </style>
     <!-- Imported css -->
@@ -257,7 +298,7 @@
     <div class="main-background">
         <img src="./images/model-img.jpeg" alt="...">
     </div>
-    <nav class="navbar bg-transparent position-sticky sticky-lg-top" style="opacity:.8">
+    <nav id="navBAR" class="navbar bg-transparent position-sticky sticky-lg-top" style="opacity:.8">
         <div id="nav_barrr" class="container">
             <a class="navbar-brand text-white fst-italic" href="#">
                 <img src="./images/logo.png" alt="" width=40" height="40"
@@ -292,37 +333,33 @@
         </form>
         <div class="d-flex justify-content-between text-center">
             <button id="submit_button" style="text-transform:uppercase;min-height:3rem;text-align:center;"
-                class="btn p-1 bg-transparent rounded btn-lg mx-1 text-white" type="submit">
+                class="btn p-2 bg-transparent rounded btn-lg mx-1 text-white" type="submit">
                 Submit Question
             </button>
             <button id="read_more" type="button" style="text-transform:uppercase;min-height:3rem;text-align:center;"
-                class="btn btn-secondary p-1 text-white text-center bg-transparent rounded btn-lg mx-1"
+                class="btn btn-secondary p-2  text-white text-center bg-transparent rounded btn-lg mx-1"
                 data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 How It Works
             </button>
             <button id="access_btn" style="text-transform: uppercase; min-height:3rem;text-align:center;"
-                class="btn p-1  bg-trasparent rounded btn-lg mx-1 text-white" type="button">
+                class="btn p-2  bg-trasparent rounded btn-lg mx-1 text-white" type="button">
                 Authenticate
             </button>
         </div>
         <div class="container my_text_container">
+            <!-- left container -->
             <div class="left-container overflow-auto">
                 <div class="alert inner_left_container">
                 </div>
             </div>
-
-            <div class="right-container overflow-auto position-relative">
-                <div id="BTN1" class="d-grid position-sticky sticky-sm-top d-md-flex justify-content-md-around">
-                    <a type="button" class="btn btn-lg get-previous pagina__nating">&#60;</a>
-                    <a type="button" class="btn  btn-lg get-next pagina__nating">&#62;</a>
-                </div>
+            <!-- right container  -->
+            <div class="right-container">
+                <span id="__db_loader" class="loader_2 sticky-sm-top"></span>
                 <div class="alert inner_right_container shadow-lg">
                 </div>
-                <span id="__db_loader" class="loader_2 position-sticky sticky-sm-top"></span>
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
