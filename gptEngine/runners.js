@@ -2,7 +2,7 @@ const { Configuration, OpenAIApi } = require('openai')
 const { WRITTER } = require('../Helpers/helper')
 
 require('dotenv').config()
-const { API_KEY_1, API_KEY_2 } = process.env
+const { API_KEY_1 } = process.env
 
 module.exports = {
   GPT_5: async arg => {
@@ -11,7 +11,7 @@ module.exports = {
       if (!arg) return console.log('Iam ready. Ask away....')
       console.log('processing......')
       const configuration = new Configuration({
-        apiKey: API_KEY_1 || API_KEY_2
+        apiKey: API_KEY_1
       })
       const openai = new OpenAIApi(configuration)
 
